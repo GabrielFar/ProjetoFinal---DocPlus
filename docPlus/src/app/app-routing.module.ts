@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from "@angular/router";
 
 import { LoginComponent } from './login/login.component';
-//import { SobreComponent } from './sobre/sobre.component';
+import { SobreComponent } from './sobre/sobre.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent}
-  //{ path: 'sobre', component: SobreComponent}
+  { path: '', component: LoginComponent},
+  { path: 'sobre', component: SobreComponent}
   ];
 
 @NgModule({

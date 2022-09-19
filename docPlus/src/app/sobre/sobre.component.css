@@ -1,0 +1,17 @@
+.card{
+    background: #50af73;
+    width: 22rem;
+}
+
+.BotaoVoltar{
+    width: auto;
+    height: 5%;
+}
+
+.botao{    
+    background: #048436;
+}
+
+.botao:hover{    
+    background: #015823;
+}

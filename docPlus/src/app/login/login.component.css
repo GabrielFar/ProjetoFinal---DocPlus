@@ -26,8 +26,12 @@
     height: 15%;
 }
 
-.botaoLogin{    
+.botao{    
     background: #048436;
+}
+
+.botao:hover{    
+    background: #015823;
 }
 
 input:focus::-webkit-input-placeholder {
