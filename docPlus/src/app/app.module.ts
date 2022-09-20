@@ -6,14 +6,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { SobreComponent } from './sobre/sobre.component';
+import { SobreComponent } from './pages/sobre/sobre.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ContatoComponent } from './pages/contato/contato.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SobreComponent
+    SobreComponent,
+    ContatoComponent
   ],
   imports: [
     BrowserModule,
