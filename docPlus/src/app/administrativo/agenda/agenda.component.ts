@@ -11,20 +11,22 @@ export class AgendaComponent implements OnInit {
   filtroPaciente: string = "";
   nomesPacientes: string[] = ["Joao Gustavo", "Pedro Henrique", "Ana Carolina", "Paulo Gomes", "Paula Andrade"];
   itensListaPacientes = document.getElementsByClassName("Nomes");
+  inputPacientes = document.getElementById("filtroPaciente");
 
-  constructor() { 
+  constructor() {    
   }
 
   ngOnInit(): void {
-    $(document.getElementById("idListaPacientes") as HTMLDivElement).click(function(e){
-      (document.getElementById("idFiltroPaciente") as HTMLInputElement).value = e.target.innerHTML;
-      (document.getElementById("idListaPacientes") as HTMLDivElement).innerHTML = ""
-    })
+
+    $(document.getElementById("listaPacientes") as HTMLDivElement).click(function(e){
+      (document.getElementById("filtroPaciente") as HTMLInputElement).value = e.target.innerHTML;
+      (document.getElementById("listaPacientes") as HTMLDivElement).innerHTML = ""      
+    });
   }
 
   filtrar(): void{
     let nomesRetornados: string[] = [];
-    let index: number = 0;    
+    let index: number = 0;      
     
     for (let i = 0; i < this.nomesPacientes.length; i++) { 
       if (this.nomesPacientes[i].toLowerCase().includes(this.filtroPaciente.toLowerCase())) {
@@ -35,18 +37,18 @@ export class AgendaComponent implements OnInit {
     this.gerarLista(nomesRetornados);    
   }
 
-  gerarLista(nomesLista: string[]){
-    let divTabela = document.getElementById("idListaPacientes") as HTMLDivElement;
-    divTabela.innerHTML = "";
+  gerarLista(nomesRetornados: string[]){
+    let divTabelaPacientes = document.getElementById("listaPacientes") as HTMLDivElement;
+    divTabelaPacientes.innerHTML = ""
 
     if (this.filtroPaciente.length > 0) {
-      for (let index = 0; index < nomesLista.length; index++) {
-        divTabela.innerHTML += "<li class ='Nomes'>" + nomesLista[index] + "</li>"
+      for (let index = 0; index < nomesRetornados.length; index++) {
+        divTabelaPacientes.innerHTML += "<div class ='Nomes'>" + nomesRetornados[index] + "</div>"
       } 
-    } else{
+    }  else {      
       for (let index = 0; index < this.nomesPacientes.length; index++) {
-        divTabela.innerHTML += "<li class ='Nomes'>" + this.nomesPacientes[index] + "</li>"
-      }
+        divTabelaPacientes.innerHTML += "<div class ='Nomes'>" + this.nomesPacientes[index] + "</div>"
+      }    
     }
   }
 }

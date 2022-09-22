@@ -1,5 +1,21 @@
-<div>
-    <input type="search" [(ngModel)]="filtroPaciente" (keyup)="filtrar()" id="idFiltroPaciente">
+<div id="imgLogo"></div>
+<div id="botoesDeDirecionamento">
+    <button id="btnAgenda">Agenda</button>
+    <button id="btnPacientes">Pacientes</button>
+    <button id="btnCadastro">Cadastro</button>
 </div>
-<div id="idListaPacientes">
+<div id="btnDesligar"></div>
+<div id="camposDePesquisa">
+    <!--<div id="medico">
+        <div id="selecaomedico">
+            <input type="search" [(ngModel)]="filtroMedicos" (keyup)="filtrar()" id="filtroMedicos">
+        </div>
+        <div id="listaMedicos"></div>
+    </div>-->
+    <div id="paciente">
+        <div id="selecaoPaciente">
+            <input type="search" [(ngModel)]="filtroPaciente" (keyup)="filtrar()" id="filtroPaciente">
+        </div>
+        <div id="listaPacientes"></div>
+    </div>
 </div>
