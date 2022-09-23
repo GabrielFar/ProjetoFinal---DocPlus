@@ -1,20 +1,26 @@
-<div id="imgLogo"></div>
+<!--<div id="imgLogo"><img src="../../../assets/Logo.png" alt=""></div>-->
 <div id="botoesDeDirecionamento">
     <button id="btnAgenda">Agenda</button>
     <button id="btnPacientes">Pacientes</button>
     <button id="btnCadastro">Cadastro</button>
 </div>
-<div id="btnDesligar"></div>
+<!--<div id="btnDesligar"><img src="../../../assets/botãoDesligar.png" alt="DESLOGAR"></div>-->
 <div id="camposDePesquisa">
-    <!--<div id="medico">
+    <div id="medico">
+        <div id="labelMedico">
+            <label for="filtroMedico">Insira o Nome do Medico</label>
+        </div>
         <div id="selecaomedico">
-            <input type="search" [(ngModel)]="filtroMedicos" (keyup)="filtrar()" id="filtroMedicos">
+            <input type="search" [(ngModel)]="filtroMedico" (keyup)="filtrarMedicos()" id="filtroMedico">
         </div>
         <div id="listaMedicos"></div>
-    </div>-->
+    </div>
     <div id="paciente">
+        <div id="labelPaciente">
+            <label for="filtroPaciente">Insira o Nome do Paciente</label>
+        </div>
         <div id="selecaoPaciente">
-            <input type="search" [(ngModel)]="filtroPaciente" (keyup)="filtrar()" id="filtroPaciente">
+            <input type="search" [(ngModel)]="filtroPaciente" (keyup)="filtrarPacientes()" id="filtroPaciente">
         </div>
         <div id="listaPacientes"></div>
     </div>
