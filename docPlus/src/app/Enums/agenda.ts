@@ -1,7 +1,7 @@
 export interface Agenda {
     1: {
         "8-8.30" : null,
-        "8.30-9" : "Joao Gustavo",
+        "8.30-9" : "Joao Gustavo - Dr. Gustavo",
         "9-9.30" : null,
         "9.30-10" : null,
         "10-10.30": null,

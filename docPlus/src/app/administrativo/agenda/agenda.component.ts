@@ -24,10 +24,9 @@ export class AgendaComponent implements OnInit {
   diaNovaConsulta: number = 0;
   horarioNovaConsulta: string = "";
 
-  readonly diasFuncionamentoConsultorio: string[]  = ["segunda", "terca", "quarta", "quinta", "sexta"];
   agenda: object = {1: {
     "8-8.30" : null,
-    "8.30-9" : "Joao Gustavo",
+    "8.30-9" : "Joao Gustavo - Dr. Gustavo",
     "9-9.30" : null,
     "9.30-10" : null,
     "10-10.30": null,
@@ -119,7 +118,9 @@ export class AgendaComponent implements OnInit {
     "16.30-17": null,
     "17-17.30": null,
     "17.30-18": null
-}} 
+},
+"ultimoDiaDeVisualização": 26}
+
   constructor() { 
   }
   
@@ -149,7 +150,9 @@ export class AgendaComponent implements OnInit {
         (document.getElementById("listaMedicos") as HTMLDivElement).innerHTML = ""      
       }, 200);
     }); 
-        
+    
+    this.mostrarLista();
+    
   }
 
   //-------------------------------------------Filtro de Paciente---------------------------------------------------
@@ -254,10 +257,11 @@ export class AgendaComponent implements OnInit {
     }
     
     if (isPacienteSelecionado && isMedicoSelecionado) {
-      (this.agenda as any)[(this.diaNovaConsulta)][this.horarioNovaConsulta] = pacienteBuscado
+      (this.agenda as any)[(this.diaNovaConsulta)][this.horarioNovaConsulta] = pacienteBuscado + " - " + medicoBuscado
       //Selecionar e alterar a tabela do médico
       this.openPopupMsn("Agendamento realizado com sucesso");
-        
+      this.mostrarLista()
+
     } else if(isMedicoSelecionado){
       this.openPopupMsn("Selecione um paciente!");
       
@@ -281,7 +285,7 @@ export class AgendaComponent implements OnInit {
     (this.agenda as any)[(this.diaNovaConsulta)][this.horarioNovaConsulta] = null
     //Selecionar e alterar a tabela do médico
     this.openPopupMsn("Cancelamento de agendamento realizado com sucesso");
-
+    this.mostrarLista()
   }
 
   //---------------------------Pop Up de Mensagem de Informação sobre Agendamento---------------------------------------------------
@@ -298,7 +302,20 @@ export class AgendaComponent implements OnInit {
     this.displayStyleMsn = "none";
   }
 
-  //---------------------------Mostrar o paciente agendado na tela---------------------------------------------------
+  //---------------------------Mostrar os pacientes agendados na lista---------------------------------------------------
 
-  
+  mostrarLista(){
+    let listaAgenda = (document.getElementById("agenda") as HTMLOptGroupElement)
+    
+    for (let indexTela = 1; indexTela <= 5; indexTela++) {   
+      let dia = listaAgenda.children[indexTela].children[1].children[0].classList[1]   
+      
+      for (let index = 0; index < 16; index++) {
+        let horarioLista = listaAgenda.children[indexTela].children[1].children[index].attributes[1].nodeValue
+        
+        listaAgenda.children[indexTela].children[1].children[index].innerHTML = 
+        (this.agenda as any)[dia][horarioLista as string]
+      }     
+    }
+  }
 }  
