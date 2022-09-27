@@ -24,9 +24,11 @@ export class AgendaComponent implements OnInit {
   diaNovaConsulta: number = 0;
   horarioNovaConsulta: string = "";
 
+  readonly diasFuncionamento: string[] = ["monday", "tuesday", "wednesday", "thursday", "friday"]
+
   agenda: object = {1: {
     "8-8.30" : null,
-    "8.30-9" : "Joao Gustavo - Dr. Gustavo",
+    "8.30-9" : null,
     "9-9.30" : null,
     "9.30-10" : null,
     "10-10.30": null,
@@ -42,8 +44,8 @@ export class AgendaComponent implements OnInit {
     "16.30-17": null,
     "17-17.30": null,
     "17.30-18": null
-},
-2: {
+  },
+  2: {
     "8-8.30" : null,
     "8.30-9" : null,
     "9-9.30" : null,
@@ -61,8 +63,8 @@ export class AgendaComponent implements OnInit {
     "16.30-17": null,
     "17-17.30": null,
     "17.30-18": null
-},
-3: {
+  },
+  3: {
     "8-8.30" : null,
     "8.30-9" : null,
     "9-9.30" : null,
@@ -80,8 +82,8 @@ export class AgendaComponent implements OnInit {
     "16.30-17": null,
     "17-17.30": null,
     "17.30-18": null
-},
-4: {
+  },
+  4: {
     "8-8.30" : null,
     "8.30-9" : null,
     "9-9.30" : null,
@@ -99,8 +101,8 @@ export class AgendaComponent implements OnInit {
     "16.30-17": null,
     "17-17.30": null,
     "17.30-18": null
-},
-5: {
+  },
+  5: {
     "8-8.30" : null,
     "8.30-9" : null,
     "9-9.30" : null,
@@ -118,8 +120,14 @@ export class AgendaComponent implements OnInit {
     "16.30-17": null,
     "17-17.30": null,
     "17.30-18": null
-},
-"ultimoDiaDeVisualização": 26}
+  },
+  "diasSemana": [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday"
+  ]}
 
   constructor() { 
   }
@@ -151,8 +159,7 @@ export class AgendaComponent implements OnInit {
       }, 200);
     }); 
     
-    this.mostrarLista();
-    
+    this.mostrarLista();    
   }
 
   //-------------------------------------------Filtro de Paciente---------------------------------------------------
@@ -268,8 +275,7 @@ export class AgendaComponent implements OnInit {
     } else{
       this.openPopupMsn("Selecione um medico!");
 
-    }
-    
+    }    
   }
 
   //---------------------------Pop Up de Confirmação de Cancelamento de Consulta---------------------------------------------------
@@ -307,13 +313,16 @@ export class AgendaComponent implements OnInit {
   mostrarLista(){
     let listaAgenda = (document.getElementById("agenda") as HTMLOptGroupElement)
     
-    for (let indexTela = 1; indexTela <= 5; indexTela++) {   
-      let dia = listaAgenda.children[indexTela].children[1].children[0].classList[1]   
+    for (let indexDiaTela = 1; indexDiaTela <= 5; indexDiaTela++) {   
+      let dia = listaAgenda.children[indexDiaTela].children[1].children[0].classList[1]
       
-      for (let index = 0; index < 16; index++) {
-        let horarioLista = listaAgenda.children[indexTela].children[1].children[index].attributes[1].nodeValue
+      listaAgenda.children[indexDiaTela].children[0].innerHTML = 
+      (this.agenda as any)["diasSemana"][indexDiaTela - 1];
+
+      for (let indexHorario = 0; indexHorario < 16; indexHorario++) {
+        let horarioLista = listaAgenda.children[indexDiaTela].children[1].children[indexHorario].attributes[1].nodeValue
         
-        listaAgenda.children[indexTela].children[1].children[index].innerHTML = 
+        listaAgenda.children[indexDiaTela].children[1].children[indexHorario].innerHTML = 
         (this.agenda as any)[dia][horarioLista as string]
       }     
     }
