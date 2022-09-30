@@ -1,21 +1,43 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import * as $ from 'jquery'; 
+import { delayWhen } from 'rxjs';
 
 @Component({
   selector: 'app-pacientes',
   templateUrl: './pacientes.component.html',
   styleUrls: ['./pacientes.component.css']
 })
-export class PacientesComponent implements OnInit {
+export class PacientesComponent implements OnInit {  
   constructor() { }
 
   ngOnInit(): void {
     this.gerarLista()
 
+    let numBtnPressed: number
+
+    //-------------------------------Captura de Evento para Gravar Alterações------------------------------------------------
     let lista = document.getElementsByClassName("informacaoPaciente")
     $(document.getElementById("salvarDados") as HTMLButtonElement).click(function(e){
+      gravarDados()    
+    });
+    
+    //-------------------------------Chamar Pop-Up Para Exclusão Paciente-----------------------------------------
+    $(document.getElementsByClassName("btnExcluir") as HTMLCollection).click(function(e){
 
-    //------------------------------------------gravação de alterações de dados------------------------------------------
+      numBtnPressed = Number(e.target.attributes[0].value.split(" ")[1]);
+      let popUp = document.getElementById("teste") as HTMLElement
+      popUp.style.display = "block"
+    })
+
+    //------------------------------Exclusão do Paciente------------------------------------------------------
+    $(document.getElementById("btnConfirmarExclusao") as HTMLButtonElement).click(function(e){
+      (lista?.[numBtnPressed - 1] as HTMLDivElement).setAttribute('hidden', 'true');      
+      ((lista?.[numBtnPressed - 1] as HTMLDivElement).children[0] as HTMLInputElement).setAttribute('value', 'undefined')
+      gravarDados()    
+    })
+
+    function gravarDados() {
+      //------------------------------------------gravação de alterações de dados------------------------------------------
       for (let index = 0; index < lista?.length; index++) {
         let nomePaciente: string = (lista?.[index].children[0] as HTMLInputElement).value
         let dataNascPaciente: string = (lista?.[index].children[1] as HTMLInputElement).value
@@ -32,20 +54,11 @@ export class PacientesComponent implements OnInit {
           + telefonePaciente + " - " + emailPaciente + " - " + enderecoPaciente + " - " + planoPaciente);
         }
       }
-    });
-    //-------------------------------------Excluir Paciente-----------------------------------------
-    $(document.getElementsByClassName("btnExcluir") as HTMLCollection).click(function(e){
-      let numBtnPressed: number = Number(e.target.attributes[0].value.split(" ")[1]);
-      console.log((lista?.[numBtnPressed - 1] as HTMLDivElement));
-      (lista?.[numBtnPressed - 1] as HTMLDivElement).setAttribute('hidden', 'true');
-      ((lista?.[numBtnPressed - 1] as HTMLDivElement).children[0] as HTMLInputElement).setAttribute('value', 'undefined')
-
-    })
+    }
   }
 
   gerarLista(){
     for (let index = 0; index < 5; index++) {
-
       let lista = document.getElementById("listaPacientes") as HTMLElement
       let nomePaciente: string = 'Gabriel'
       let dataNascPaciente: string = '2022-09-27'
@@ -55,31 +68,94 @@ export class PacientesComponent implements OnInit {
       let emailPaciente: string = 'teste@gmail.com'
       let enderecoPaciente: string = 'Ipumirim, SC'
       let planoPaciente: string = 'São Camilo'
-      let selectSexoPaciente : string
-
-      if (sexoPaciente == 'M') {
-        selectSexoPaciente = "<select name='nmSexoPaciente' class='sexoPaciente m-1'>"+
-                                "<option value='M' selected>Masculino</option>"+
-                                "<option value='F'>Feminino</option>"+
-                              "</select>"
+  
+      let div: HTMLDivElement = document.createElement("div")
+      div.setAttribute("class", "informacaoPaciente border border-dark m-2")
+      div.setAttribute("id", ""+(index + 1)+"")
       
-      } else {
-        selectSexoPaciente = "<select name='nmSexoPaciente' class='sexoPaciente m-1'>"+
-                                "<option value='M'>Masculino</option>"+
-                                "<option value='F' selected>Feminino</option>"+
-                              "</select>"
-      }
+      let inputNome: HTMLInputElement = document.createElement("input")
+      inputNome.setAttribute("class", "nomePaciente m-1")
+      inputNome.setAttribute("type", "text")
+      inputNome.setAttribute("placeholder", "Nome...")
+      inputNome.setAttribute("value", ""+nomePaciente+"")
+      div.appendChild(inputNome)
 
-      lista.innerHTML += "<div class='informacaoPaciente border border-dark m-2' id='"+(index + 1)+"'>" + 
-                        "<input type='text' class='nomePaciente m-1' placeholder='Nome...' value='" + nomePaciente + "'>" +
-                        "<input type='date' class='dataNascPaciente m-1' value='" + dataNascPaciente + "'>" + selectSexoPaciente +
-                        "<input type='string' class='cpfPaciente m-1' placeholder='CPF...' value='" + cpfPaciente + "'>" +
-                        "<input type='string' class='telefonePaciente m-1' placeholder='Telefone...' value='" + telefonePaciente + "'>" +
-                        "<input type='email' class='emailPacinete m-1' placeholder='Email...' value='" + emailPaciente + "'>" +
-                        "<input type='text' class='enderecoPaciente m-1' placeholder='Endereço...' value='" + enderecoPaciente + "'>" +
-                        "<input type='text' class='planoPaciente m-1' placeholder='Plano de Saúde...' value='" + planoPaciente + "'>" +
-                        "<button class='btnExcluir "+(index + 1)+"'>Excluir Paciente</button>" +
-                        "</div>"
+      let inputDataNasc: HTMLInputElement = document.createElement("input")
+      inputDataNasc.setAttribute("class", "dataNascPaciente m-1")
+      inputDataNasc.setAttribute("type", "date")
+      inputDataNasc.setAttribute("value", ""+dataNascPaciente+"")
+      div.appendChild(inputDataNasc)
+
+      let selectSexo: HTMLSelectElement = document.createElement("select")
+      selectSexo.setAttribute("class", "sexoPaciente m-1")
+      selectSexo.setAttribute("name", "nmSexoPaciente")
+
+        let optionSexoMasc: HTMLOptionElement = document.createElement("option")
+        optionSexoMasc.setAttribute("value", "M")
+        optionSexoMasc.innerHTML = "Masculino"
+
+        let optionSexoFem: HTMLOptionElement = document.createElement("option")
+        optionSexoFem.setAttribute("value", "F")
+        optionSexoFem.innerHTML = "Feminino"
+
+        if (sexoPaciente.toUpperCase() == "M") {
+          optionSexoMasc.setAttribute("Selected", "true")
+        } else {
+          optionSexoFem.setAttribute("Selected", "true")
+        }      
+      
+      selectSexo.appendChild(optionSexoMasc)
+      selectSexo.appendChild(optionSexoFem)
+      div.appendChild(selectSexo)
+
+      let inputCpf: HTMLInputElement = document.createElement("input")
+      inputCpf.setAttribute("class", "cpfPaciente m-1")
+      inputCpf.setAttribute("type", "text")
+      inputCpf.setAttribute("placeholder", "cpf...")
+      inputCpf.setAttribute("value", ""+cpfPaciente+"")
+      div.appendChild(inputCpf)
+
+      let inputTelefone: HTMLInputElement = document.createElement("input")
+      inputTelefone.setAttribute("class", "telefonePaciente m-1")
+      inputTelefone.setAttribute("type", "text")
+      inputTelefone.setAttribute("placeholder", "Telefone...")
+      inputTelefone.setAttribute("value", ""+telefonePaciente+"")
+      div.appendChild(inputTelefone)
+
+      let inputEmail: HTMLInputElement = document.createElement("input")
+      inputEmail.setAttribute("class", "emailPaciente m-1")
+      inputEmail.setAttribute("type", "email")
+      inputEmail.setAttribute("placeholder", "Email...")
+      inputEmail.setAttribute("value", ""+emailPaciente+"")
+      div.appendChild(inputEmail)
+
+      let inputEndereco: HTMLInputElement = document.createElement("input")
+      inputEndereco.setAttribute("class", "enderecoPaciente m-1")
+      inputEndereco.setAttribute("type", "text")
+      inputEndereco.setAttribute("placeholder", "Endereco...")
+      inputEndereco.setAttribute("value", ""+enderecoPaciente+"")
+      div.appendChild(inputEndereco)
+
+      let inputPlano: HTMLInputElement = document.createElement("input")
+      inputPlano.setAttribute("class", "planoPaciente m-1")
+      inputPlano.setAttribute("type", "text")
+      inputPlano.setAttribute("placeholder", "Plano...")
+      inputPlano.setAttribute("value", ""+planoPaciente+"")
+      div.appendChild(inputPlano)
+
+      let btnExcluir: HTMLButtonElement = document.createElement("button")
+      btnExcluir.setAttribute("class", "btnExcluir "+(index + 1)+"")
+      btnExcluir.innerHTML = "Excluir Paciente"
+      div.appendChild(btnExcluir)
+      
+      lista.appendChild(div)      
     }
-  }  
+  }
+
+  //---------------------------Pop Up de Mensagem de Informação sobre Exclusão---------------------------------------------------
+
+  closePopupMsn() {
+    let popUp = document.getElementById("teste") as HTMLElement
+    popUp.style.display = "none"
+  }
 }
