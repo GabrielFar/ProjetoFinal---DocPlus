@@ -19,7 +19,7 @@ export class CadastroComponent implements OnInit {
       dataNasc: ['', [Validators.required]],
       cpf: ['', [Validators.required, Validators.pattern('[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}'),
                 Validators.maxLength(14), Validators.minLength(14)]],
-      telefone: ['', [Validators.required, Validators.pattern('[(][0-9]{2}[)][0-9]{5}\-[0-9]{4}'),
+      telefone: ['', [Validators.required, Validators.pattern('[(][0-9]{2}[)][0-9]{5}[0-9]{4}'),
                       Validators.maxLength(13), Validators.minLength(13)]],
       email: ['', [Validators.required, Validators.email]],
       endereco: ['', [Validators.required]],
@@ -31,7 +31,7 @@ export class CadastroComponent implements OnInit {
       dataNasc: ['', [Validators.required]],
       cpf: ['', [Validators.required, Validators.pattern('[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}'),
                 Validators.maxLength(14), Validators.minLength(14)]],
-      telefone: ['', [Validators.required, Validators.pattern('[(][0-9]{2}[)][0-9]{5}\-[0-9]{4}'),
+      telefone: ['', [Validators.required, Validators.pattern('[(][0-9]{2}[)][0-9]{5}[0-9]{4}'),
                 Validators.maxLength(13), Validators.minLength(13)]],
       email: ['', [Validators.required, Validators.email]],
       endereco: ['', [Validators.required]],
@@ -119,6 +119,5 @@ export class CadastroComponent implements OnInit {
       console.log(endereco);
       console.log(planoSaude);
     }
-    
   }
 }

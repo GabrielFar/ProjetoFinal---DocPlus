@@ -35,13 +35,44 @@
         <div class="inputsMedico">
             <input formControlName="crm" type="text" id="crmMedico" placeholder="CRM...">
         </div>
-        <!--Mensagens de Validações Form Medico-->
-        <div *ngIf="formularioMedico.get('nome')?.errors?.['required'] && formularioMedico.get('nome')?.touched">
-            Preencha o Campo Nome!
-        </div>
 
+        <!--Mensagens de Validações Form Medico-->
+        <div class="alert alert-danger" *ngIf="formularioMedico.get('nome')?.errors?.['required'] && formularioMedico.get('nome')?.touched">
+            Preencha o Nome!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioMedico.get('dataNasc')?.errors?.['required'] && formularioMedico.get('dataNasc')?.touched">
+            Preencha a Data de Nascimento!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioMedico.get('cpf')?.errors?.['required'] && formularioMedico.get('cpf')?.touched">
+            Preencha o CPF!
+        </div>
+        <div class="alert alert-danger" *ngIf="(formularioMedico.get('cpf')?.errors?.['minlenght'] || formularioMedico.get('cpf')?.errors?.['maxlenght'] ||
+        formularioMedico.get('cpf')?.errors?.['pattern']) && formularioMedico.get('cpf')?.touched">
+            CPF Inválido!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioMedico.get('telefone')?.errors?.['required'] && formularioMedico.get('telefone')?.touched">
+            Preencha o Telefone!
+        </div>
+        <div class="alert alert-danger" *ngIf="(formularioMedico.get('telefone')?.errors?.['minlenght'] || formularioMedico.get('telefone')?.errors?.['maxlenght'] ||
+        formularioMedico.get('telefone')?.errors?.['pattern']) && formularioMedico.get('telefone')?.touched">
+            Telefone Inválido!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioMedico.get('email')?.errors?.['required'] && formularioMedico.get('email')?.touched">
+            Preencha o Email!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioMedico.get('email')?.errors?.['email'] && formularioMedico.get('email')?.touched">
+            Email Inválido!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioMedico.get('endereco')?.errors?.['required'] && formularioMedico.get('endereco')?.touched">
+            Preencha o Endereco!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioMedico.get('crm')?.errors?.['required'] && formularioMedico.get('crm')?.touched">
+            Preencha o CRM!
+        </div>
+        
+        <!--Botao Para Salvar Dados-->
         <div id="cadastrarMedico">
-            <button id="btnCadastrarMedico" [disabled]="formularioMedico.valid" (click)="salvarDados($event)">Salvar Dados</button>
+            <button id="btnCadastrarMedico" [disabled]="!formularioMedico.valid" (click)="salvarDados($event)">Salvar Dados</button>
         </div>
     </form>
 </section>
@@ -76,9 +107,44 @@
         <div class="inputsPaciente">
             <input formControlName="planoSaude" type="text" id="planoSaudePaciente" placeholder="Plano de Saúde">
         </div>
+        
+         <!--Mensagens de Validações Form Paciente-->
+         <div class="alert alert-danger" *ngIf="formularioPaciente.get('nome')?.errors?.['required'] && formularioPaciente.get('nome')?.touched">
+            Preencha o Nome!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioPaciente.get('dataNasc')?.errors?.['required'] && formularioPaciente.get('dataNasc')?.touched">
+            Preencha a Data de Nascimento!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioPaciente.get('cpf')?.errors?.['required'] && formularioPaciente.get('cpf')?.touched">
+            Preencha o CPF!
+        </div>
+        <div class="alert alert-danger" *ngIf="(formularioPaciente.get('cpf')?.errors?.['minlenght'] || formularioPaciente.get('cpf')?.errors?.['maxlenght'] ||
+        formularioPaciente.get('cpf')?.errors?.['pattern']) && formularioPaciente.get('cpf')?.touched">
+            CPF Inválido!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioPaciente.get('telefone')?.errors?.['required'] && formularioPaciente.get('telefone')?.touched">
+            Preencha o Telefone!
+        </div>
+        <div class="alert alert-danger" *ngIf="(formularioPaciente.get('telefone')?.errors?.['minlenght'] || formularioPaciente.get('telefone')?.errors?.['maxlenght'] ||
+        formularioPaciente.get('telefone')?.errors?.['pattern']) && formularioPaciente.get('telefone')?.touched">
+            Telefone Inválido!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioPaciente.get('email')?.errors?.['required'] && formularioPaciente.get('email')?.touched">
+            Preencha o Email!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioPaciente.get('email')?.errors?.['email'] && formularioPaciente.get('email')?.touched">
+            Email Inválido!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioPaciente.get('endereco')?.errors?.['required'] && formularioPaciente.get('endereco')?.touched">
+            Preencha o Endereco!
+        </div>
+        <div class="alert alert-danger" *ngIf="formularioPaciente.get('planoSaude')?.errors?.['required'] && formularioPaciente.get('planoSaude')?.touched">
+            Preencha o Plano de Saúde!
+        </div>
 
+        <!--Botao Para Salvar Dados-->
         <div id="cadastrarPaciente">
-            <button id="btnCadastrarPaciente" [disabled]="formularioPaciente.valid" (click)="salvarDados($event)">Salvar Dados</button>
+            <button id="btnCadastrarPaciente" [disabled]="!formularioPaciente.valid" (click)="salvarDados($event)">Salvar Dados</button>
         </div>
     </form>
 </section>
