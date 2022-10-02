@@ -2,17 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { PacientesComponent } from './administrativo/pacientes/pacientes.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CadastroComponent } from './administrativo/cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PacientesComponent
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule  
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

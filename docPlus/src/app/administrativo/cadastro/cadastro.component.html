@@ -1,0 +1,84 @@
+<!--<div id="imgLogo"><img src="../../../assets/Logo.png" alt="Logo"></div>-->
+<div id="botoesDeDirecionamento">
+    <button id="btnAgenda">Agenda</button>
+    <button id="btnPacientes">Pacientes</button>
+    <button id="btnCadastro">Cadastro</button>
+</div>
+<!--<div id="btnDesligar"><img src="../../../assets/botãoDesligar.png" alt="DESLOGAR"></div>-->
+<section id="cadastroMedico">
+    <div id="tituloMedico">Cadastro de Médico</div>
+    <form [formGroup]="formularioMedico">
+        <div class="inputsMedico">
+            <input formControlName="nome" type="text" id="nomeMedico" placeholder="Nome...">
+        </div>
+        <div class="inputsMedico">
+            <input formControlName="dataNasc" type="date" id="dataNasc">
+        </div>
+        <div class="inputsMedico">
+            <select id="selectSexoMedico">
+                <option value="M" selected>Masculino</option>
+                <option value="F">Feminino</option>
+            </select>
+        </div>
+        <div class="inputsMedico">
+            <input formControlName="cpf" type="text" id="cpfMedico" placeholder="xxx.xxx.xxx-xx" autocomplete="off">
+        </div>
+        <div class="inputsMedico">
+            <input formControlName="telefone" type="text" id="telefoneMedico" placeholder="(xx)xxxxx-xxxx" autocomplete="off">
+        </div>
+        <div class="inputsMedico">
+            <input formControlName="email" type="email" id="emailMedico" placeholder="exemplo@gmail.com" autocomplete="off">
+        </div>
+        <div class="inputsMedico">
+            <input formControlName="endereco" type="text" id="enderecoMedico" placeholder="Nº, Rua, Bairro, Cidade, UF">
+        </div>
+        <div class="inputsMedico">
+            <input formControlName="crm" type="text" id="crmMedico" placeholder="CRM...">
+        </div>
+        <!--Mensagens de Validações Form Medico-->
+        <div *ngIf="formularioMedico.get('nome')?.errors?.['required'] && formularioMedico.get('nome')?.touched">
+            Preencha o Campo Nome!
+        </div>
+
+        <div id="cadastrarMedico">
+            <button id="btnCadastrarMedico" [disabled]="formularioMedico.valid" (click)="salvarDados($event)">Salvar Dados</button>
+        </div>
+    </form>
+</section>
+<!----------------------------------------------------------------------------------------------------------->
+<section id="cadastroPaciente">
+    <div id="tituloPaciente">Cadastro de Paciente</div>
+    <form [formGroup]="formularioPaciente">
+        <div class="inputsPaciente">
+            <input formControlName="nome" type="text" id="nomePaciente" placeholder="Nome...">
+        </div>
+        <div class="inputsPaciente">
+            <input formControlName="dataNasc" type="date" id="dataNasc">
+        </div>
+        <div class="inputsPaciente">
+            <select id="selectSexoPaciente">
+                <option value="M" selected>Masculino</option>
+                <option value="F">Feminino</option>
+            </select>
+        </div>
+        <div class="inputsPaciente">
+            <input formControlName="cpf" type="text" id="cpfPaciente" placeholder="xxx.xxx.xxx-xx" autocomplete="off">
+        </div>
+        <div class="inputsPaciente">
+            <input formControlName="telefone" type="text" id="telefonePaciente" placeholder="(xx)xxxxx-xxxx" autocomplete="off">
+        </div>
+        <div class="inputsPaciente">
+            <input formControlName="email" type="email" id="emailPaciente" placeholder="exemplo@gmail.com" autocomplete="off">
+        </div>
+        <div class="inputsPaciente">
+            <input formControlName="endereco" type="text" id="enderecoPaciente" placeholder="Nº, Rua, Bairro, Cidade, UF">
+        </div>
+        <div class="inputsPaciente">
+            <input formControlName="planoSaude" type="text" id="planoSaudePaciente" placeholder="Plano de Saúde">
+        </div>
+
+        <div id="cadastrarPaciente">
+            <button id="btnCadastrarPaciente" [disabled]="formularioPaciente.valid" (click)="salvarDados($event)">Salvar Dados</button>
+        </div>
+    </form>
+</section>
