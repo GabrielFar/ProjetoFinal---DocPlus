@@ -1,0 +1,29 @@
+input{
+    width: 300px;
+}
+
+label{
+    color: white;
+    font-family: Arial, 'Courier New', 'Calibri';
+    font-size: larger;
+}
+
+.bodyDiv{
+    margin: 0px;
+    background-color: rgba(134,213,148,255);
+}
+
+#logo{
+    height: 150px;
+}
+
+#desligar{
+    width: 80px;
+}
+
+.btnsDirecionamento{
+    width: 200px;
+    background-color: #048436;
+    color: white;
+    font-family: Arial, 'Courier New', 'Calibri';
+}
