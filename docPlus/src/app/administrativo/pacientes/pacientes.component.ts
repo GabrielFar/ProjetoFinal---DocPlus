@@ -29,7 +29,7 @@ export class PacientesComponent implements OnInit {
       popUp.style.display = "block"
     })
 
-    //------------------------------Exclusão do Paciente------------------------------------------------------
+    //------------------------------Exclusão do Paciente-----------------------------------------------------
     $(document.getElementById("btnConfirmarExclusao") as HTMLButtonElement).click(function(e){
       (lista?.[numBtnPressed - 1] as HTMLDivElement).setAttribute('hidden', 'true');      
       ((lista?.[numBtnPressed - 1] as HTMLDivElement).children[0] as HTMLInputElement).setAttribute('value', 'undefined')
