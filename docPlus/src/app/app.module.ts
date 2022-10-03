@@ -9,13 +9,15 @@ import { LoginComponent } from './login/login.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ContatoComponent } from './pages/contato/contato.component';
+import { IntegrantesComponent } from './pages/integrantes/integrantes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SobreComponent,
-    ContatoComponent
+    ContatoComponent,
+    IntegrantesComponent
   ],
   imports: [
     BrowserModule,

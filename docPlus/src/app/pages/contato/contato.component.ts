@@ -23,9 +23,12 @@ export class ContatoComponent implements OnInit {
     });
   }
 
-  submit(){
+  public enviar(){
     console.log(this.formulario.get('nome')?.value);
-    
-
+    console.log(this.formulario.get('telefone')?.value);
+    console.log(this.formulario.get('email')?.value);
+    console.log(this.formulario.get('cep')?.value);
+    console.log(this.formulario.get('assunto')?.value);
+    console.log(this.formulario.get('mensagem')?.value);
   }
 }

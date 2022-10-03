@@ -23,16 +23,33 @@
             <div class="form-floating m-4">
                 <input id="email" class="form-control text-white rounded-5" type="email" placeholder="Insira seu email" name="email">
                 <label for="email">Email</label>
+                <div class="form-floating m-1" *ngIf="formulario.get('email')?.errors?.['required'] && formulario.get('email')?.touched">                
+                    <p class="text-danger">Email Obrigatório*</p>
+                </div>
+                <div *ngIf="formulario.get('email')?.errors?.['email'] && formulario.get('email')?.touched">
+                    <p class="text-danger">Formato de Email Inválido</p>
+                </div>
             </div>
 
             <div class="form-floating m-4">
                 <input id="cep" class="form-control text-white rounded-5" type="text" placeholder="Insira seu cep" name="cep">
                 <label for="cep">CEP</label>
+                <div *ngIf="!(formulario.get('cep')?.touched) || (formulario.get('cep')?.errors?.[''] === null)"></div>    
+                <div *ngIf="formulario.get('cep')?.errors?.['required'] && formulario.get('cep')?.touched">
+                    <p class="text-danger">CEP Obrigatório*</p>
+                </div>
+                <div *ngIf="(formulario.get('cep')?.errors?.['maxlength'] || formulario.get('cep')?.errors?.['pattern']
+                || formulario.get('cep')?.errors?.['minlength']) && formulario.get('cep')?.touched">
+                    <p class="text-danger">CEP Inválido</p>
+                </div>
             </div>
 
             <div class="form-floating m-4">
                 <input id="assunto" class="form-control text-white rounded-5" type="text" placeholder="Insira o assunto" name="assunto">
-                <label for="assunto">Assunto</label>
+                <label for="assunto">Assunto</label>                
+                <div *ngIf="formulario.get('assunto')?.errors?.['maxlength'] && formulario.get('assunto')?.touched">
+                    <p class="text-danger">Respeite o Limite de 50 Caracteres</p>
+                </div>
             </div>
 
             <div class="m-4">
@@ -41,7 +58,7 @@
             </div>
 
             <div class="input-group mb-3 justify-content-center">
-                <button type="button" class="botao rounded-5 p-3 text-white fs-6 fw-bold border-1 border-light">Enviar dados</button>
+                <button type="button" (click)="enviar()" [disabled]="!formulario.valid" class="botao rounded-5 p-3 text-white fs-6 fw-bold border-1 border-light">Enviar dados</button>
             </div>
 
         </form>        
