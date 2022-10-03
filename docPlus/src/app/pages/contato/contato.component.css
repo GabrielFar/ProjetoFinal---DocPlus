@@ -1,0 +1,25 @@
+.form-control{
+    background: #048436;
+    color:white;
+    font-size: 18px;
+    min-width: 200px;
+}
+
+.formulario{
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
+
+#mensagem::placeholder{
+    color: rgb(211, 211, 211);
+    font-size: 16px;
+}
+
+.botao{    
+    background: #048436;
+}
+
+.botao:hover{    
+    background: #015823;
+}
