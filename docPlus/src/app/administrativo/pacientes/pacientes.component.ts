@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import * as $ from 'jquery'; 
-import { delayWhen } from 'rxjs';
 
 @Component({
   selector: 'app-pacientes',
