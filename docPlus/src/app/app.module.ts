@@ -5,6 +5,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CadastroComponent } from './administrativo/cadastro/cadastro.component';
 import { PacientesComponent } from './administrativo/pacientes/pacientes.component';
 import { FormsModule } from '@angular/forms';
 import { AgendaComponent } from './administrativo/agenda/agenda.component';
@@ -18,11 +20,12 @@ import { IntegrantesComponent } from './pages/integrantes/integrantes.component'
 @NgModule({
   declarations: [
     AppComponent,
-    PacientesComponent
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule  
+    FormsModule,
+    ReactiveFormsModule,  
     AgendaComponent,
   ],
   imports: [
