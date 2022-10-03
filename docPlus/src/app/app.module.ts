@@ -5,15 +5,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { AgendaComponent } from './administrativo/agenda/agenda.component';
+import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ContatoComponent } from './pages/contato/contato.component';
 import { IntegrantesComponent } from './pages/integrantes/integrantes.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    AgendaComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
     LoginComponent,
     SobreComponent,
     ContatoComponent,
