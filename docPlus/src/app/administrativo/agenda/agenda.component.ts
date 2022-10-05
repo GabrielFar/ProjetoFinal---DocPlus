@@ -16,118 +16,13 @@ export class AgendaComponent implements OnInit {
   filtroMedico: string = "";
   nomesMedicos: string[] = ["Dr. Gustavo", "Dra. Maria", "Dra. Carla"];
 
-  displayStyleAgendamento: string = "none";
-  displayStyleCancelamento: string = "none";
   displayStyleMsn: string = "none";
   popUpMsn: string = ""
 
-  diaNovaConsulta: number = 0;
-  horarioNovaConsulta: string = "";
+  dataConsulta: string = '';
+  horarioConsulta: string = "";
 
-  readonly diasFuncionamento: string[] = ["monday", "tuesday", "wednesday", "thursday", "friday"]
-
-  agenda: object = {1: {
-    "8-8.30" : null,
-    "8.30-9" : null,
-    "9-9.30" : null,
-    "9.30-10" : null,
-    "10-10.30": null,
-    "10.30-11": null,
-    "11-11.30": null,
-    "13-13.30": null,
-    "13.30-14": null,
-    "14-14.30": null,
-    "14.30-15": null,
-    "15-15.30": null,
-    "15.30-16": null,
-    "16-16.30": null,
-    "16.30-17": null,
-    "17-17.30": null,
-    "17.30-18": null
-  },
-  2: {
-    "8-8.30" : null,
-    "8.30-9" : null,
-    "9-9.30" : null,
-    "9.30-10" : null,
-    "10-10.30": null,
-    "10.30-11": null,
-    "11-11.30": null,
-    "13-13.30": null,
-    "13.30-14": null,
-    "14-14.30": null,
-    "14.30-15": null,
-    "15-15.30": null,
-    "15.30-16": null,
-    "16-16.30": null,
-    "16.30-17": null,
-    "17-17.30": null,
-    "17.30-18": null
-  },
-  3: {
-    "8-8.30" : null,
-    "8.30-9" : null,
-    "9-9.30" : null,
-    "9.30-10" : null,
-    "10-10.30": null,
-    "10.30-11": null,
-    "11-11.30": null,
-    "13-13.30": null,
-    "13.30-14": null,
-    "14-14.30": null,
-    "14.30-15": null,
-    "15-15.30": null,
-    "15.30-16": null,
-    "16-16.30": null,
-    "16.30-17": null,
-    "17-17.30": null,
-    "17.30-18": null
-  },
-  4: {
-    "8-8.30" : null,
-    "8.30-9" : null,
-    "9-9.30" : null,
-    "9.30-10" : null,
-    "10-10.30": null,
-    "10.30-11": null,
-    "11-11.30": null,
-    "13-13.30": null,
-    "13.30-14": null,
-    "14-14.30": null,
-    "14.30-15": null,
-    "15-15.30": null,
-    "15.30-16": null,
-    "16-16.30": null,
-    "16.30-17": null,
-    "17-17.30": null,
-    "17.30-18": null
-  },
-  5: {
-    "8-8.30" : null,
-    "8.30-9" : null,
-    "9-9.30" : null,
-    "9.30-10" : null,
-    "10-10.30": null,
-    "10.30-11": null,
-    "11-11.30": null,
-    "13-13.30": null,
-    "13.30-14": null,
-    "14-14.30": null,
-    "14.30-15": null,
-    "15-15.30": null,
-    "15.30-16": null,
-    "16-16.30": null,
-    "16.30-17": null,
-    "17-17.30": null,
-    "17.30-18": null
-  },
-  "diasSemana": [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday"
-  ]}
+  readonly diasFuncionamento: string[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
   constructor() { 
   }
@@ -149,7 +44,7 @@ export class AgendaComponent implements OnInit {
     //----Autocompleta a pesquisa do usuário no campo de pesquisa medico
     $(document.getElementById("listaMedicos") as HTMLDivElement).click(function(e){
       (document.getElementById("filtroMedico") as HTMLInputElement).value = e.target.innerHTML;    
-      (document.getElementById("listaMedicos") as HTMLDivElement).innerHTML = ""      
+      (document.getElementById("listaMedicos") as HTMLDivElement).innerHTML = ""
     });
 
     //----Limpa a lista de sugestão de autocomplete no campo medico
@@ -157,9 +52,27 @@ export class AgendaComponent implements OnInit {
       setTimeout(() => {        
         (document.getElementById("listaMedicos") as HTMLDivElement).innerHTML = ""      
       }, 200);
-    }); 
+    });
+
+    //---------------------------Limitar o input de seleção de data de agendamento------------------------------------------
+    let calendarioAgenda = (document.getElementById("dataConsulta1") as HTMLInputElement)
+    let hoje: Date = new Date    
+    let mesHoje
+    if ((hoje.getMonth() + 1) < 10) {
+      mesHoje = "0" + (hoje.getMonth() + 1)
+    } else {
+      mesHoje = hoje.getMonth() + 1
+    }
     
-    this.mostrarLista();    
+    let diaHoje    
+    if (hoje.getDate() < 10) {
+      diaHoje = "0" + hoje.getDate()
+    } else {
+      diaHoje = hoje.getDate()
+    }
+
+    let limitador = hoje.getFullYear() + "-" + mesHoje + "-" + diaHoje
+    calendarioAgenda.min = limitador    
   }
 
   //-------------------------------------------Filtro de Paciente---------------------------------------------------
@@ -201,45 +114,25 @@ export class AgendaComponent implements OnInit {
 
     if (this.filtroPaciente.length > 0 && lista == "p") {
       for (let index = 0; index < nomesRetornados.length; index++) {
-        divTabela.innerHTML += "<div>" + nomesRetornados[index] + "</div>"
+        divTabela.innerHTML += "<div style='cursor: pointer;'>" + nomesRetornados[index] + "</div>"
       }
 
     } else if (this.filtroMedico.length > 0 && lista == "m") {
       for (let index = 0; index < nomesRetornados.length; index++) {
-        divTabela.innerHTML += "<div>" + nomesRetornados[index] + "</div>"
+        divTabela.innerHTML += "<div style='cursor: pointer;'>" + nomesRetornados[index] + "</div>"
       }
 
     } else if(lista == "p"){      
       for (let index = 0; index < this.nomesPacientes.length; index++) {
-        divTabela.innerHTML += "<div>" + this.nomesPacientes[index] + "</div>"
+        divTabela.innerHTML += "<div style='cursor: pointer;'>" + this.nomesPacientes[index] + "</div>"
       }
 
     } else if(lista == "m"){      
       for (let index = 0; index < this.nomesMedicos.length; index++) {
-        divTabela.innerHTML += "<div>" + this.nomesMedicos[index] + "</div>"
+        divTabela.innerHTML += "<div style='cursor: pointer;'>" + this.nomesMedicos[index] + "</div>"
       }    
     }
-  }
-
-  //---------------------------Pop Up de Confirmação/Cancelamento de Agendamento de Consulta---------------------------------------------------
-  
-  mostrarPopUpAgendamento(event: any){    
-    this.diaNovaConsulta = event.target.attributes[2].value.split(" ")[1];
-    this.horarioNovaConsulta = event.target.attributes[1].value;    
-    
-    if ((this.agenda as any)[(this.diaNovaConsulta)][this.horarioNovaConsulta] == null) {
-      this.openPopupAgendamento()    
-    } else {
-      this.openPopupCancelamento()
-    }
-  }
-
-  openPopupAgendamento() {
-    this.displayStyleAgendamento = "block";
-  }
-  closePopupAgendamento() {
-    this.displayStyleAgendamento = "none";
-  }
+  } 
 
   //---------------------------Gravamento de dados de agendamento de consulta---------------------------------------------------
 
@@ -248,6 +141,9 @@ export class AgendaComponent implements OnInit {
     let isMedicoSelecionado = false;
     let pacienteBuscado = (document.getElementById("filtroPaciente") as HTMLInputElement).value
     let medicoBuscado = (document.getElementById("filtroMedico") as HTMLInputElement).value
+    let diaAgendado = (document.getElementById("dataConsulta1") as HTMLInputElement).valueAsDate
+    let indexDiaSemanaAgendado = Number(diaAgendado?.getUTCDay());
+    let diaSemanaAgendado = this.diasFuncionamento[indexDiaSemanaAgendado]
     
     for (let index = 0; index < this.nomesPacientes.length; index++) {
           
@@ -263,68 +159,39 @@ export class AgendaComponent implements OnInit {
       }
     }
     
-    if (isPacienteSelecionado && isMedicoSelecionado) {
-      (this.agenda as any)[(this.diaNovaConsulta)][this.horarioNovaConsulta] = pacienteBuscado + " - " + medicoBuscado
-      //Selecionar e alterar a tabela do médico
-      this.openPopupMsn("Agendamento realizado com sucesso");
-      this.mostrarLista()
-
-    } else if(isMedicoSelecionado){
-      this.openPopupMsn("Selecione um paciente!");
+    if(!isMedicoSelecionado){
+      this.openPopupMsn("Selecione um Médico!", 'rgba(255, 0, 0, 0.616)');
       
-    } else{
-      this.openPopupMsn("Selecione um medico!");
+    } else if(!isPacienteSelecionado){
+      this.openPopupMsn("Selecione um Paciente!", 'rgba(255, 0, 0, 0.616)');
+ 
+    } else if(this.dataConsulta == ""){
+      this.openPopupMsn("Selecione uma Data!", 'rgba(255, 0, 0, 0.616)');
+    
+    } else if(diaSemanaAgendado == this.diasFuncionamento[0] || diaSemanaAgendado == this.diasFuncionamento[6]){
+      this.openPopupMsn("Dia Selecionado é Final de Semana!", 'rgba(255, 0, 0, 0.616)');
 
-    }    
-  }
+    } else if(this.horarioConsulta == ""){
+      this.openPopupMsn("Selecione um Horário!", 'rgba(255, 0, 0, 0.616)');
 
-  //---------------------------Pop Up de Confirmação de Cancelamento de Consulta---------------------------------------------------
-
-  openPopupCancelamento() {
-    this.displayStyleCancelamento = "block";
-  }
-  closePopupCancelamento() {
-    this.displayStyleCancelamento = "none";
-  }
-
-  cancelarAgendamento(){    
-    (this.agenda as any)[(this.diaNovaConsulta)][this.horarioNovaConsulta] = null
-    //Selecionar e alterar a tabela do médico
-    this.openPopupMsn("Cancelamento de agendamento realizado com sucesso");
-    this.mostrarLista()
+    } else {      
+      //Selecionar e alterar o horario na tabela agendamento
+      this.openPopupMsn("Agendamento realizado com sucesso", 'rgba(0, 255, 0, 0.616)');
+    }
   }
 
   //---------------------------Pop Up de Mensagem de Informação sobre Agendamento---------------------------------------------------
 
-  openPopupMsn(msn: string) {
+  openPopupMsn(msn: string, cor: string) {
     this.displayStyleMsn = "block";
     this.popUpMsn = msn;
+    ((document.getElementById("msnPopUp") as HTMLDivElement).style.backgroundColor = cor)
     setTimeout(() => {
       this.closePopupMsn()
-    }, 2000);
+    }, 3000);
   }
 
   closePopupMsn() {
     this.displayStyleMsn = "none";
-  }
-
-  //---------------------------Mostrar os pacientes agendados na lista---------------------------------------------------
-
-  mostrarLista(){
-    let listaAgenda = (document.getElementById("agenda") as HTMLOptGroupElement)
-    
-    for (let indexDiaTela = 1; indexDiaTela <= 5; indexDiaTela++) {   
-      let dia = listaAgenda.children[indexDiaTela].children[1].children[0].classList[1]
-      
-      listaAgenda.children[indexDiaTela].children[0].innerHTML = 
-      (this.agenda as any)["diasSemana"][indexDiaTela - 1];
-
-      for (let indexHorario = 0; indexHorario < 16; indexHorario++) {
-        let horarioLista = listaAgenda.children[indexDiaTela].children[1].children[indexHorario].attributes[1].nodeValue
-        
-        listaAgenda.children[indexDiaTela].children[1].children[indexHorario].innerHTML = 
-        (this.agenda as any)[dia][horarioLista as string]
-      }     
-    }
   }
 }  
