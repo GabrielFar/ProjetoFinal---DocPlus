@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import * as $ from 'jquery'; 
-import { Listas } from 'src/app/Enums/selecionarLista';
+import { Listas } from 'src/app/enums/selecionarLista';
 
 @Component({
   selector: 'app-agenda',
