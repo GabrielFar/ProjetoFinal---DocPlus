@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import * as $ from 'jquery'; 
 import { Listas } from 'src/app/enums/selecionarLista';
 
@@ -53,6 +54,8 @@ export class AgendaComponent implements OnInit {
         (document.getElementById("listaMedicos") as HTMLDivElement).innerHTML = ""      
       }, 200);
     });
+
+    this.teste()
 
     //---------------------------Limitar o input de seleção de data de agendamento------------------------------------------
     let calendarioAgenda = (document.getElementById("dataConsulta1") as HTMLInputElement)
@@ -180,6 +183,11 @@ export class AgendaComponent implements OnInit {
     }
   }
 
+  async teste(){
+    let usuarios = await fetch("http://localhost:8080/usuarios")
+    console.log(usuarios);
+    
+  }
   //---------------------------Pop Up de Mensagem de Informação sobre Agendamento---------------------------------------------------
 
   openPopupMsn(msn: string, cor: string) {
