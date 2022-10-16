@@ -1,0 +1,13 @@
+.fotoLogo{
+    width: 320px;
+    height: 320px;
+}
+
+.botaoMenu{
+    width: 350px;    
+    background: #048436;
+}
+
+.botaoMenu:hover{    
+    background: #015823;
+}

@@ -10,15 +10,17 @@
 }
 
 .form-control{
-    background: #048436;
+    /*background: #048436;*/
     height: 50px;
     text-align: center;
     font-size: 20px;
     min-width: 200px;
+    border-style: inset;
+    border-width: 0.06cm;
 }
 
 .form-control::placeholder{
-    color: rgb(211, 211, 211);
+    /*color: rgb(211, 211, 211);*/
     font-size: 18px;
 }
 

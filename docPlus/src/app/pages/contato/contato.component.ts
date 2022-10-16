@@ -18,8 +18,8 @@ export class ContatoComponent implements OnInit {
       telefone: [''],
       email: ['', [Validators.required, Validators.email]],
       cep: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern("^[0-9]*$")]],
-      assunto: ['', [Validators.required, Validators.minLength(50)]],
-      mensagem: ['', [Validators.required, Validators.minLength(500)]]
+      assunto: ['', [Validators.required, Validators.maxLength(50)]],
+      mensagem: ['', [Validators.required, Validators.maxLength(500)]]
     });
   }
 

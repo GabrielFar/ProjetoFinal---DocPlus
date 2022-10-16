@@ -1,6 +1,8 @@
 .card{
     background: #50af73;
-    width: 22rem;    
+    width: 22rem;
+    border-style: inset;
+    border-width: 0.06cm;
 }
 
 .BotaoVoltar{

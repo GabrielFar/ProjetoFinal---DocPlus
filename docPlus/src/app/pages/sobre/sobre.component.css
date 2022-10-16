@@ -1,7 +1,4 @@
 *{
-    margin: 0;
-    margin: 0;
-    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -10,13 +7,18 @@
     width: 88vw;
     height: 20%;
     margin-left: 6%;
-    border-style: solid;
-    border-width: thin;
+    border-style: inset;
+    border-width: 0.06cm;
+}
+
+.botoesTopo{
+    margin-top: 2.1%;
 }
 
 .BotaoVoltar{
     width: auto;
     height: 5%;
+    margin-top: 12%;
 }
 
 .botao{    

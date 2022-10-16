@@ -17,14 +17,27 @@ select{
     text-align: center;
     text-align-last: center;
     -moz-text-align-last: center;
+    padding: 2%;
+    border-style: inset;
+    border-width: 0.06cm;
 }
 
-#logo{
-    height: 150px;
+.logo{
+    width: 180px;
+    height: 180px;
 }
 
-#desligar{
+.botaoDesligar{
     width: 80px;
+    height: 80px;
+}
+
+#btnDesligar{
+    width: 12%;
+}
+
+input{
+    padding: 2.5%;
 }
 
 .btnsDirecionamento, #btnAgendar{
@@ -36,7 +49,8 @@ select{
 
 .dropdown-content {
     position: absolute;
-    background-color: #ffffff;
+    background-color: #50af73;
+    color: #ffffff;
     min-width: 160px;
     width: 280px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -53,4 +67,22 @@ select{
     font-weight: 500;
     color: #ffffff;
     text-align: center;
+}
+
+.botaoMenu, .botaoAgendar{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 50px;
+    background: #048436;
+}
+
+.botaoAgendar{
+    width: 200px;
+    cursor: pointer;
+}
+
+.botaoMenu:hover, .botaoAgendar:hover{    
+    background: #015823;
 }
