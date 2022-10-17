@@ -38,13 +38,6 @@ input{
     margin: 2%;
 }
 
-.inputsPessoaRadio{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 2%;
-}
-
 .CaixaSelect{
     border-style: inset;
     border-width: 0.06cm;

@@ -55,8 +55,6 @@ export class AgendaComponent implements OnInit {
       }, 200);
     });
 
-    this.teste()
-
     //---------------------------Limitar o input de seleção de data de agendamento------------------------------------------
     let calendarioAgenda = (document.getElementById("dataConsulta1") as HTMLInputElement)
     let hoje: Date = new Date    
@@ -181,12 +179,6 @@ export class AgendaComponent implements OnInit {
       //Selecionar e alterar o horario na tabela agendamento
       this.openPopupMsn("Agendamento realizado com sucesso", 'rgba(0, 255, 0, 0.616)');
     }
-  }
-
-  async teste(){
-    let usuarios = await fetch("http://localhost:8080/usuarios")
-    console.log(usuarios);
-    
   }
   //---------------------------Pop Up de Mensagem de Informação sobre Agendamento---------------------------------------------------
 
