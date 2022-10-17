@@ -9,12 +9,12 @@ import * as $ from 'jquery';
 })
 export class CadastroComponent implements OnInit {
 
-  formularioMedico: FormGroup;
-  formularioPaciente: FormGroup;
+  formularioPessoa: FormGroup;
+  //formularioPaciente: FormGroup;
 
-  constructor(private formBuilderMedico: FormBuilder, private formBuilderPaciente: FormBuilder) { 
+  constructor(private formBuilderPessoa: FormBuilder, private formBuilderPaciente: FormBuilder) { 
     //----------------------------------Validação de Formulários----------------------------------
-    this.formularioMedico = this.formBuilderMedico.group({
+    this.formularioPessoa = this.formBuilderPessoa.group({
       nome: ['', [Validators.required]],
       dataNasc: ['', [Validators.required]],
       cpf: ['', [Validators.required, Validators.pattern('[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}'),
@@ -26,7 +26,7 @@ export class CadastroComponent implements OnInit {
       crm: ['', [Validators.required]],
     });
 
-    this.formularioPaciente = this.formBuilderPaciente.group({
+    /*this.formularioPaciente = this.formBuilderPaciente.group({
       nome: ['', [Validators.required]],
       dataNasc: ['', [Validators.required]],
       cpf: ['', [Validators.required, Validators.pattern('[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}'),
@@ -36,7 +36,7 @@ export class CadastroComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       endereco: ['', [Validators.required]],
       planoSaude: ['', [Validators.required]],
-    });
+    });*/
   }
 
   ngOnInit(): void {

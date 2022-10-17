@@ -1,16 +1,37 @@
-<div class="d-flex justify-content-between">
+<!--<div class="d-flex justify-content-between">
   <div class="mt-0 m-2 d-inline-flex"><img src="../../../assets/Logo.png" alt="" id="logo"></div>
   <div class="m-2 d-block-flex"><img src="../../../assets/botãoDesligar.png" alt="DESLOGAR" id="desligar"></div>
-</div>
+</div>-->
 
-<div class="d-flex justify-content-between">
+<div class="d-flex vh-100 justify-content-between flex-wrap">
+
+<!--<div class="d-flex justify-content-between">
   <div id="botoesDeDirecionamento" class="m-2 ms-5 d-flex flex-column">
       <button id="btnAgenda" class="btnsDirecionamento m-1 py-2 rounded">Agenda</button>
       <button id="btnPacientes" class="btnsDirecionamento m-1 py-2 rounded">Pacientes</button>
       <button id="btnCadastro" class="btnsDirecionamento m-1 py-2 rounded">Cadastro</button>
   </div>
+-->
+  <nav id="botoesDeDirecionamento" class="d-flex flex-column flex-shrink-0 p-3 mt-2 ms-2" style="width: 280px;">
+    <img class="logo ms-3" src="../../../assets/Logo.png" alt="Logo da Empresa">
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item m-2">
+          <button id="btnAgenda" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Agendamento</button>
+        </li>
+        <li class="nav-item m-2">
+          <button id="btnPacientes" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Pacientes</button>
+        </li>
+        <li class="nav-item m-2">
+          <a class="text-decoration-none" routerLink="/cadastro"><button id="btnCadastro" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Cadastro</button></a>
+        </li>
+    </ul>
+  </nav>
 
-  <div id="camposDePesquisa" class="m-2">
+  <section id="camposDePesquisa" class="mt-5">
+    
+    <div id="tituloPessoa" class="text-white fw-bold mt-4 me-4 mb-5 p-0 text-center">
+      <h1>Agendamento</h1>
+   </div>
 
     <div id="medico" class="align-items-center">
       <div id="labelMedico" class="me-2 d-inline">
@@ -18,7 +39,7 @@
       </div>
       <div id="selecaomedico" class="d-inline">
         <input type="search" [(ngModel)]="filtroMedico" (keyup)="filtrarMedicos()" (click)="filtrarMedicos()" 
-        id="filtroMedico" class="rounded p-1 mt-1" autocomplete="off">
+        id="filtroMedico" class="rounded-5 border-1 border-light" autocomplete="off">
       </div>
       <div class="d-block justify-content-center">
         <div id="listaMedicos" class="d-block dropdown-content"></div>
@@ -31,7 +52,7 @@
       </div>
       <div id="selecaoPaciente" class="d-inline">
         <input type="search" [(ngModel)]="filtroPaciente" (keyup)="filtrarPacientes()" (click)="filtrarPacientes()" 
-        id="filtroPaciente" class="rounded p-1 mt-1" autocomplete="off">
+        id="filtroPaciente" class="rounded-5 border-1 border-light" autocomplete="off">
       </div>
       <div class="d-block justify-content-center">
         <div id="listaPacientes" class="d-block dropdown-content"></div>
@@ -43,7 +64,7 @@
         <label for="selecaoDataConsulta">Data Consulta:</label>
       </div>
       <div id="selecaoDataConsulta" class="d-inline">
-        <input type="date" [(ngModel)]="dataConsulta" class="rounded p-1 mt-1" id="dataConsulta1">
+        <input type="date" [(ngModel)]="dataConsulta" class="rounded-5 border-1 border-light" id="dataConsulta1">
       </div>
     </div>
 
@@ -52,7 +73,7 @@
         <label for="selecaoHorarioConsulta">Horario Consulta:</label>
       </div>
       <div id="selecaoHorarioConsulta" class="d-inline">
-        <select name="nmHorarioConsulta" id="horarioConsulta" [(ngModel)]="horarioConsulta">
+        <select name="nmHorarioConsulta" id="horarioConsulta" class="selectHorario" [(ngModel)]="horarioConsulta" class="rounded-5 border-1 border-light">
           <option value="8:00 - 8:30">8:00 - 8:30</option>
           <option value="8.30-9">8:30 - 9:00</option>
           <option value="9:00 - 9:30">9:00 - 9:30</option>
@@ -74,30 +95,30 @@
       </div>
     </div>
     <div id="divAgendar" class="d-flex justify-content-center mt-5">
-      <button id="btnAgendar" class="m-1 py-2 rounded" (click)="gravarAgendamento()">Agendar</button>
+      <button id="btnAgendar" class="botaoAgendar rounded-5 fs-5 ms-2 me-2 text-white border-1 border-light" (click)="gravarAgendamento()">Agendar</button>
     </div>
-  </div>
-  
-  <div></div>
-  <div></div>
-</div>
 <!--PopUp de Mensagem de Informação sobre Agendamento-->
-<div
-  class="modal"
-  tabindex="-1"
-  role="dialog"
-  [ngStyle]="{'display':displayStyleMsn}">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" id="msnPopUp">
-      <div class="modal-body d-flex justify-content-center">
-        <p id="msn">{{popUpMsn}}</p>  
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-        <button type="button" class="btn btn-outline-light" 
-                (click)="closePopupMsn()">
-          Ok
-        </button>
+    <div
+      class="modal"
+      tabindex="-1"
+      role="dialog"
+      [ngStyle]="{'display':displayStyleMsn}">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" id="msnPopUp">
+          <div class="modal-body d-flex justify-content-center">
+            <p id="msn">{{popUpMsn}}</p>  
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn btn-outline-light" 
+                    (click)="closePopupMsn()">
+              Ok
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+</section>
+
+<div id="btnDesligar" class="d-flex justify-content-end mt-5 me-2"><img class="botaoDesligar me-5" src="../../../assets/botãoDesligar.png" alt="DESLOGAR"></div>
+
 </div>

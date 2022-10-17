@@ -12,6 +12,7 @@ import { ContatoComponent } from './pages/contato/contato.component';
 import { IntegrantesComponent } from './pages/integrantes/integrantes.component';
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { AgendaComponent } from './administrativo/agenda/agenda.component';
+import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AgendaComponent } from './administrativo/agenda/agenda.component';
     FormsModule,
     CommonModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

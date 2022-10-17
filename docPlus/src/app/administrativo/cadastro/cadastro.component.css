@@ -1,3 +1,97 @@
 section{
-    height: 100vh;
+    height: 80%;
+    width: 450px;
+}
+
+.logo{
+    width: 180px;
+    height: 180px;
+}
+
+.botaoDesligar{
+    width: 80px;
+    height: 80px;
+}
+
+#btnDesligar{
+    width: 10%;
+}
+
+label{
+    color: white;
+    font-size: 20px;
+}
+
+input{
+    padding: 1.5%;
+}
+
+#cadastroPessoa{
+    width: 650px;
+    height: auto;
+}
+
+.inputsPessoa{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2%;
+}
+
+.inputsPessoaRadio{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2%;
+}
+
+.CaixaSelect{
+    border-style: inset;
+    border-width: 0.06cm;
+}
+
+option{
+    background-color: #50af73;
+    color: #ffffff;
+}
+
+.form-floating{
+    height: 20px;
+}
+
+.inputsPessoa input[type='text'], input[type='email']{
+    width: 60%;
+}
+
+.inputsPessoa select, input[type='date']{
+    width: 30%;
+}
+
+#crmMedico{
+    width: 100%;
+    padding: 5%;
+}
+
+.radioPlanoCRM{
+    width: 20px;
+    height: 20px;
+}
+
+.botaoMenu, .botaoSalvar{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 50px;
+    background: #048436;
+}
+
+.botaoSalvar{
+    width: 200px;
+    cursor: pointer;
+}
+
+
+.botaoMenu:hover, .botaoSalvar:hover{    
+    background: #015823;
 }
