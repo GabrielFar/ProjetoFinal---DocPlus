@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,7 @@ public class UsuarioController {
 	@Autowired 
 	private PessoaRepository pessoaRepository;
 	
+	@CrossOrigin
 	@GetMapping
 	public List<UsuarioDto> listar(String tipo){
 		
@@ -53,6 +55,7 @@ public class UsuarioController {
 		}
 	}
 	
+	@CrossOrigin
 	@GetMapping("/{userId}")
 	public ResponseEntity<UsuarioDto> selecionarUsuario(@PathVariable int userId) {
 		
@@ -64,6 +67,7 @@ public class UsuarioController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@CrossOrigin
 	@PostMapping
 	@Transactional
 	public ResponseEntity<UsuarioDto> salvar(@RequestBody @Valid UsuarioForm usuarioForm, UriComponentsBuilder uriBuilder) {
@@ -76,6 +80,7 @@ public class UsuarioController {
 		return ResponseEntity.created(uri).body(new UsuarioDto(usuario)); 
 	}
 	
+	@CrossOrigin
 	@PutMapping("/{userId}")
 	@Transactional
 	public ResponseEntity<UsuarioDto> alterar(@PathVariable int userId, @RequestBody AlterarUsuarioForm alterarSenhaForm){
@@ -85,6 +90,7 @@ public class UsuarioController {
 		return ResponseEntity.ok(new UsuarioDto(usuario));
 	}
 	
+	@CrossOrigin
 	@DeleteMapping("/{userId}")
 	@Transactional
 	public ResponseEntity<?> deletarUsuario(@PathVariable int userId) {

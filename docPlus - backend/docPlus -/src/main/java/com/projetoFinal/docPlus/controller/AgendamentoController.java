@@ -24,7 +24,9 @@ import com.projetoFinal.docPlus.controller.dto.AgendamentoDto;
 import com.projetoFinal.docPlus.controller.form.AgendamentoForm;
 import com.projetoFinal.docPlus.controller.form.AlterarAgendamentoForm;
 import com.projetoFinal.docPlus.model.Agendamento;
+import com.projetoFinal.docPlus.model.Usuario;
 import com.projetoFinal.docPlus.repository.AgendamentoRepository;
+import com.projetoFinal.docPlus.repository.PessoaRepository;
 import com.projetoFinal.docPlus.repository.ProntuarioRepository;
 import com.projetoFinal.docPlus.repository.UsuarioRepository;
 
@@ -41,6 +43,9 @@ public class AgendamentoController {
 	@Autowired
 	private ProntuarioRepository prontuarioRepository;
 	
+	@Autowired
+	private PessoaRepository pessoaRepository;
+	
 	@CrossOrigin
 	@GetMapping
 	public List<AgendamentoDto> listar(){
@@ -48,6 +53,15 @@ public class AgendamentoController {
 		List<Agendamento> agendamentos = agendamentoRepository.findAll(); 
 		
 		return AgendamentoDto.converter(agendamentos); 	
+	}
+	
+	@CrossOrigin
+	@GetMapping("/nomes")
+	public List<Agendamento> pegarNomes(){
+		
+		List<Agendamento> agendamentos = agendamentoRepository.findAll(); 
+
+		return agendamentos; 	
 	}
 	
 	@CrossOrigin
