@@ -14,10 +14,6 @@ import { AgendamentoService } from 'src/app/services/agendamento/agendamento.ser
 })
 export class AgendaMedicaComponent implements OnInit {
 
-  anoHoje!: number;
-  mesHoje!: number;
-  diaHoje!: number;
-
   pessoa: Pessoa = {
     id: 0,
     nome: '',
@@ -69,18 +65,16 @@ export class AgendaMedicaComponent implements OnInit {
   constructor(private agendamentoService: AgendamentoService) {}
 
   ngOnInit(): void {
-    this.getDataHoje()
+    this.getIndexSemana()
     this.getAgendamentos()
-  }
+    }
 
   /**
    * It gets the current date and then generates the labels for the chart
    */
-  getDataHoje(){
+  getIndexSemana(){
     let data = new Date;    
-    this.anoHoje = data.getFullYear();
-    this.mesHoje = data.getMonth() + 1;
-    this.diaHoje = data.getDate();    
+ 
     let indexSemana = data.getDay();
     if (indexSemana == 0 || indexSemana == 6) {
       this.gerarLegendas(0)
@@ -111,142 +105,104 @@ export class AgendaMedicaComponent implements OnInit {
   getAgendamentos(): void{
 
     this.agendamentoService.getNomesAgendamento().subscribe((agendamentos : Agendamento[])=>{
-     
+      
+      let hoje = new Date()      
+
+      let dpsHoje0 = new Date(hoje.setDate(hoje.getDate() - 1))
+      let dpsHoje1 = new Date(dpsHoje0.setDate(dpsHoje0.getDate() + 1));
+      let dpsHoje2 = new Date(dpsHoje1.setDate(dpsHoje1.getDate() + 1));
+      let dpsHoje3 = new Date(dpsHoje2.setDate(dpsHoje2.getDate() + 1));
+      let dpsHoje4 = new Date(dpsHoje3.setDate(dpsHoje3.getDate() + 1));
+      let varAuxiliar = new Date(dpsHoje4.setDate(dpsHoje4.getDate() + 1));   
+
       let incrementoDia0 = 0;
       let incrementoDia1 = 1;
       let incrementoDia2 = 2;
       let incrementoDia3 = 3;
       let incrementoDia4 = 4;
 
-      switch ((new Date).getDay()) {
+      let indexSemana = (new Date).getDay()
+
+      switch (indexSemana) {
         case 0:
           incrementoDia0 = 1;
-          incrementoDia1 = 2;
-          incrementoDia2 = 3;
-          incrementoDia3 = 4;
-          incrementoDia4 = 5;
+          incrementoDia1 = 1;
+          incrementoDia2 = 1;
+          incrementoDia3 = 1;
+          incrementoDia4 = 1;
           break;
         
         case 1:
           incrementoDia0 = 0;
-          incrementoDia1 = 1;
-          incrementoDia2 = 2;
-          incrementoDia3 = 3;
-          incrementoDia4 = 4;
+          incrementoDia1 = 0;
+          incrementoDia2 = 0;
+          incrementoDia3 = 0;
+          incrementoDia4 = 0;
           break;
         
         case 2:
           incrementoDia0 = 0;
-          incrementoDia1 = 1;
-          incrementoDia2 = 2;
-          incrementoDia3 = 3;
-          incrementoDia4 = 6;
+          incrementoDia1 = 0;
+          incrementoDia2 = 0;
+          incrementoDia3 = 0;
+          incrementoDia4 = 2;
           break;
         
         case 3:
           incrementoDia0 = 0;
-          incrementoDia1 = 1;
-          incrementoDia2 = 2;
-          incrementoDia3 = 5;
-          incrementoDia4 = 6;
+          incrementoDia1 = 0;
+          incrementoDia2 = 0;
+          incrementoDia3 = 2;
+          incrementoDia4 = 2;
           break;
         
         case 4:
           incrementoDia0 = 0;
-          incrementoDia1 = 1;
-          incrementoDia2 = 4;
-          incrementoDia3 = 5;
-          incrementoDia4 = 6;
+          incrementoDia1 = 0;
+          incrementoDia2 = 2;
+          incrementoDia3 = 2;
+          incrementoDia4 = 2;
           break;
 
         case 5:
           incrementoDia0 = 0;
-          incrementoDia1 = 3;
-          incrementoDia2 = 4;
-          incrementoDia3 = 5;
-          incrementoDia4 = 6;
+          incrementoDia1 = 2;
+          incrementoDia2 = 2;
+          incrementoDia3 = 2;
+          incrementoDia4 = 2;
           break;
         
         case 6:
           incrementoDia0 = 2;
-          incrementoDia1 = 3;
-          incrementoDia2 = 4;
-          incrementoDia3 = 5;
-          incrementoDia4 = 6;
+          incrementoDia1 = 2;
+          incrementoDia2 = 2;
+          incrementoDia3 = 2;
+          incrementoDia4 = 2;
           break;
-      }
+      }   
 
       for (let index = 0; index < agendamentos.length; index++) {   
-        
-        if (agendamentos[index].ano == String(this.anoHoje) &&
-            agendamentos[index].mes == String(this.mesHoje) &&
-            agendamentos[index].dia == String(this.diaHoje + incrementoDia0)) {
-              
-          for (let indexHorario = 0; indexHorario < 17; indexHorario++) {
-            let horario = (document.getElementsByClassName("1") as HTMLCollectionOf<HTMLDivElement>)[indexHorario].attributes[1].nodeValue
-
-            if (horario == agendamentos[index].horario) {                 
-              (document.getElementsByClassName("1") as HTMLCollectionOf<HTMLDivElement>)[indexHorario].children[0].innerHTML = agendamentos[index].usuario.pessoa.nome
-            }                
-          }
-          
-        }
-
-        if (agendamentos[index].ano == String(this.anoHoje) &&
-            agendamentos[index].mes == String(this.mesHoje) &&
-            agendamentos[index].dia == String(this.diaHoje + incrementoDia1)) {
-              
-          for (let indexHorario = 0; indexHorario < 17; indexHorario++) {
-            let horario = (document.getElementsByClassName("2") as HTMLCollectionOf<HTMLDivElement>)[indexHorario].attributes[1].nodeValue
-
-            if (horario == agendamentos[index].horario) {                 
-              (document.getElementsByClassName("2") as HTMLCollectionOf<HTMLDivElement>)[indexHorario].children[0].innerHTML = agendamentos[index].usuario.pessoa.nome
-            }                
-          }
-          
-        }
-
-        if (agendamentos[index].ano == String(this.anoHoje) &&
-            agendamentos[index].mes == String(this.mesHoje) &&
-            agendamentos[index].dia == String(this.diaHoje + incrementoDia2)) {
-              
-          for (let indexHorario = 0; indexHorario < 17; indexHorario++) {
-            let horario = (document.getElementsByClassName("3") as HTMLCollectionOf<HTMLDivElement>)[indexHorario].attributes[1].nodeValue
-
-            if (horario == agendamentos[index].horario) {                 
-              (document.getElementsByClassName("3") as HTMLCollectionOf<HTMLDivElement>)[indexHorario].children[0].innerHTML = agendamentos[index].usuario.pessoa.nome
-            }                
-          }
-          
-        }
-
-        if (agendamentos[index].ano == String(this.anoHoje) &&
-            agendamentos[index].mes == String(this.mesHoje) &&
-            agendamentos[index].dia == String(this.diaHoje + incrementoDia3)) {
-              
-          for (let indexHorario = 0; indexHorario < 17; indexHorario++) {
-            let horario = (document.getElementsByClassName("4") as HTMLCollectionOf<HTMLDivElement>)[indexHorario].attributes[1].nodeValue
-
-            if (horario == agendamentos[index].horario) {                 
-              (document.getElementsByClassName("4") as HTMLCollectionOf<HTMLDivElement>)[indexHorario].children[0].innerHTML = agendamentos[index].usuario.pessoa.nome
-            }                
-          }
-          
-        }
-
-        if (agendamentos[index].ano == String(this.anoHoje) &&
-            agendamentos[index].mes == String(this.mesHoje) &&
-            agendamentos[index].dia == String(this.diaHoje + incrementoDia4)) {
-              
-          for (let indexHorario = 0; indexHorario < 17; indexHorario++) {
-            let horario = (document.getElementsByClassName("5") as HTMLCollectionOf<HTMLDivElement>)[indexHorario].attributes[1].nodeValue
-
-            if (horario == agendamentos[index].horario) {                 
-              (document.getElementsByClassName("5") as HTMLCollectionOf<HTMLDivElement>)[indexHorario].children[0].innerHTML = agendamentos[index].usuario.pessoa.nome
-            }                
-          }          
-        }
+        this.gerarNomes('1', incrementoDia0, agendamentos, dpsHoje0, index)
+        this.gerarNomes('2', incrementoDia1, agendamentos, dpsHoje1, index)
+        this.gerarNomes('3', incrementoDia2, agendamentos, dpsHoje2, index)
+        this.gerarNomes('4', incrementoDia3, agendamentos, dpsHoje3, index)
+        this.gerarNomes('5', incrementoDia4, agendamentos, dpsHoje4, index)
       }
     })
+  }
+
+  gerarNomes(dia: string, incremento: number, agendamentos: Agendamento[], data: Date, index: number){
+    if (agendamentos[index].ano == String(data.getFullYear()) &&
+        agendamentos[index].mes == String(data.getMonth() + 1) &&
+        agendamentos[index].dia == String(data.getDate() + incremento)) {
+          
+      for (let indexHorario = 0; indexHorario < 17; indexHorario++) {
+        let horario = (document.getElementsByClassName(dia) as HTMLCollectionOf<HTMLDivElement>)[indexHorario].attributes[1].nodeValue
+
+        if (horario == agendamentos[index].horario) {                 
+          (document.getElementsByClassName(dia) as HTMLCollectionOf<HTMLDivElement>)[indexHorario].children[0].innerHTML = agendamentos[index].usuario.pessoa.nome
+        }                
+      }          
+    }
   }
 }
