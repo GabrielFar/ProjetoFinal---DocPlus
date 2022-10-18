@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,7 @@ public class ProntuarioController {
 	@Autowired
 	private ProntuarioRepository prontuariorepository;
 	
+	@CrossOrigin
 	@GetMapping
 	public List<ProntuarioDto> listar(){
 		
@@ -40,6 +42,7 @@ public class ProntuarioController {
 		return ProntuarioDto.converter(prontuarios); 	
 	}
 	
+	@CrossOrigin
 	@GetMapping("/{prontuarioId}")
 	public ResponseEntity<ProntuarioDto> selecionarProntuario(@PathVariable int prontuarioId) {
 		
@@ -51,6 +54,7 @@ public class ProntuarioController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@CrossOrigin
 	@PostMapping
 	@Transactional
 	public ResponseEntity<ProntuarioDto> salvar(@RequestBody @Valid ProntuarioForm prontuarioForm, UriComponentsBuilder uriBuilder) {
@@ -63,6 +67,7 @@ public class ProntuarioController {
 		return ResponseEntity.created(uri).body(new ProntuarioDto(prontuario)); 
 	}
 	
+	@CrossOrigin
 	@PutMapping("/{prontuarioId}")
 	@Transactional
 	public ResponseEntity<ProntuarioDto> alterar(@PathVariable int prontuarioId, @RequestBody AlterarProntuarioForm alterarProntuario){
@@ -72,6 +77,7 @@ public class ProntuarioController {
 		return ResponseEntity.ok(new ProntuarioDto(prontuario));
 	}
 	
+	@CrossOrigin
 	@DeleteMapping("/{prontuarioId}")
 	@Transactional
 	public ResponseEntity<?> deletarPontuario(@PathVariable int prontuarioId) {

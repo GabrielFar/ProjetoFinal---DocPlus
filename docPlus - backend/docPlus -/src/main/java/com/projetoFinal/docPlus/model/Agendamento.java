@@ -71,4 +71,10 @@ public class Agendamento {
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}
+	public Prontuario getProntuario() {
+		return prontuario;
+	}
+	public void setProntuario(Prontuario prontuario) {
+		this.prontuario = prontuario;
+	}
 }

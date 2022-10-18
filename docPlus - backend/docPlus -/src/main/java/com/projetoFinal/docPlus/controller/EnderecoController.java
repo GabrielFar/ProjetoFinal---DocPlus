@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,7 @@ public class EnderecoController {
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 	
+	@CrossOrigin
 	@GetMapping
 	public List<EnderecoDto> listar(){
 		
@@ -40,6 +42,7 @@ public class EnderecoController {
 		return EnderecoDto.converter(enderecos); 	
 	}
 	
+	@CrossOrigin
 	@GetMapping("/{enderecoId}")
 	public ResponseEntity<EnderecoDto> selecionarEndereco(@PathVariable int enderecoId) {
 		
@@ -51,6 +54,7 @@ public class EnderecoController {
 		return ResponseEntity.notFound().build();
 	}
 	
+	@CrossOrigin
 	@PostMapping
 	@Transactional
 	public ResponseEntity<EnderecoDto> salvar(@RequestBody @Valid EnderecoForm enderecoForm, UriComponentsBuilder uriBuilder) {
@@ -63,6 +67,7 @@ public class EnderecoController {
 		return ResponseEntity.created(uri).body(new EnderecoDto(endereco)); 
 	}
 	
+	@CrossOrigin
 	@PutMapping("/{enderecoId}")
 	@Transactional
 	public ResponseEntity<EnderecoDto> alterar(@PathVariable int enderecoId, @RequestBody AlterarEnderecoForm enderecoFom){
@@ -72,6 +77,7 @@ public class EnderecoController {
 		return ResponseEntity.ok(new EnderecoDto(endereco));
 	}
 	
+	@CrossOrigin
 	@DeleteMapping("/{enderecoId}")
 	@Transactional
 	public ResponseEntity<?> deletarEndereco(@PathVariable int enderecoId) {

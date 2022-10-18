@@ -1,0 +1,66 @@
+.logo{
+    width: 180px;
+    height: 180px;
+}
+
+#btnDesligar{
+    width: 12%;
+}
+
+.botaoDesligar{
+    width: 80px;
+    height: 80px;
+}
+
+.btnsDirecionamento{
+    width: 200px;
+    background-color: #048436;
+    color: white;
+    font-family: Arial, 'Courier New', 'Calibri';
+}
+
+.botaoMenu{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 50px;
+    background: #048436;
+}
+#tiuloAgenda{
+    text-align: center;
+    font-family: Arial, 'Courier New', 'Calibri';
+    font-size: 50px;
+    font-weight: 700;
+    color: white;
+}
+
+.diaAgenda{
+    display: inline-block;
+    justify-content: center;
+    text-align: center;
+    font-family: Arial, 'Courier New', 'Calibri';
+}
+
+.legendaDias{
+    color: white;
+    font-family: Arial, 'Courier New', 'Calibri';
+    font-size: x-large;
+}
+
+.diaAgenda ul{
+    padding: 0px;
+}
+
+.Dia {
+    height: 70px;
+    width: 150px;
+    background-color: white;
+    list-style: none;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    font-family: Arial, 'Courier New', 'Calibri';
+
+}
