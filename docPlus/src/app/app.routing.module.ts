@@ -11,6 +11,7 @@ import { CadastroComponent } from './administrativo/cadastro/cadastro.component'
 import { PacientesComponent } from './administrativo/pacientes/pacientes.component';
 import { PagDeLoadComponent } from './pages/pag-de-load/pag-de-load.component';
 import { EscUsuarioComponent } from './pages/esc-usuario/esc-usuario.component';
+import { ProntuarioComponent } from './medico/prontuario/prontuario.component';
 
 const routes: Routes = [
   { path: '', component: PagDeLoadComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'integrantes', component: IntegrantesComponent},
   { path: 'agendamento', component: AgendaComponent},  
   { path: 'cadastro', component: CadastroComponent},  
-  { path: 'paciente', component: PacientesComponent}
+  { path: 'pacientes', component: PacientesComponent},
+  { path: 'registroProntuario', component: ProntuarioComponent}
   ];
 
 @NgModule({

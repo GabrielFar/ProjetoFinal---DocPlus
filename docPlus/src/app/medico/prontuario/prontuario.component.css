@@ -1,0 +1,125 @@
+.caixaPesquisa{
+    width: 30vw;
+    height: 46.39px;
+}
+
+#prontuario{
+    width: 50vw;
+}
+
+.divNome{
+    width: 60%;
+}
+
+.caixaNome{
+    width: 100%;
+}
+
+.divDataNasc{
+    width: 38%;
+}
+
+.lbDataNasc{
+    font-size: 22px;
+    text-align: left;
+    width: 30%;
+}
+
+.caixaDataNasc{
+    width: 60%;
+}
+
+.caixaGenero{
+    width: 26%;
+}
+
+.lbDataProntuario{    
+    font-size: 24px;
+    text-align: left;
+    width: 15%;
+}
+
+.iconePesquisa{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0px;
+}
+
+.pesquisa {
+    width: 60%; /* define a largura do campo */ 
+    position: relative;  /* cria o contexto de posicionamento do botão */ 
+  }
+  label {display:block;}
+  input {width: 100%;} /* define a largura do campo igual a largura do container */
+  input,  .btn {padding: 10px;}
+  .btn {
+    position: absolute;   
+    top: 0; 
+    right: 0;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    /* posiciona o botão em relação ao container, mas
+    como o campo está exatamente contido no container
+    o posicionamento se dá também em relação ao campo */
+  }
+
+.caixaDataProntuario{    
+    width: 23%;
+    text-align: center;
+}
+
+.caixaObs{    
+    border-style: inset;
+    border-width: 0.06cm;
+    resize: none;
+}
+
+label{
+    font-size: 29px;
+}
+
+input{
+    font-size: 22px;
+    height: 46.39px;
+}
+
+.logo{
+    width: 180px;
+    height: 180px;
+}
+
+#nomeProntuario{
+    width: 80%;
+}
+
+#idadeProntuario{
+    width: 10%;
+}
+
+.botaoDesligar{
+    width: 80px;
+    height: 80px;
+}
+
+#btnDesligar{
+    width: 10%;
+}
+
+.botaoMenu, .botaoSalvar{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 50px;
+    background: #048436;
+}
+
+.botaoSalvar{
+    width: 200px;
+    cursor: pointer;
+}
+
+
+.botaoMenu:hover, .botaoSalvar:hover{    
+    background: #015823;
+}
