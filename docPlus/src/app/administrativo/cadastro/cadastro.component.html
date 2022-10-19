@@ -1,10 +1,3 @@
-<!--<div id="imgLogo"><img src="../../../assets/Logo.png" alt="Logo"></div>
-<div id="botoesDeDirecionamento" class="d-flex flex-column">
-    <button id="btnAgenda">Agenda</button>
-    <button id="btnPacientes">Pacientes</button>
-    <button id="btnCadastro">Cadastro</button>
-</div>-->
-
 <div class="d-flex vh-100 vw-100 justify-content-between flex-wrap">
     
     <nav id="botoesDeDirecionamento" class="d-flex flex-column flex-shrink-0 p-3 mt-2 ms-2" style="width: 280px;">
@@ -38,7 +31,7 @@
                     </div>                
                 </div>
                 <div class="inputsPessoa flex-wrap">
-                    <label for="nomePessoa">Data de nascimento: </label>
+                    <label for="dataNascPessoa">Data de nascimento: </label>
                     <input formControlName="dataNasc" type="date" class="rounded-5 border-1 border-light" id="dataNasc">
                     <div class="d-flex w-100 justify-content-end">
                         <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('dataNasc')?.errors?.['required'] && formularioPessoa.get('dataNasc')?.touched">
@@ -47,15 +40,15 @@
                     </div>
                 </div>
                 <div class="inputsPessoa flex-wrap">
-                    <label for="nomePessoa">Gênero: </label>
-                    <select id="selectSexoMedico" class="CaixaSelect rounded-5 p-2 border-light">
+                    <label for="selectSexoPessoa">Gênero: </label>
+                    <select id="selectSexoPessoa" class="CaixaSelect rounded-5 p-2 border-light">
                         <option value="M" selected>Masculino</option>
                         <option value="F">Feminino</option>
                     </select>
                 </div>
                 <div class="inputsPessoa flex-wrap">
-                    <label for="nomePessoa">CPF: </label>
-                    <input formControlName="cpf" type="text" class="rounded-5 border-1 border-light" id="cpfMedico" placeholder="xxx.xxx.xxx-xx" autocomplete="off">
+                    <label for="cpfPessoa">CPF: </label>
+                    <input formControlName="cpf" type="text" class="rounded-5 border-1 border-light" id="cpfPessoa" placeholder="xxx.xxx.xxx-xx" autocomplete="off">
                     <div class="d-flex w-100 justify-content-end">
                         <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('cpf')?.errors?.['required'] && formularioPessoa.get('cpf')?.touched">
                             <p class="text-danger">Preencha o campo CPF!</p>
@@ -66,8 +59,8 @@
                     </div>
                 </div>
                 <div class="inputsPessoa flex-wrap">
-                    <label for="nomePessoa">Telefone: </label>
-                    <input formControlName="telefone" type="text" class="rounded-5 border-1 border-light" id="telefoneMedico" placeholder="(xx)xxxxx-xxxx" autocomplete="off">
+                    <label for="telefonePessoa">Telefone: </label>
+                    <input formControlName="telefone" type="text" class="rounded-5 border-1 border-light" id="telefonePessoa" placeholder="(xx)xxxxxxxxx" autocomplete="off">
                     <div class="d-flex w-100 justify-content-end">
                         <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('telefone')?.errors?.['required'] && formularioPessoa.get('telefone')?.touched">
                             <p class="text-danger">Preencha o Telefone!</p>
@@ -78,8 +71,8 @@
                     </div>
                 </div>
                 <div class="inputsPessoa flex-wrap">
-                    <label for="nomePessoa">E-mail: </label>
-                    <input formControlName="email" type="email" class="rounded-5 border-1 border-light" id="emailMedico" placeholder="exemplo@gmail.com" autocomplete="off">
+                    <label for="emailPessoa">E-mail: </label>
+                    <input formControlName="email" type="email" class="rounded-5 border-1 border-light" id="emailPessoa" placeholder="exemplo@gmail.com" autocomplete="off">
                     <div class="d-flex w-100 justify-content-end">
                         <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('email')?.errors?.['required'] && formularioPessoa.get('email')?.touched">
                             <p class="text-danger">Preencha o Email!</p>
@@ -90,67 +83,94 @@
                     </div>
                 </div>
                 <div class="inputsPessoa flex-wrap">
-                    <label for="nomePessoa">Endereço: </label>
-                    <input formControlName="endereco" type="text" class="rounded-5 border-1 border-light" id="enderecoMedico" placeholder="Nº, Rua, Bairro, Cidade, UF">
+                    <label for="numCasaPessoa">Número: </label>
+                    <input formControlName="numCasa" type="text" class="rounded-5 border-1 border-light" id="numCasaPessoa" placeholder="Número da Moradia">
                     <div class="d-flex w-100 justify-content-end">
-                        <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('endereco')?.errors?.['required'] && formularioPessoa.get('endereco')?.touched">
-                            <p class="text-danger">Preencha o Endereco!</p>
+                        <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('numCasa')?.errors?.['required'] && formularioPessoa.get('numCasa')?.touched">
+                            <p class="text-danger">Preencha o Número da Casa!</p>
+                        </div>
+                        <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('numCasa')?.errors?.['pattern'] && formularioPessoa.get('numCasa')?.touched">
+                            <p class="text-danger">Rua Inválida!</p>
                         </div>
                     </div>
                 </div>
-                <div class="inputsPessoa mt-0 flex-wrap">
-                    <div class="d-flex align-items-center">
-                        <input type="radio" name="planoOuCrm" id="planoOuCrm1" class="radioPlanoCRM" checked>
-                        <label for="planoOuCrm1" class="ms-1">Plano de saúde</label>
-                        <input type="radio" name="planoOuCrm" id="planoOuCrm2" class="radioPlanoCRM ms-3">
-                        <label for="planoOuCrm2" class="ms-1">CRM</label>
-                    </div>
-                    <div>
-                        <input formControlName="crm" type="text" class="rounded-5 border-1 border-light" id="crmMedico" placeholder="CRM...">
-                    </div>
+                <div class="inputsPessoa flex-wrap">
+                    <label for="ruaPessoa">Rua: </label>
+                    <input formControlName="rua" type="text" class="rounded-5 border-1 border-light" id="ruaPessoa" placeholder="Rua">
                     <div class="d-flex w-100 justify-content-end">
-                        <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('crm')?.errors?.['required'] && formularioPessoa.get('crm')?.touched">
-                            <p class="text-danger">Preencha o CRM ou Plano de Saúde!</p>
+                        <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('rua')?.errors?.['required'] && formularioPessoa.get('rua')?.touched">
+                            <p class="text-danger">Preencha a Rua!</p>
                         </div>
                     </div>
+                </div>
+                <div class="inputsPessoa flex-wrap">
+                    <label for="bairroPessoa">Bairro: </label>
+                    <input formControlName="bairro" type="text" class="rounded-5 border-1 border-light" id="bairroPessoa" placeholder="Bairro">
+                    <div class="d-flex w-100 justify-content-end">
+                        <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('bairro')?.errors?.['required'] && formularioPessoa.get('bairro')?.touched">
+                            <p class="text-danger">Preencha o Bairro!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="inputsPessoa flex-wrap">
+                    <label for="cidadePessoa">Cidade: </label>
+                    <input formControlName="cidade" type="text" class="rounded-5 border-1 border-light" id="cidadePessoa" placeholder="Cidade">
+                    <div class="d-flex w-100 justify-content-end">
+                        <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('cidade')?.errors?.['required'] && formularioPessoa.get('cidade')?.touched">
+                            <p class="text-danger">Preencha a Cidade!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="inputsPessoa flex-wrap">
+                    <label for="ufPessoa">UF: </label>
+                    <select id="ufPessoa" class="CaixaSelect rounded-5 p-2 border-light">
+                        <option value="AC" selected>AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
+                    </select>
+                </div>
+                <div class="inputsPessoa flex-wrap">
+                    <label for="planoSaudePessoa">Plano de Saúde:</label>
+                    <input formControlName="planoSaude" type="text" class="rounded-5 border-1 border-light" id="planoSaudePessoa" placeholder="Plano de Saúde...">
+                    <div class="d-flex w-100 justify-content-end">
+                        <div class="form-floating ms-5 me-0 mt-0 mb-0" *ngIf="formularioPessoa.get('planoSaude')?.errors?.['required'] && formularioPessoa.get('planoSaude')?.touched">
+                            <p class="text-danger">Preencha Plano de Saúde!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="inputsPessoa flex-wrap">
+                    <label for="crmPessoa">CRM: </label>
+                    <input formControlName="crm" type="text" class="rounded-5 border-1 border-light" id="crmPessoa" placeholder="CRM...">
                 </div>
 
-                <!--Mensagens de Validações Form Medico
-                <div class="alert alert-danger" *ngIf="formularioPessoa.get('nome')?.errors?.['required'] && formularioPessoa.get('nome')?.touched">
-                    Preencha o Nome!
-                </div>
-                <div class="alert alert-danger" *ngIf="formularioPessoa.get('dataNasc')?.errors?.['required'] && formularioPessoa.get('dataNasc')?.touched">
-                    Preencha a Data de Nascimento!
-                </div>
-                <div class="alert alert-danger" *ngIf="formularioPessoa.get('cpf')?.errors?.['required'] && formularioPessoa.get('cpf')?.touched">
-                    Preencha o CPF!
-                </div>
-                <div class="alert alert-danger" *ngIf="(formularioPessoa.get('cpf')?.errors?.['minlenght'] || formularioPessoa.get('cpf')?.errors?.['maxlenght'] ||
-                formularioPessoa.get('cpf')?.errors?.['pattern']) && formularioPessoa.get('cpf')?.touched">
-                    CPF Inválido!
-                </div>
-                <div class="alert alert-danger" *ngIf="formularioPessoa.get('telefone')?.errors?.['required'] && formularioPessoa.get('telefone')?.touched">
-                    Preencha o Telefone!
-                </div>
-                <div class="alert alert-danger" *ngIf="(formularioPessoa.get('telefone')?.errors?.['minlenght'] || formularioPessoa.get('telefone')?.errors?.['maxlenght'] ||
-                formularioPessoa.get('telefone')?.errors?.['pattern']) && formularioPessoa.get('telefone')?.touched">
-                    Telefone Inválido!
-                </div>
-                <div class="alert alert-danger" *ngIf="formularioPessoa.get('email')?.errors?.['required'] && formularioPessoa.get('email')?.touched">
-                    Preencha o Email!
-                </div>
-                <div class="alert alert-danger" *ngIf="formularioPessoa.get('email')?.errors?.['email'] && formularioPessoa.get('email')?.touched">
-                    Email Inválido!
-                </div>
-                <div class="alert alert-danger" *ngIf="formularioPessoa.get('endereco')?.errors?.['required'] && formularioPessoa.get('endereco')?.touched">
-                    Preencha o Endereco!
-                </div>
-                <div class="alert alert-danger" *ngIf="formularioPessoa.get('crm')?.errors?.['required'] && formularioPessoa.get('crm')?.touched">
-                    Preencha o CRM!
-                </div>-->
                 <!--Botao Para Salvar Dados-->
-                <div id="cadastrarMedico" class="d-flex justify-content-center mt-5 me-3">
-                    <button id="btnCadastrarMedico" class="botaoSalvar rounded-5 fs-5 ms-2 me-2 text-white border-1 border-light" [disabled]="!formularioPessoa.valid" (click)="salvarDados($event)">Salvar Dados</button>
+                <div id="cadastrarPessoa" class="d-flex justify-content-center mt-5 me-3">
+                    <button id="btnCadastrarPessoa" class="botaoSalvar rounded-5 fs-5 ms-2 me-2 text-white border-1 border-light" 
+                    [disabled]="!formularioPessoa.valid" (click)="salvarDados($event)">Salvar Dados</button>
                 </div>
             </form>
     </section>
@@ -158,122 +178,17 @@
     <div id="btnDesligar" class="d-flex justify-content-center mt-5"><img class="botaoDesligar" src="../../../assets/botãoDesligar.png" alt="DESLOGAR"></div>
 </div>
 
-
-
-
-
-
-
-<!----------------------------------------------------------------------------------------------------------
-<section id="cadastroPaciente">
-    <div id="tituloPaciente">Cadastro de Paciente</div>
-    <form [formGroup]="formularioPaciente">
-        <div class="inputsPaciente">
-            <input formControlName="nome" type="text" id="nomePaciente" placeholder="Nome...">
-        </div>
-        <div class="inputsPaciente">
-            <input formControlName="dataNasc" type="date" id="dataNasc">
-        </div>
-        <div class="inputsPaciente">
-            <select id="selectSexoPaciente">
-                <option value="M" selected>Masculino</option>
-                <option value="F">Feminino</option>
-            </select>
-        </div>
-        <div class="inputsPaciente">
-            <input formControlName="cpf" type="text" id="cpfPaciente" placeholder="xxx.xxx.xxx-xx" autocomplete="off">
-        </div>
-        <div class="inputsPaciente">
-            <input formControlName="telefone" type="text" id="telefonePaciente" placeholder="(xx)xxxxx-xxxx" autocomplete="off">
-        </div>
-        <div class="inputsPaciente">
-            <input formControlName="email" type="email" id="emailPaciente" placeholder="exemplo@gmail.com" autocomplete="off">
-        </div>
-        <div class="inputsPaciente">
-            <input formControlName="endereco" type="text" id="enderecoPaciente" placeholder="Nº, Rua, Bairro, Cidade, UF">
-        </div>
-        <div class="inputsPaciente">
-            <input formControlName="planoSaude" type="text" id="planoSaudePaciente" placeholder="Plano de Saúde">
-        </div>
-        
-         Mensagens de Validações Form Paciente
-         <div class="alert alert-danger" *ngIf="formularioPaciente.get('nome')?.errors?.['required'] && formularioPaciente.get('nome')?.touched">
-            Preencha o Nome!
-        </div>
-        <div class="alert alert-danger" *ngIf="formularioPaciente.get('dataNasc')?.errors?.['required'] && formularioPaciente.get('dataNasc')?.touched">
-            Preencha a Data de Nascimento!
-        </div>
-        <div class="alert alert-danger" *ngIf="formularioPaciente.get('cpf')?.errors?.['required'] && formularioPaciente.get('cpf')?.touched">
-            Preencha o CPF!
-        </div>
-        <div class="alert alert-danger" *ngIf="(formularioPaciente.get('cpf')?.errors?.['minlenght'] || formularioPaciente.get('cpf')?.errors?.['maxlenght'] ||
-        formularioPaciente.get('cpf')?.errors?.['pattern']) && formularioPaciente.get('cpf')?.touched">
-            CPF Inválido!
-        </div>
-        <div class="alert alert-danger" *ngIf="formularioPaciente.get('telefone')?.errors?.['required'] && formularioPaciente.get('telefone')?.touched">
-            Preencha o Telefone!
-        </div>
-        <div class="alert alert-danger" *ngIf="(formularioPaciente.get('telefone')?.errors?.['minlenght'] || formularioPaciente.get('telefone')?.errors?.['maxlenght'] ||
-        formularioPaciente.get('telefone')?.errors?.['pattern']) && formularioPaciente.get('telefone')?.touched">
-            Telefone Inválido!
-        </div>
-        <div class="alert alert-danger" *ngIf="formularioPaciente.get('email')?.errors?.['required'] && formularioPaciente.get('email')?.touched">
-            Preencha o Email!
-        </div>
-        <div class="alert alert-danger" *ngIf="formularioPaciente.get('email')?.errors?.['email'] && formularioPaciente.get('email')?.touched">
-            Email Inválido!
-        </div>
-        <div class="alert alert-danger" *ngIf="formularioPaciente.get('endereco')?.errors?.['required'] && formularioPaciente.get('endereco')?.touched">
-            Preencha o Endereco!
-        </div>
-        <div class="alert alert-danger" *ngIf="formularioPaciente.get('planoSaude')?.errors?.['required'] && formularioPaciente.get('planoSaude')?.touched">
-            Preencha o Plano de Saúde!
-        
-            </form>
-        </section></div>
-
-        Botao Para Salvar Dados
-        <div id="cadastrarPaciente">
-            <button id="btnCadastrarPaciente" [disabled]="!formularioPaciente.valid" (click)="salvarDados($event)">Salvar Dados</button>
-        </div>-->
-
-
-<!--
-
-                <div class="inputsPessoa">
-                    <label for="nomePessoa">Nome: </label>
-                    <input formControlName="nome" type="text" class="rounded-5" id="nomePessoa" placeholder="Nome...">
-                </div>
-                <div class="inputsPessoa">
-                    <label for="nomePessoa">Data de nascimento: </label>
-                    <input formControlName="dataNasc" type="date" class="rounded-5" id="dataNasc">
-                </div>
-                <div class="inputsPessoa">
-                    <label for="nomePessoa">Gênero: </label>
-                    <select id="selectSexoMedico" class="rounded-5 p-1">
-                        <option value="M" selected>Masculino</option>
-                        <option value="F">Feminino</option>
-                    </select>
-                </div>
-                <div class="inputsPessoa">
-                    <label for="nomePessoa">CPF: </label>
-                    <input formControlName="cpf" type="text" class="rounded-5" id="cpfMedico" placeholder="xxx.xxx.xxx-xx" autocomplete="off">
-                </div>
-                <div class="inputsPessoa">
-                    <label for="nomePessoa">Telefone: </label>
-                    <input formControlName="telefone" type="text" class="rounded-5" id="telefoneMedico" placeholder="(xx)xxxxx-xxxx" autocomplete="off">
-                </div>
-                <div class="inputsPessoa">
-                    <label for="nomePessoa">E-mail: </label>
-                    <input formControlName="email" type="email" class="rounded-5" id="emailMedico" placeholder="exemplo@gmail.com" autocomplete="off">
-                </div>
-                <div class="inputsPessoa">
-                    <label for="nomePessoa">Endereço: </label>
-                    <input formControlName="endereco" type="text" class="rounded-5" id="enderecoMedico" placeholder="Nº, Rua, Bairro, Cidade, UF">
-                </div>
-                <div class="inputsPessoa">
-                    <input formControlName="crm" type="text" class="rounded-5" id="crmMedico" placeholder="CRM...">
-                </div>
-
-
--->
+<!--PopUp de Mensagem de Informação sobre Cadastro-->
+<div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{'display':displayStyleMsn}">
+<div class="modal-dialog" role="document">
+  <div class="modal-content" id="msnPopUp">
+    <div class="modal-body d-flex justify-content-center">
+      <h2 id="msn">Cadastro Realizado com Sucesso</h2>  
+    </div>
+  </div>
+</div>
+</div>

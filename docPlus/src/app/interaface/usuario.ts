@@ -1,5 +1,10 @@
+import { Endereco } from "./endereco";
+import { Pessoa } from "./pessoa";
+
 export interface Usuario {
-    userId: string, 
-    password: string,
-    tipo: string
+    id: number, 
+    senha: string,
+    tipo: string,
+    pessoa: Pessoa,
+    endereco: Endereco
 }

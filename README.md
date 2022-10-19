@@ -32,7 +32,7 @@
 [![Image](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/leticiasu)
 ![WhatsApp](https://img.shields.io/badge/(47)9694_8461-WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white) 
 
-- Marilia Acordi Alexandre 
+- Marília Acordi Alexandre 
 [![Image](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/alexandre-ma93)
 ![WhatsApp](https://img.shields.io/badge/(48)9193_5186-WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white) 
 
