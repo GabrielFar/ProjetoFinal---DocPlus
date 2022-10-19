@@ -23,8 +23,8 @@ export class AgendamentoService {
   }
 
   //Obtem todos os Agendamentos e o nome dos Pacientes
-  getNomesAgendamento(): Observable<Agendamento[]> {
-    return this.httpClient.get<Agendamento[]>(this.url + "/nomes")
+  getNomesAgendamento(nomeMedico: string): Observable<Agendamento[]> {
+    return this.httpClient.get<Agendamento[]>(this.url + "/nomes/" + nomeMedico)
   }
 
   //Obtem um Agendamento pelo ID

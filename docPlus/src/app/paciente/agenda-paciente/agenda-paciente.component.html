@@ -12,6 +12,22 @@
     </nav>
 
     <section id="agendaSection">
+        <div id="medico" class="align-items-center">
+            <div id="labelMedico" class="me-2 d-inline">
+                <label for="filtroMedico">Médico(a):</label>
+            </div>
+            <div class="d-block justify-content-center mt-4">
+                <div id="listaMedicos" class="d-block dropdown-content"></div>
+            </div>
+            <div id="selecaomedico" class="d-inline">
+                <input type="search" [(ngModel)]="filtroMedico" (keyup)="filtrarMedicos()" (click)="filtrarMedicos()" 
+                id="filtroMedico" class="rounded-5 border-1 border-light ps-2" autocomplete="off">
+            </div>
+            <div id="btnGerarAgendamento">
+                <button id="gerarAgendamentos" class="btnBuscar rounded-5 fs-5 ms-2 me-2 text-white border-1 border-light"
+                     (click)="getAgendamentos()">Buscar Agenda</button>
+            </div>
+        </div>
         <div id="tiuloAgenda">Agenda da Semana</div>
         <div id="dia1Div" class="diaAgenda">
             <div id="legendaDia1" class="legendaDias"></div>

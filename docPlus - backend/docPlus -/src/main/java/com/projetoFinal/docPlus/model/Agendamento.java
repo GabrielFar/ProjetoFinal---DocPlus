@@ -13,7 +13,11 @@ public class Agendamento {
 	private int id;
 	
 	@OneToOne
-	private Usuario usuario;
+	private Usuario paciente;
+	
+	@OneToOne
+	private Usuario medico;
+	
 	@OneToOne
 	private Prontuario prontuario;
 	private String ano;
@@ -24,10 +28,11 @@ public class Agendamento {
 	public Agendamento() {
 	}
 
-	public Agendamento(int id, Usuario usuario, Prontuario prontuario, String ano, String mes,
+	public Agendamento(int id, Usuario paciente, Usuario medico, Prontuario prontuario, String ano, String mes,
 			String dia, String horario) {
 		this.id = id;
-		this.usuario = usuario;
+		this.paciente = paciente;
+		this.medico = medico;
 		this.prontuario = prontuario;
 		this.ano = ano;
 		this.mes = mes;
@@ -41,11 +46,17 @@ public class Agendamento {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Usuario getUsuario() {
-		return usuario;
+	public Usuario getPaciente() {
+		return paciente;
 	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setPaciente(Usuario paciente) {
+		this.paciente = paciente;
+	}
+	public Usuario getMedico() {
+		return medico;
+	}
+	public void setMedico(Usuario medico) {
+		this.medico = medico;
 	}
 	public String getAno() {
 		return ano;
