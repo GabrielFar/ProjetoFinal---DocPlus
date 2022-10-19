@@ -1,0 +1,65 @@
+<div class="d-flex vh-100 vw-100 justify-content-between flex-wrap">
+    
+    <nav id="botoesDeDirecionamento" class="d-flex flex-column flex-shrink-0 p-3 mt-2 ms-2" style="width: 280px;">
+        <img class="logo ms-3" src="../../../assets/Logo.png" alt="Logo da Empresa">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item m-2">
+                <a class="text-decoration-none"><button id="btnAgenda" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Receituário</button></a>
+            </li>
+            <li class="nav-item m-2">
+                <a class="text-decoration-none" routerLink="/agendamento"><button id="btnAgenda" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Agendamento</button></a>
+            </li>
+            <li class="nav-item m-2">
+                <button id="btnPacientes" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Pacientes</button>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="cadastroProntuario" class="mt-5">
+        <div id="pesquisaPaciente" class="d-flex text-white fw-bold mt-4 me-4 mb-5 p-0 text-center">
+            <h2 class="me-3">Paciente:</h2>
+            <div class="pesquisa">
+                <input type="search" class="caixaPesquisa rounded-5 border-1 border-light p-2" id="busca" name="q">  
+                <span class="input-group-btn">
+                  <button class="btn btn-light" type="button"><img class="iconePesquisa d-flex justify-content-center align-items-center" src="../../../assets/iconePesquisa.png" alt=""></button>
+                </span>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="me-3 text-white">Prontuário:</h2>
+        </div>
+
+        <div id="prontuario" class="d-flex text-white fw-bold mt-4 me-4 mb-3 p-0 text-center flex-wrap justify-content-between">
+            <div class="divNome d-flex m-1 align-items-center">
+                <label for="nomeProntuario" class="me-1">Nome:</label>
+                <input type="input" class="caixaNome rounded-5 border-1 border-light p-2 me-2" name="nmNomeProntuario" id="nomeProntuario">
+            </div>
+            <div class="divDataNasc d-flex m-1 align-items-center justify-content-between">
+                <label for="dataNascProntuario" class="lbDataNasc">Data de Nascimento:</label>
+                <input type="input" class="caixaDataNasc rounded-5 border-1 border-light p-2" name="" id="">
+            </div>
+            <div class="d-flex m-1 align-items-center">
+                <label for="idadeProntuario" class="me-1 flex-wrap">Idade:</label>
+                <input type="input" id="idadeProntuario" name="" class="rounded-5 border-1 border-light ms-2 p-0 text-center">
+                <label for="generoProntuario" class="me-1 ms-2 flex-wrap">Gênero:</label>
+                <input type="input" id="generoProntuario" name="" class="caixaGenero rounded-5 border-1 border-light me-1 p-1">
+                <label for="dataProntuario" class="lbDataProntuario me-1 ms-4 flex-wrap">Última consulta:</label>
+                <input type="date" id="dataProntuario" name="" class="caixaDataProntuario rounded-5 border-1 border-light" id="dataConsulta1">
+            </div>  
+            <div class="d-flex m-1 w-100 flex-column align-items-start">
+                <h2 class="me-3 mb-4 text-white">Observações:</h2>
+                <textarea name="" id="observacoes" class="caixaObs rounded-5 border-light w-100 p-3" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+
+        <div id="cadastrarMedico" class="d-flex justify-content-end mt-2 me-3">
+            <button id="btnCadastrarMedico" class="botaoSalvar rounded-5 fs-5 ms-2 me-2 text-white border-1 border-light">Salvar Dados</button>
+        </div>
+    </section>
+
+    
+
+    <div id="btnDesligar" class="d-flex justify-content-center mt-5"><img class="botaoDesligar" src="../../../assets/botãoDesligar.png" alt="DESLOGAR"></div>
+
+</div>
