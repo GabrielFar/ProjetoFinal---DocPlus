@@ -36,7 +36,7 @@ export class AgendaMedicaComponent implements OnInit {
   }
 
   usuario: Usuario = {
-    id: 0,
+    userId: 0,
     senha: '',
     tipo: '',
     pessoa: this.pessoa,

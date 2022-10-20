@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { Listas } from 'src/app/enums/selecionarLista';
 import { Agendamento } from 'src/app/interaface/agendamento';
 import { Endereco } from 'src/app/interaface/endereco';
@@ -8,6 +8,8 @@ import { Usuario } from 'src/app/interaface/usuario';
 import { AgendamentoService } from 'src/app/services/agendamento/agendamento.service';
 
 import * as $ from 'jquery'
+import { AgendamentoDto } from 'src/app/interaface/agendametoDto';
+import { AgendamentoPost } from 'src/app/interaface/agendamentoPost';
 
 @Component({
   selector: 'app-agenda-paciente',
@@ -17,7 +19,7 @@ import * as $ from 'jquery'
 export class AgendaPacienteComponent implements OnInit {
 
   filtroMedico: string = "";
-  nomesMedicos: string[] = ["Dr. Gustavo", "Dra. Maria", "Dra. Carla"];
+  nomesMedicos: string[] = ["Dr. Gustavo", "Dra. Carla"];
 
   displayStyleAgendamento: string = 'none'
   horarioEscolhido: string = ""
@@ -50,13 +52,13 @@ export class AgendaPacienteComponent implements OnInit {
   }
 
   usuario: Usuario = {
-    id: 0,
+    userId: 0,
     senha: '',
     tipo: '',
     pessoa: this.pessoa,
     endereco: this.endereco
   }
-
+  
   prontuario: Prontuario = {
     id: 0,
     anotacoes: '',
@@ -74,9 +76,17 @@ export class AgendaPacienteComponent implements OnInit {
     dia: '',
     horario: ''
   }
+  
+  medicoSelecionado: Usuario = {
+    userId: 0,
+    senha: '',
+    tipo: '',
+    pessoa: this.pessoa,
+    endereco: this.endereco
+  }
 
   readonly diasFuncionamento = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta"]
-
+  
   constructor(private agendamentoService: AgendamentoService) {}
 
   ngOnInit(): void {
@@ -85,7 +95,7 @@ export class AgendaPacienteComponent implements OnInit {
 
     //----Autocompleta a pesquisa do usuário no campo de pesquisa medico
     $(document.getElementById("listaMedicos") as HTMLDivElement).click(function(e){      
-      (document.getElementById("filtroMedico") as HTMLInputElement).value = e.target.innerHTML;    
+      (document.getElementById("filtroMedico") as HTMLInputElement).value = e.target.innerHTML;
       (document.getElementById("listaMedicos") as HTMLDivElement).innerHTML = ""
     });
 
@@ -96,6 +106,12 @@ export class AgendaPacienteComponent implements OnInit {
       }, 200);
     });
   }
+  
+  @HostListener('click', ['$event']) onClick(event: Event) {
+    if((event as any).path[1].id == "listaMedicos"){
+      this.getAgendamentos()      
+    }
+ }
 
   /**
    * It gets the current date and then generates the labels for the chart
@@ -144,21 +160,24 @@ export class AgendaPacienteComponent implements OnInit {
     if(isMedicoSelecionado){
       this.limparHorarios()
 
-      this.agendamentoService.getNomesAgendamento(medicoBuscado).subscribe((agendamentos : Agendamento[])=>{
+      this.agendamentoService.getNomesAgendamento(medicoBuscado).subscribe((agendamentosPorMedico : Agendamento[])=>{
         
+        this.medicoSelecionado = agendamentosPorMedico[0].medico
+
         let dados = this.getDias()
 
-        for (let index = 0; index < agendamentos.length; index++) {           
-          this.gerarNomes('1', dados.incrementoDia0, agendamentos, dados.dpsHoje0, index)
-          this.gerarNomes('2', dados.incrementoDia1, agendamentos, dados.dpsHoje1, index)
-          this.gerarNomes('3', dados.incrementoDia2, agendamentos, dados.dpsHoje2, index)
-          this.gerarNomes('4', dados.incrementoDia3, agendamentos, dados.dpsHoje3, index)
-          this.gerarNomes('5', dados.incrementoDia4, agendamentos, dados.dpsHoje4, index)
+        for (let index = 0; index < agendamentosPorMedico.length; index++) {           
+          this.gerarNomes('1', dados.incrementoDia0, agendamentosPorMedico, dados.dpsHoje0, index)
+          this.gerarNomes('2', dados.incrementoDia1, agendamentosPorMedico, dados.dpsHoje1, index)
+          this.gerarNomes('3', dados.incrementoDia2, agendamentosPorMedico, dados.dpsHoje2, index)
+          this.gerarNomes('4', dados.incrementoDia3, agendamentosPorMedico, dados.dpsHoje3, index)
+          this.gerarNomes('5', dados.incrementoDia4, agendamentosPorMedico, dados.dpsHoje4, index)
         }
         this.desabilitarCampos()
 
       })
     }
+
   }
   
   getDias(): {
@@ -312,11 +331,10 @@ export class AgendaPacienteComponent implements OnInit {
   }
 
   setAgendamento(){
-    let medico = (document.getElementById("filtroMedico") as HTMLInputElement).value
     let dados = this.getDias()
-    let dia
-    let mes
-    let ano
+    let dia = 0
+    let mes = 0
+    let ano = 0
 
     switch (Number(this.diaAgendaEscolhido)) {
       case 1:
@@ -350,7 +368,33 @@ export class AgendaPacienteComponent implements OnInit {
         break;
     }
 
-    
+    this.agendamentoService.getNomesPorPaciente(this.usuarioLogado).subscribe((agendamentosPorPaciente : Agendamento[])=>{
+      let prontuario: Prontuario = agendamentosPorPaciente[(agendamentosPorPaciente.length - 1)].prontuario
+      let paciente: Usuario = agendamentosPorPaciente[(agendamentosPorPaciente.length - 1)].paciente
+      let medico: Usuario = this.medicoSelecionado
+            
+      let agendamento: AgendamentoPost = {
+        id: 0,
+        idPaciente: paciente.userId,
+        idMedico: medico.userId,
+        idProntuario: prontuario.id,
+        ano: String(ano),
+        dia: String(dia),
+        mes: String(mes),
+        horario: this.horarioEscolhido
+      }
+
+      console.log(agendamento);
+      
+      
+      this.agendamentoService.saveAgendamento(agendamento).subscribe((agendamentoDto: AgendamentoDto) =>{
+        console.log(agendamentoDto);
+      })
+    })
+
+    setTimeout(() => {
+      this.getAgendamentos()
+    }, 1000);
   }
 
   

@@ -13,4 +13,6 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Intege
 	List<Agendamento> findByMedico_Id(int idMedico);
 
 	List<Agendamento> findByMedico_Pessoa_Nome(String nomeMedico);
+
+	List<Agendamento> findByPaciente_Pessoa_Nome(String nomePaciente);
 }

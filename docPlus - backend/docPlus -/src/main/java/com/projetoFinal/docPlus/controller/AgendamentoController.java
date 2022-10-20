@@ -62,6 +62,15 @@ public class AgendamentoController {
 	}
 	
 	@CrossOrigin
+	@GetMapping("/nomesPaciente/{nomePaciente}")
+	public List<Agendamento> pegarAgendaPorPaciente(@PathVariable String nomePaciente){
+		
+		List<Agendamento> agendamentos = agendamentoRepository.findByPaciente_Pessoa_Nome(nomePaciente); 
+
+		return agendamentos; 	
+	}
+	
+	@CrossOrigin
 	@GetMapping("/{agendamentoId}")
 	public ResponseEntity<AgendamentoDto> selecionarAgendamento(@PathVariable int agendamentoId) {
 		
