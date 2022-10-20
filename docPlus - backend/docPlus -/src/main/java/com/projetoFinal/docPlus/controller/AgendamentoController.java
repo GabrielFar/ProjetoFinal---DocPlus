@@ -43,9 +43,6 @@ public class AgendamentoController {
 	@Autowired
 	private ProntuarioRepository prontuarioRepository;
 	
-	@Autowired
-	private PessoaRepository pessoaRepository;
-	
 	@CrossOrigin
 	@GetMapping
 	public List<AgendamentoDto> listar(){
@@ -56,10 +53,19 @@ public class AgendamentoController {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/nomes")
-	public List<Agendamento> pegarNomes(){
+	@GetMapping("/nomes/{nomeMedico}")
+	public List<Agendamento> pegarAgendaMedica(@PathVariable String nomeMedico){
 		
-		List<Agendamento> agendamentos = agendamentoRepository.findAll(); 
+		List<Agendamento> agendamentos = agendamentoRepository.findByMedico_Pessoa_Nome(nomeMedico); 
+
+		return agendamentos; 	
+	}
+	
+	@CrossOrigin
+	@GetMapping("/nomesPaciente/{nomePaciente}")
+	public List<Agendamento> pegarAgendaPorPaciente(@PathVariable String nomePaciente){
+		
+		List<Agendamento> agendamentos = agendamentoRepository.findByPaciente_Pessoa_Nome(nomePaciente); 
 
 		return agendamentos; 	
 	}

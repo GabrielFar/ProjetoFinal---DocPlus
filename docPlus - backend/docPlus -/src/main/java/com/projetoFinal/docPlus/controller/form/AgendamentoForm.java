@@ -23,7 +23,8 @@ public class AgendamentoForm {
 	private String horario;
 	
 	private int idProntuario;
-	private int idUsuario;
+	private int idPaciente;
+	private int idMedico;
 	
 	public int getId() {
 		return id;
@@ -61,16 +62,23 @@ public class AgendamentoForm {
 	public void setIdProntuario(int idProntuario) {
 		this.idProntuario = idProntuario;
 	}
-	public int getIdUsuario() {
-		return idUsuario;
+	public int getIdPaciente() {
+		return idPaciente;
 	}
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setIdUsuario(int idPaciente) {
+		this.idPaciente = idPaciente;
+	}
+	public int getIdMedico() {
+		return idMedico;
+	}
+	public void setIdMedico(int idMedico) {
+		this.idMedico = idMedico;
 	}
 	public Agendamento converter(ProntuarioRepository prontuariorepository, UsuarioRepository usuarioRepository) {
-		Usuario usuario = usuarioRepository.findById(idUsuario);
+		Usuario paciente = usuarioRepository.findById(idPaciente);
+		Usuario medico = usuarioRepository.findById(idMedico);
 		Prontuario prontuario = prontuariorepository.findById(idProntuario);
-		return new Agendamento(id, usuario, prontuario, ano, mes, dia, horario);
+		return new Agendamento(id, paciente, medico, prontuario, ano, mes, dia, horario);
 	}
 	
 }

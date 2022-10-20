@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Agendamento } from 'src/app/interaface/agendamento';
 import { AgendamentoDto } from 'src/app/interaface/agendametoDto';
+import { AgendamentoPost } from 'src/app/interaface/agendamentoPost';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,13 @@ export class AgendamentoService {
   }
 
   //Obtem todos os Agendamentos e o nome dos Pacientes
-  getNomesAgendamento(): Observable<Agendamento[]> {
-    return this.httpClient.get<Agendamento[]>(this.url + "/nomes")
+  getNomesAgendamento(nomeMedico: string): Observable<Agendamento[]> {
+    return this.httpClient.get<Agendamento[]>(this.url + "/nomes/" + nomeMedico)
+  }
+
+  //Obtem todos os Agendamentos e o nome dos Pacientes
+  getNomesPorPaciente(nomePaciente: string): Observable<Agendamento[]> {
+    return this.httpClient.get<Agendamento[]>(this.url + "/nomesPaciente/" + nomePaciente)
   }
 
   //Obtem um Agendamento pelo ID
@@ -33,7 +39,7 @@ export class AgendamentoService {
   }
 
   //Salva um Agendamento 
-  saveAgendamento(agendamento: Agendamento): Observable<AgendamentoDto>{
+  saveAgendamento(agendamento: AgendamentoPost): Observable<AgendamentoDto>{
     return this.httpClient.post<Agendamento>(this.url, JSON.stringify(agendamento), this.httpOptions)
   }
 

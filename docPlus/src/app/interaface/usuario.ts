@@ -2,7 +2,7 @@ import { Endereco } from "./endereco";
 import { Pessoa } from "./pessoa";
 
 export interface Usuario {
-    id: number, 
+    userId: number, 
     senha: string,
     tipo: string,
     pessoa: Pessoa,

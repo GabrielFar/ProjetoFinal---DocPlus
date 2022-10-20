@@ -36,7 +36,7 @@ export class AgendaMedicaComponent implements OnInit {
   }
 
   usuario: Usuario = {
-    id: 0,
+    userId: 0,
     senha: '',
     tipo: '',
     pessoa: this.pessoa,
@@ -52,7 +52,8 @@ export class AgendaMedicaComponent implements OnInit {
 
   agendamento: Agendamento = {
     id: 0,
-    usuario: this.usuario,
+    medico: this.usuario,
+    paciente: this.usuario,
     prontuario: this.prontuario,
     ano: '',
     mes: '',
@@ -104,7 +105,7 @@ export class AgendaMedicaComponent implements OnInit {
 
   getAgendamentos(): void{
 
-    this.agendamentoService.getNomesAgendamento().subscribe((agendamentos : Agendamento[])=>{
+    this.agendamentoService.getNomesAgendamento("Lucas").subscribe((agendamentos : Agendamento[])=>{
       
       let hoje = new Date()      
 
@@ -200,7 +201,7 @@ export class AgendaMedicaComponent implements OnInit {
         let horario = (document.getElementsByClassName(dia) as HTMLCollectionOf<HTMLDivElement>)[indexHorario].attributes[1].nodeValue
 
         if (horario == agendamentos[index].horario) {                 
-          (document.getElementsByClassName(dia) as HTMLCollectionOf<HTMLDivElement>)[indexHorario].children[0].innerHTML = agendamentos[index].usuario.pessoa.nome
+          (document.getElementsByClassName(dia) as HTMLCollectionOf<HTMLDivElement>)[indexHorario].children[0].innerHTML = agendamentos[index].paciente.pessoa.nome
         }                
       }          
     }

@@ -15,6 +15,7 @@ import { AgendaComponent } from './administrativo/agenda/agenda.component';
 import { AppRoutingModule } from './app.routing.module';
 import { ProntuarioComponent } from './medico/prontuario/prontuario.component';
 import { AgendaMedicaComponent } from './medico/agenda-medica/agenda-medica.component';
+import { AgendaPacienteComponent } from './paciente/agenda-paciente/agenda-paciente.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,9 @@ import { AgendaMedicaComponent } from './medico/agenda-medica/agenda-medica.comp
     SobreComponent,
     PacientesComponent,
     AgendaComponent,
-    ProntuarioComponent,
-    AgendaMedicaComponent
+    AgendaMedicaComponent,
+    AgendaPacienteComponent,
+    ProntuarioComponent
   ],
   imports: [
     BrowserModule, 

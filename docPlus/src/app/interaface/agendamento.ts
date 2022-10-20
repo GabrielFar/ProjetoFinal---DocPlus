@@ -3,10 +3,11 @@ import { Usuario } from "./usuario";
 
 export interface Agendamento{
     id: number,
-    usuario: Usuario,
-    prontuario: Prontuario,
     ano: string,
-    mes: string,
     dia: string,
-    horario: string
+    horario: string,
+    mes: string,
+    medico: Usuario,
+    paciente: Usuario,
+    prontuario: Prontuario
 }
