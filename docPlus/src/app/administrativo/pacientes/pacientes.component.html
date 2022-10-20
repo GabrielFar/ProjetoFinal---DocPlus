@@ -1,9 +1,18 @@
 <!--<div id="imgLogo"><img src="../../../assets/Logo.png" alt=""></div>-->
-<div id="botoesDeDirecionamento">
-  <button id="btnAgenda">Agenda</button>
-  <button id="btnPacientes">Pacientes</button>
-  <button id="btnCadastro">Cadastro</button>
-</div>
+  <nav id="botoesDeDirecionamento" class="d-flex flex-column flex-shrink-0 p-3 mt-2 ms-2" style="width: 280px;">
+    <img class="logo ms-3" src="../../../assets/Logo.png" alt="Logo da Empresa">
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item m-2">
+            <a class="text-decoration-none" routerLink="/agendamento"><button id="btnAgenda" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Agendamento</button></a>
+        </li>
+        <li class="nav-item m-2">
+            <button id="btnPacientes" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Pacientes</button>
+        </li>
+        <li class="nav-item m-2">
+            <button id="btnCadastro" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Cadastro</button>
+        </li>
+    </ul>
+  </nav>
 <!--<div id="btnDesligar"><img src="../../../assets/botãoDesligar.png" alt="DESLOGAR"></div>-->
 <div id="divSalvarDados" class='d-flex sticky-top justify-content-center'>
   <button id='salvarDados'>Salvar Dados</button>

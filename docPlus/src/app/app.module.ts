@@ -13,6 +13,7 @@ import { IntegrantesComponent } from './pages/integrantes/integrantes.component'
 import { SobreComponent } from './pages/sobre/sobre.component';
 import { AgendaComponent } from './administrativo/agenda/agenda.component';
 import { AppRoutingModule } from './app.routing.module';
+import { ProntuarioComponent } from './medico/prontuario/prontuario.component';
 import { AgendaMedicaComponent } from './medico/agenda-medica/agenda-medica.component';
 import { AgendaPacienteComponent } from './paciente/agenda-paciente/agenda-paciente.component';
 
@@ -27,7 +28,8 @@ import { AgendaPacienteComponent } from './paciente/agenda-paciente/agenda-pacie
     PacientesComponent,
     AgendaComponent,
     AgendaMedicaComponent,
-    AgendaPacienteComponent
+    AgendaPacienteComponent,
+    ProntuarioComponent
   ],
   imports: [
     BrowserModule, 
