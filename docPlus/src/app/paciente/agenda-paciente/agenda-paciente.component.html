@@ -1,14 +1,6 @@
 <div class="d-flex vh-100 justify-content-between flex-wrap">
     <nav id="botoesDeDirecionamento" class="d-flex flex-column flex-shrink-0 p-3 mt-2 ms-2" style="width: 280px;">
         <img class="logo ms-3" src="../../../assets/Logo.png" alt="Logo da Empresa">
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item m-2">
-            <button id="btnAgenda" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Agendamento</button>
-            </li>
-            <li class="nav-item m-2">
-            <button id="btnPacientes" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Pacientes</button>
-            </li>
-        </ul>
     </nav>
 
     <section id="agendaSection">
@@ -32,116 +24,180 @@
         <div id="dia1Div" class="diaAgenda">
             <div id="legendaDia1" class="legendaDias"></div>
             <ul id="dia1Ul">
-                <li class="Dia 1" itemid="8:00-8:30" (click)="setAgendamento($event)">8:00 - 8:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="8:30-9:00" (click)="setAgendamento($event)">8:30 - 9:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="9:00-9:30" (click)="setAgendamento($event)">9:00 - 9:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="9:30-10:00" (click)="setAgendamento($event)">9:30 - 10:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="10:00-10:30" (click)="setAgendamento($event)">10:00 - 10:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="10:30-11:00" (click)="setAgendamento($event)">10:30 - 11:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="11:00-11:30" (click)="setAgendamento($event)">11:00 - 11:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="13:00-13:30" (click)="setAgendamento($event)">13:00 - 13:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="13:30-14:00" (click)="setAgendamento($event)">13:30 - 14:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="14:00-14:30" (click)="setAgendamento($event)">14:00 - 14:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="14:30-15:00" (click)="setAgendamento($event)">14:30 - 15:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="15:00-15:30" (click)="setAgendamento($event)">15:00 - 15:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="15:30-16:00" (click)="setAgendamento($event)">15:30 - 16:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="16:00-16:30" (click)="setAgendamento($event)">16:00 - 16:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="16:30-17:00" (click)="setAgendamento($event)">16:30 - 17:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="17:00-17:30" (click)="setAgendamento($event)">17:00 - 17:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 1" itemid="17:30-18:00" (click)="setAgendamento($event)">17:30 - 18:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="8:00-8:30" (click)="openPopUpAgendamento($event)">8:00 - 8:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="8:30-9:00" (click)="openPopUpAgendamento($event)">8:30 - 9:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="9:00-9:30" (click)="openPopUpAgendamento($event)">9:00 - 9:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="9:30-10:00" (click)="openPopUpAgendamento($event)">9:30 - 10:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="10:00-10:30" (click)="openPopUpAgendamento($event)">10:00 - 10:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="10:30-11:00" (click)="openPopUpAgendamento($event)">10:30 - 11:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="11:00-11:30" (click)="openPopUpAgendamento($event)">11:00 - 11:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="13:00-13:30" (click)="openPopUpAgendamento($event)">13:00 - 13:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="13:30-14:00" (click)="openPopUpAgendamento($event)">13:30 - 14:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="14:00-14:30" (click)="openPopUpAgendamento($event)">14:00 - 14:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="14:30-15:00" (click)="openPopUpAgendamento($event)">14:30 - 15:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="15:00-15:30" (click)="openPopUpAgendamento($event)">15:00 - 15:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="15:30-16:00" (click)="openPopUpAgendamento($event)">15:30 - 16:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="16:00-16:30" (click)="openPopUpAgendamento($event)">16:00 - 16:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="16:30-17:00" (click)="openPopUpAgendamento($event)">16:30 - 17:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="17:00-17:30" (click)="openPopUpAgendamento($event)">17:00 - 17:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 1" itemid="17:30-18:00" (click)="openPopUpAgendamento($event)">17:30 - 18:00 <div class="nomePaciente"></div></li>
             </ul>
         </div>
         <div id="dia2Div" class="diaAgenda">
             <div id="legendaDia2" class="legendaDias"></div>
             <ul id="dia2Ul">
-                <li class="Dia 2" itemid="8:00-8:30" (click)="setAgendamento($event)">8:00 - 8:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="8:30-9:00" (click)="setAgendamento($event)">8:30 - 9:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="9:00-9:30" (click)="setAgendamento($event)">9:00 - 9:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="9:30-10:00" (click)="setAgendamento($event)">9:30 - 10:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="10:00-10:30" (click)="setAgendamento($event)">10:00 - 10:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="10:30-11:00" (click)="setAgendamento($event)">10:30 - 11:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="11:00-11:30" (click)="setAgendamento($event)">11:00 - 11:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="13:00-13:30" (click)="setAgendamento($event)">13:00 - 13:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="13:30-14:00" (click)="setAgendamento($event)">13:30 - 14:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="14:00-14:30" (click)="setAgendamento($event)">14:00 - 14:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="14:30-15:00" (click)="setAgendamento($event)">14:30 - 15:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="15:00-15:30" (click)="setAgendamento($event)">15:00 - 15:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="15:30-16:00" (click)="setAgendamento($event)">15:30 - 16:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="16:00-16:30" (click)="setAgendamento($event)">16:00 - 16:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="16:30-17:00" (click)="setAgendamento($event)">16:30 - 17:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="17:00-17:30" (click)="setAgendamento($event)">17:00 - 17:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 2" itemid="17:30-18:00" (click)="setAgendamento($event)">17:30 - 18:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="8:00-8:30" (click)="openPopUpAgendamento($event)">8:00 - 8:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="8:30-9:00" (click)="openPopUpAgendamento($event)">8:30 - 9:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="9:00-9:30" (click)="openPopUpAgendamento($event)">9:00 - 9:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="9:30-10:00" (click)="openPopUpAgendamento($event)">9:30 - 10:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="10:00-10:30" (click)="openPopUpAgendamento($event)">10:00 - 10:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="10:30-11:00" (click)="openPopUpAgendamento($event)">10:30 - 11:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="11:00-11:30" (click)="openPopUpAgendamento($event)">11:00 - 11:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="13:00-13:30" (click)="openPopUpAgendamento($event)">13:00 - 13:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="13:30-14:00" (click)="openPopUpAgendamento($event)">13:30 - 14:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="14:00-14:30" (click)="openPopUpAgendamento($event)">14:00 - 14:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="14:30-15:00" (click)="openPopUpAgendamento($event)">14:30 - 15:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="15:00-15:30" (click)="openPopUpAgendamento($event)">15:00 - 15:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="15:30-16:00" (click)="openPopUpAgendamento($event)">15:30 - 16:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="16:00-16:30" (click)="openPopUpAgendamento($event)">16:00 - 16:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="16:30-17:00" (click)="openPopUpAgendamento($event)">16:30 - 17:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="17:00-17:30" (click)="openPopUpAgendamento($event)">17:00 - 17:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 2" itemid="17:30-18:00" (click)="openPopUpAgendamento($event)">17:30 - 18:00 <div class="nomePaciente"></div></li>
             </ul>
         </div>
         <div id="dia3Div" class="diaAgenda">
             <div id="legendaDia3" class="legendaDias"></div>
             <ul id="dia3Ul">
-                <li class="Dia 3" itemid="8:00-8:30" (click)="setAgendamento($event)">8:00 - 8:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="8:30-9:00" (click)="setAgendamento($event)">8:30 - 9:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="9:00-9:30" (click)="setAgendamento($event)">9:00 - 9:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="9:30-10:00" (click)="setAgendamento($event)">9:30 - 10:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="10:00-10:30" (click)="setAgendamento($event)">10:00 - 10:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="10:30-11:00" (click)="setAgendamento($event)">10:30 - 11:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="11:00-11:30" (click)="setAgendamento($event)">11:00 - 11:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="13:00-13:30" (click)="setAgendamento($event)">13:00 - 13:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="13:30-14:00" (click)="setAgendamento($event)">13:30 - 14:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="14:00-14:30" (click)="setAgendamento($event)">14:00 - 14:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="14:30-15:00" (click)="setAgendamento($event)">14:30 - 15:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="15:00-15:30" (click)="setAgendamento($event)">15:00 - 15:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="15:30-16:00" (click)="setAgendamento($event)">15:30 - 16:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="16:00-16:30" (click)="setAgendamento($event)">16:00 - 16:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="16:30-17:00" (click)="setAgendamento($event)">16:30 - 17:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="17:00-17:30" (click)="setAgendamento($event)">17:00 - 17:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 3" itemid="17:30-18:00" (click)="setAgendamento($event)">17:30 - 18:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="8:00-8:30" (click)="openPopUpAgendamento($event)">8:00 - 8:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="8:30-9:00" (click)="openPopUpAgendamento($event)">8:30 - 9:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="9:00-9:30" (click)="openPopUpAgendamento($event)">9:00 - 9:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="9:30-10:00" (click)="openPopUpAgendamento($event)">9:30 - 10:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="10:00-10:30" (click)="openPopUpAgendamento($event)">10:00 - 10:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="10:30-11:00" (click)="openPopUpAgendamento($event)">10:30 - 11:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="11:00-11:30" (click)="openPopUpAgendamento($event)">11:00 - 11:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="13:00-13:30" (click)="openPopUpAgendamento($event)">13:00 - 13:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="13:30-14:00" (click)="openPopUpAgendamento($event)">13:30 - 14:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="14:00-14:30" (click)="openPopUpAgendamento($event)">14:00 - 14:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="14:30-15:00" (click)="openPopUpAgendamento($event)">14:30 - 15:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="15:00-15:30" (click)="openPopUpAgendamento($event)">15:00 - 15:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="15:30-16:00" (click)="openPopUpAgendamento($event)">15:30 - 16:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="16:00-16:30" (click)="openPopUpAgendamento($event)">16:00 - 16:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="16:30-17:00" (click)="openPopUpAgendamento($event)">16:30 - 17:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="17:00-17:30" (click)="openPopUpAgendamento($event)">17:00 - 17:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 3" itemid="17:30-18:00" (click)="openPopUpAgendamento($event)">17:30 - 18:00 <div class="nomePaciente"></div></li>
             </ul>
         </div>
         <div id="dia4Div" class="diaAgenda">
             <div id="legendaDia4" class="legendaDias"></div>
             <ul id="dia4Ul">
-                <li class="Dia 4" itemid="8:00-8:30" (click)="setAgendamento($event)">8:00 - 8:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="8:30-9:00" (click)="setAgendamento($event)">8:30 - 9:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="9:00-9:30" (click)="setAgendamento($event)">9:00 - 9:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="9:30-10:00" (click)="setAgendamento($event)">9:30 - 10:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="10:00-10:30" (click)="setAgendamento($event)">10:00 - 10:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="10:30-11:00" (click)="setAgendamento($event)">10:30 - 11:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="11:00-11:30" (click)="setAgendamento($event)">11:00 - 11:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="13:00-13:30" (click)="setAgendamento($event)">13:00 - 13:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="13:30-14:00" (click)="setAgendamento($event)">13:30 - 14:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="14:00-14:30" (click)="setAgendamento($event)">14:00 - 14:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="14:30-15:00" (click)="setAgendamento($event)">14:30 - 15:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="15:00-15:30" (click)="setAgendamento($event)">15:00 - 15:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="15:30-16:00" (click)="setAgendamento($event)">15:30 - 16:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="16:00-16:30" (click)="setAgendamento($event)">16:00 - 16:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="16:30-17:00" (click)="setAgendamento($event)">16:30 - 17:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="17:00-17:30" (click)="setAgendamento($event)">17:00 - 17:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 4" itemid="17:30-18:00" (click)="setAgendamento($event)">17:30 - 18:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="8:00-8:30" (click)="openPopUpAgendamento($event)">8:00 - 8:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="8:30-9:00" (click)="openPopUpAgendamento($event)">8:30 - 9:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="9:00-9:30" (click)="openPopUpAgendamento($event)">9:00 - 9:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="9:30-10:00" (click)="openPopUpAgendamento($event)">9:30 - 10:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="10:00-10:30" (click)="openPopUpAgendamento($event)">10:00 - 10:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="10:30-11:00" (click)="openPopUpAgendamento($event)">10:30 - 11:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="11:00-11:30" (click)="openPopUpAgendamento($event)">11:00 - 11:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="13:00-13:30" (click)="openPopUpAgendamento($event)">13:00 - 13:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="13:30-14:00" (click)="openPopUpAgendamento($event)">13:30 - 14:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="14:00-14:30" (click)="openPopUpAgendamento($event)">14:00 - 14:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="14:30-15:00" (click)="openPopUpAgendamento($event)">14:30 - 15:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="15:00-15:30" (click)="openPopUpAgendamento($event)">15:00 - 15:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="15:30-16:00" (click)="openPopUpAgendamento($event)">15:30 - 16:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="16:00-16:30" (click)="openPopUpAgendamento($event)">16:00 - 16:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="16:30-17:00" (click)="openPopUpAgendamento($event)">16:30 - 17:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="17:00-17:30" (click)="openPopUpAgendamento($event)">17:00 - 17:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 4" itemid="17:30-18:00" (click)="openPopUpAgendamento($event)">17:30 - 18:00 <div class="nomePaciente"></div></li>
             </ul>
         </div>
         <div id="dia5Div" class="diaAgenda">
             <div id="legendaDia5" class="legendaDias"></div>
             <ul id="dia5Ul">
-                <li class="Dia 5" itemid="8:00-8:30" (click)="setAgendamento($event)">8:00 - 8:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="8:30-9:00" (click)="setAgendamento($event)">8:30 - 9:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="9:00-9:30" (click)="setAgendamento($event)">9:00 - 9:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="9:30-10:00" (click)="setAgendamento($event)">9:30 - 10:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="10:00-10:30" (click)="setAgendamento($event)">10:00 - 10:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="10:30-11:00" (click)="setAgendamento($event)">10:30 - 11:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="11:00-11:30" (click)="setAgendamento($event)">11:00 - 11:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="13:00-13:30" (click)="setAgendamento($event)">13:00 - 13:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="13:30-14:00" (click)="setAgendamento($event)">13:30 - 14:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="14:00-14:30" (click)="setAgendamento($event)">14:00 - 14:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="14:30-15:00" (click)="setAgendamento($event)">14:30 - 15:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="15:00-15:30" (click)="setAgendamento($event)">15:00 - 15:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="15:30-16:00" (click)="setAgendamento($event)">15:30 - 16:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="16:00-16:30" (click)="setAgendamento($event)">16:00 - 16:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="16:30-17:00" (click)="setAgendamento($event)">16:30 - 17:00 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="17:00-17:30" (click)="setAgendamento($event)">17:00 - 17:30 <div class="nomePaciente"></div></li>
-                <li class="Dia 5" itemid="17:30-18:00" (click)="setAgendamento($event)">17:30 - 18:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="8:00-8:30" (click)="openPopUpAgendamento($event)">8:00 - 8:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="8:30-9:00" (click)="openPopUpAgendamento($event)">8:30 - 9:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="9:00-9:30" (click)="openPopUpAgendamento($event)">9:00 - 9:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="9:30-10:00" (click)="openPopUpAgendamento($event)">9:30 - 10:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="10:00-10:30" (click)="openPopUpAgendamento($event)">10:00 - 10:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="10:30-11:00" (click)="openPopUpAgendamento($event)">10:30 - 11:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="11:00-11:30" (click)="openPopUpAgendamento($event)">11:00 - 11:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="13:00-13:30" (click)="openPopUpAgendamento($event)">13:00 - 13:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="13:30-14:00" (click)="openPopUpAgendamento($event)">13:30 - 14:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="14:00-14:30" (click)="openPopUpAgendamento($event)">14:00 - 14:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="14:30-15:00" (click)="openPopUpAgendamento($event)">14:30 - 15:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="15:00-15:30" (click)="openPopUpAgendamento($event)">15:00 - 15:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="15:30-16:00" (click)="openPopUpAgendamento($event)">15:30 - 16:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="16:00-16:30" (click)="openPopUpAgendamento($event)">16:00 - 16:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="16:30-17:00" (click)="openPopUpAgendamento($event)">16:30 - 17:00 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="17:00-17:30" (click)="openPopUpAgendamento($event)">17:00 - 17:30 <div class="nomePaciente"></div></li>
+                <li class="Dia 5" itemid="17:30-18:00" (click)="openPopUpAgendamento($event)">17:30 - 18:00 <div class="nomePaciente"></div></li>
             </ul>
         </div>
     </section>
 
     <div id="btnDesligar" class="d-flex justify-content-end mt-5 me-2">
         <img class="botaoDesligar me-5" src="../../../assets/botãoDesligar.png" alt="DESLOGAR">
+    </div>
+    <!--PopUp de Mensagem de Agendamento de Consulta-->
+    <div
+        class="modal"
+        tabindex="-1"
+        role="dialog"
+        [ngStyle]="{'display':displayStyleAgendamento}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-body">
+                <p>Deseja Selecionar Este Horário?</p>  
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" 
+                            (click)="closePopUpAgendamento()">
+                    Cancelar
+                    </button>
+                    <button type="button" class="btn btn-success" 
+                            (click)="closePopUpAgendamento(); setAgendamento()">
+                    Cofirmar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--PopUp de Mensagem do Campo Medico-->
+    <div
+        class="modal"
+        tabindex="-1"
+        role="dialog"
+        [ngStyle]="{'display':displayStyleMsnMedico}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Selecione Um Médico</p>  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" 
+                            (click)="closePopUpMsnMedico()">
+                    OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--PopUp de Mensagem de Dia Livre-->
+    <div
+        class="modal"
+        tabindex="-1"
+        role="dialog"
+        [ngStyle]="{'display':displayStyleMsnDiaLivre}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Horário Indisponível</p>  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" 
+                            (click)="closePopUpMsnDiaLivre()">
+                    OK
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -19,6 +19,15 @@ export class AgendaPacienteComponent implements OnInit {
   filtroMedico: string = "";
   nomesMedicos: string[] = ["Dr. Gustavo", "Dra. Maria", "Dra. Carla"];
 
+  displayStyleAgendamento: string = 'none'
+  horarioEscolhido: string = ""
+  diaAgendaEscolhido: string = ""
+
+  displayStyleMsnMedico: string = "none"
+  displayStyleMsnDiaLivre: string = "none"
+
+  usuarioLogado = 'Gabriel'
+
   pessoa: Pessoa = {
     id: 0,
     nome: '',
@@ -137,14 +146,42 @@ export class AgendaPacienteComponent implements OnInit {
 
       this.agendamentoService.getNomesAgendamento(medicoBuscado).subscribe((agendamentos : Agendamento[])=>{
         
-        let hoje = new Date()      
+        let dados = this.getDias()
+
+        for (let index = 0; index < agendamentos.length; index++) {           
+          this.gerarNomes('1', dados.incrementoDia0, agendamentos, dados.dpsHoje0, index)
+          this.gerarNomes('2', dados.incrementoDia1, agendamentos, dados.dpsHoje1, index)
+          this.gerarNomes('3', dados.incrementoDia2, agendamentos, dados.dpsHoje2, index)
+          this.gerarNomes('4', dados.incrementoDia3, agendamentos, dados.dpsHoje3, index)
+          this.gerarNomes('5', dados.incrementoDia4, agendamentos, dados.dpsHoje4, index)
+        }
+        this.desabilitarCampos()
+
+      })
+    }
+  }
+  
+  getDias(): {
+      incrementoDia0: number ,
+      incrementoDia1: number ,
+      incrementoDia2: number ,
+      incrementoDia3: number ,
+      incrementoDia4: number ,
+      dpsHoje0: Date ,
+      dpsHoje1: Date ,
+      dpsHoje2: Date ,
+      dpsHoje3: Date ,
+      dpsHoje4: Date 
+    }
+    {
+      let hoje = new Date()      
 
         let dpsHoje0 = new Date(hoje.setDate(hoje.getDate() - 1))
         let dpsHoje1 = new Date(dpsHoje0.setDate(dpsHoje0.getDate() + 1));
         let dpsHoje2 = new Date(dpsHoje1.setDate(dpsHoje1.getDate() + 1));
         let dpsHoje3 = new Date(dpsHoje2.setDate(dpsHoje2.getDate() + 1));
         let dpsHoje4 = new Date(dpsHoje3.setDate(dpsHoje3.getDate() + 1));
-        let varAuxiliar = new Date(dpsHoje4.setDate(dpsHoje4.getDate() + 1));   
+        let varAuxiliar = new Date(dpsHoje4.setDate(dpsHoje4.getDate() + 1));        
 
         let incrementoDia0 = 0;
         let incrementoDia1 = 1;
@@ -153,7 +190,7 @@ export class AgendaPacienteComponent implements OnInit {
         let incrementoDia4 = 4;
 
         let indexSemana = (new Date).getDay()
-
+        
         switch (indexSemana) {
           case 0:
             incrementoDia0 = 1;
@@ -162,7 +199,7 @@ export class AgendaPacienteComponent implements OnInit {
             incrementoDia3 = 1;
             incrementoDia4 = 1;
             break;
-          
+            
           case 1:
             incrementoDia0 = 0;
             incrementoDia1 = 0;
@@ -170,7 +207,7 @@ export class AgendaPacienteComponent implements OnInit {
             incrementoDia3 = 0;
             incrementoDia4 = 0;
             break;
-          
+            
           case 2:
             incrementoDia0 = 0;
             incrementoDia1 = 0;
@@ -178,7 +215,7 @@ export class AgendaPacienteComponent implements OnInit {
             incrementoDia3 = 0;
             incrementoDia4 = 2;
             break;
-          
+            
           case 3:
             incrementoDia0 = 0;
             incrementoDia1 = 0;
@@ -195,36 +232,39 @@ export class AgendaPacienteComponent implements OnInit {
             incrementoDia4 = 2;
             break;
 
-          case 5:
+            case 5:
             incrementoDia0 = 0;
             incrementoDia1 = 2;
             incrementoDia2 = 2;
             incrementoDia3 = 2;
             incrementoDia4 = 2;
             break;
-          
-          case 6:
+            
+            case 6:
             incrementoDia0 = 2;
             incrementoDia1 = 2;
             incrementoDia2 = 2;
             incrementoDia3 = 2;
             incrementoDia4 = 2;
             break;
-        } 
-
-        for (let index = 0; index < agendamentos.length; index++) {           
-          this.gerarNomes('1', incrementoDia0, agendamentos, dpsHoje0, index)
-          this.gerarNomes('2', incrementoDia1, agendamentos, dpsHoje1, index)
-          this.gerarNomes('3', incrementoDia2, agendamentos, dpsHoje2, index)
-          this.gerarNomes('4', incrementoDia3, agendamentos, dpsHoje3, index)
-          this.gerarNomes('5', incrementoDia4, agendamentos, dpsHoje4, index)
         }
-        this.desabilitarCampos()
 
-      })
-    }
+      let dados = {
+        incrementoDia0: incrementoDia0,
+        incrementoDia1: incrementoDia1,
+        incrementoDia2: incrementoDia2,
+        incrementoDia3: incrementoDia3,
+        incrementoDia4: incrementoDia4,
+        dpsHoje0: dpsHoje0,
+        dpsHoje1: dpsHoje1,
+        dpsHoje2: dpsHoje2,
+        dpsHoje3: dpsHoje3,
+        dpsHoje4: dpsHoje4
+      }
+      
+      return dados
   }
-
+  
   gerarNomes(dia: string, incremento: number, agendamentos: Agendamento[], data: Date, index: number){
 
     if (agendamentos[index].ano == String(data.getFullYear()) &&
@@ -240,13 +280,12 @@ export class AgendaPacienteComponent implements OnInit {
       }          
     }
   }
-
+  
   limparHorarios(){
     for (let indexDia = 1; indexDia <= 5; indexDia++) {
       for (let indexHorario = 0; indexHorario < 17; indexHorario++) {
           let divNomePaciente = (document.getElementsByClassName(String(indexDia)) as HTMLCollectionOf<HTMLLIElement>)[indexHorario]
-            .children
-          console.log(divNomePaciente);
+          .children
           
           divNomePaciente[0].innerHTML = ""          
       }
@@ -272,15 +311,49 @@ export class AgendaPacienteComponent implements OnInit {
     
   }
 
-  setAgendamento(e: Event){
-    let horarioEscolhido
-    if ((e as any).path.length == 11) {
-      horarioEscolhido = ((e.target) as HTMLLIElement).attributes[1].nodeValue
-    } else{
-      horarioEscolhido = (((e as any).path[1]) as HTMLLIElement).attributes[1].nodeValue
+  setAgendamento(){
+    let medico = (document.getElementById("filtroMedico") as HTMLInputElement).value
+    let dados = this.getDias()
+    let dia
+    let mes
+    let ano
+
+    switch (Number(this.diaAgendaEscolhido)) {
+      case 1:
+        dia = dados.dpsHoje0.getDate() + dados.incrementoDia0
+        mes = dados.dpsHoje0.getMonth() + 1
+        ano = dados.dpsHoje0.getFullYear()
+        break;
+    
+      case 2:
+        dia = dados.dpsHoje1.getDate() + dados.incrementoDia1
+        mes = dados.dpsHoje1.getMonth() + 1
+        ano = dados.dpsHoje1.getFullYear()
+        break;
+
+      case 3:
+        dia = dados.dpsHoje2.getDate() + dados.incrementoDia2
+        mes = dados.dpsHoje2.getMonth() + 1
+        ano = dados.dpsHoje2.getFullYear()
+        break;
+
+      case 4:
+        dia = dados.dpsHoje3.getDate() + dados.incrementoDia3
+        mes = dados.dpsHoje3.getMonth() + 1
+        ano = dados.dpsHoje3.getFullYear()
+        break;
+
+      case 5:
+        dia = dados.dpsHoje4.getDate() + dados.incrementoDia4
+        mes = dados.dpsHoje4.getMonth() + 1
+        ano = dados.dpsHoje4.getFullYear()
+        break;
     }
+
+    
   }
 
+  
   filtrarMedicos(): void{
     let nomesRetornadosMedicos: string[] = [];
     let index: number = 0;
@@ -308,5 +381,65 @@ export class AgendaPacienteComponent implements OnInit {
         divTabela.innerHTML += "<div style='cursor: pointer;'>" + this.nomesMedicos[index] + "</div>"
       }    
     }
+  }
+
+  openPopUpAgendamento(e: Event){
+    let isMedicoSelecionado = false;
+    let medicoBuscado = (document.getElementById("filtroMedico") as HTMLInputElement).value
+
+    for (let index = 0; index < this.nomesMedicos.length; index++) {
+      if (this.nomesMedicos[index].toLowerCase() == (medicoBuscado.toLowerCase())) {             
+        isMedicoSelecionado = true
+      }
+    }
+
+    let isDiaLivre = true
+    if ((e as any).path.length == 11) {
+      if ((e.target as HTMLLIElement).children[0].innerHTML != "") {
+        isDiaLivre = false
+      }      
+    } else {
+      if ((e.target as HTMLDivElement).innerHTML != "") {
+        isDiaLivre = false
+      }
+    }    
+
+    if (isMedicoSelecionado && isDiaLivre) {
+      this.displayStyleAgendamento = "block"
+  
+      if ((e as any).path.length == 11) {
+        this.horarioEscolhido = String(((e.target) as HTMLLIElement).attributes[1].nodeValue)
+        this.diaAgendaEscolhido = ((e.target) as HTMLLIElement).classList[1]
+        
+      } else{
+        this.horarioEscolhido = String((((e as any).path[1]) as HTMLLIElement).attributes[1].nodeValue)
+        this.diaAgendaEscolhido = (((e as any).path[1]) as HTMLLIElement).classList[1]
+      }
+
+    } else if(isDiaLivre){
+      this.openPopUpMsnMedico()
+    } else {
+      this.openPopUpMsnDiaLivre()
+    }
+  }
+
+  closePopUpAgendamento(){
+    this.displayStyleAgendamento = "none"
+  }
+
+  openPopUpMsnMedico(){
+    this.displayStyleMsnMedico = "block";
+  }
+
+  closePopUpMsnMedico(){
+    this.displayStyleMsnMedico = "none"
+  }
+
+  openPopUpMsnDiaLivre(){
+    this.displayStyleMsnDiaLivre = "block"
+  }
+
+  closePopUpMsnDiaLivre(){
+    this.displayStyleMsnDiaLivre = "none"
   }
 }
