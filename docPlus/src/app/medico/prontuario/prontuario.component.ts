@@ -13,5 +13,4 @@ export class ProntuarioComponent implements OnInit {
     let calendarioAgenda = (document.getElementById("dataConsulta1") as HTMLInputElement)
     let hoje: Date = new Date;
   }
-
 }

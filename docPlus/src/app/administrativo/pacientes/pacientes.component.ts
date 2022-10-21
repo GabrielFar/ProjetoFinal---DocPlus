@@ -57,36 +57,36 @@ export class PacientesComponent implements OnInit {
   }
 
   gerarLista(){
-    for (let index = 0; index < 5; index++) {
+    for (let index = 0; index < 4; index++) {
       let lista = document.getElementById("listaPacientes") as HTMLElement
-      let nomePaciente: string = 'Gabriel'
+      let nomePaciente: string = 'João Silva'
       let dataNascPaciente: string = '2022-09-27'
       let sexoPaciente: string =  'M'
       let cpfPaciente: string = '999.999.999-99';
       let telefonePaciente: string = '(49)999999999'
-      let emailPaciente: string = 'teste@gmail.com'
-      let enderecoPaciente: string = 'Ipumirim, SC'
+      let emailPaciente: string = 'exemplo@gmail.com'
+      let enderecoPaciente: string = 'Blumenau, SC'
       let planoPaciente: string = 'São Camilo'
   
       let div: HTMLDivElement = document.createElement("div")
-      div.setAttribute("class", "informacaoPaciente border border-dark m-2")
+      div.setAttribute("class", "informacaoPaciente d-flex flex-wrap justify-content-center p-2 m-2 border border-light rounded-3")
       div.setAttribute("id", ""+(index + 1)+"")
       
       let inputNome: HTMLInputElement = document.createElement("input")
-      inputNome.setAttribute("class", "nomePaciente m-1")
+      inputNome.setAttribute("class", "nomePaciente m-1 w-25 rounded-5 p-2 border-1 border-light")
       inputNome.setAttribute("type", "text")
       inputNome.setAttribute("placeholder", "Nome...")
       inputNome.setAttribute("value", ""+nomePaciente+"")
       div.appendChild(inputNome)
 
       let inputDataNasc: HTMLInputElement = document.createElement("input")
-      inputDataNasc.setAttribute("class", "dataNascPaciente m-1")
+      inputDataNasc.setAttribute("class", "dataNascPaciente text-center m-1 rounded-5 p-2 w-25 border-1 border-light")
       inputDataNasc.setAttribute("type", "date")
       inputDataNasc.setAttribute("value", ""+dataNascPaciente+"")
       div.appendChild(inputDataNasc)
 
       let selectSexo: HTMLSelectElement = document.createElement("select")
-      selectSexo.setAttribute("class", "sexoPaciente m-1")
+      selectSexo.setAttribute("class", "sexoPaciente text-center m-1 rounded-5 p-2 w-25 border-1 border-light")
       selectSexo.setAttribute("name", "nmSexoPaciente")
 
         let optionSexoMasc: HTMLOptionElement = document.createElement("option")
@@ -108,43 +108,43 @@ export class PacientesComponent implements OnInit {
       div.appendChild(selectSexo)
 
       let inputCpf: HTMLInputElement = document.createElement("input")
-      inputCpf.setAttribute("class", "cpfPaciente m-1")
+      inputCpf.setAttribute("class", "cpfPaciente m-1 rounded-5 p-2 border-1 border-light")
       inputCpf.setAttribute("type", "text")
       inputCpf.setAttribute("placeholder", "cpf...")
       inputCpf.setAttribute("value", ""+cpfPaciente+"")
       div.appendChild(inputCpf)
 
       let inputTelefone: HTMLInputElement = document.createElement("input")
-      inputTelefone.setAttribute("class", "telefonePaciente m-1")
+      inputTelefone.setAttribute("class", "telefonePaciente m-1 w-25 rounded-5 p-2 border-1 border-light")
       inputTelefone.setAttribute("type", "text")
       inputTelefone.setAttribute("placeholder", "Telefone...")
       inputTelefone.setAttribute("value", ""+telefonePaciente+"")
       div.appendChild(inputTelefone)
 
       let inputEmail: HTMLInputElement = document.createElement("input")
-      inputEmail.setAttribute("class", "emailPaciente m-1")
+      inputEmail.setAttribute("class", "emailPaciente m-1 w-25 rounded-5 p-2 border-1 border-light")
       inputEmail.setAttribute("type", "email")
       inputEmail.setAttribute("placeholder", "Email...")
       inputEmail.setAttribute("value", ""+emailPaciente+"")
       div.appendChild(inputEmail)
 
       let inputEndereco: HTMLInputElement = document.createElement("input")
-      inputEndereco.setAttribute("class", "enderecoPaciente m-1")
+      inputEndereco.setAttribute("class", "enderecoPaciente m-1 w-25 rounded-5 p-2 border-1 border-light")
       inputEndereco.setAttribute("type", "text")
       inputEndereco.setAttribute("placeholder", "Endereco...")
       inputEndereco.setAttribute("value", ""+enderecoPaciente+"")
       div.appendChild(inputEndereco)
 
       let inputPlano: HTMLInputElement = document.createElement("input")
-      inputPlano.setAttribute("class", "planoPaciente m-1")
+      inputPlano.setAttribute("class", "planoPaciente m-1 rounded-5 p-2 border-1 border-light")
       inputPlano.setAttribute("type", "text")
       inputPlano.setAttribute("placeholder", "Plano...")
       inputPlano.setAttribute("value", ""+planoPaciente+"")
       div.appendChild(inputPlano)
 
       let btnExcluir: HTMLButtonElement = document.createElement("button")
-      btnExcluir.setAttribute("class", "btnExcluir "+(index + 1)+"")
-      btnExcluir.innerHTML = "Excluir Paciente"
+      btnExcluir.setAttribute("class", "btnExcluir rounded-5 w-25 border border-light"+(index + 1)+"")
+      btnExcluir.innerHTML = "Excluir"
       div.appendChild(btnExcluir)
       
       lista.appendChild(div)      
