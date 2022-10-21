@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { ProntuarioComponent } from './medico/prontuario/prontuario.component';
 import { AgendaMedicaComponent } from './medico/agenda-medica/agenda-medica.component';
 import { AgendaPacienteComponent } from './paciente/agenda-paciente/agenda-paciente.component';
+import { EscUsuarioComponent } from './pages/esc-usuario/esc-usuario.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AgendaPacienteComponent } from './paciente/agenda-paciente/agenda-pacie
     AgendaComponent,
     AgendaMedicaComponent,
     AgendaPacienteComponent,
-    ProntuarioComponent
+    ProntuarioComponent,
+    EscUsuarioComponent
   ],
   imports: [
     BrowserModule, 

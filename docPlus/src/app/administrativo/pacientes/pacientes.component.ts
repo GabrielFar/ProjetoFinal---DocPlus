@@ -59,13 +59,13 @@ export class PacientesComponent implements OnInit {
   gerarLista(){
     for (let index = 0; index < 4; index++) {
       let lista = document.getElementById("listaPacientes") as HTMLElement
-      let nomePaciente: string = 'Gabriel'
+      let nomePaciente: string = 'João Silva'
       let dataNascPaciente: string = '2022-09-27'
       let sexoPaciente: string =  'M'
       let cpfPaciente: string = '999.999.999-99';
       let telefonePaciente: string = '(49)999999999'
-      let emailPaciente: string = 'teste@gmail.com'
-      let enderecoPaciente: string = 'Ipumirim, SC'
+      let emailPaciente: string = 'exemplo@gmail.com'
+      let enderecoPaciente: string = 'Blumenau, SC'
       let planoPaciente: string = 'São Camilo'
   
       let div: HTMLDivElement = document.createElement("div")
