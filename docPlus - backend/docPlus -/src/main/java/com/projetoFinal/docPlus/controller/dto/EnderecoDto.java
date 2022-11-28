@@ -7,6 +7,7 @@ import com.projetoFinal.docPlus.model.Endereco;
 
 public class EnderecoDto {
 	private String numero;
+	private String rua;
 	private String bairro;
 	private String cidade;
 	private String uf;
@@ -14,6 +15,7 @@ public class EnderecoDto {
 	
 	public EnderecoDto(Endereco end) {
 		this.numero = end.getNumero();
+		this.rua = end.getRua();
 		this.bairro = end.getBairro();
 		this.cidade = end.getCidade();
 		this.uf = end.getUf();
@@ -22,6 +24,9 @@ public class EnderecoDto {
 	
 	public String getNumero() {
 		return numero;
+	}
+	public String getRua() {
+		return rua;
 	}
 	public String getBairro() {
 		return bairro;
@@ -34,8 +39,8 @@ public class EnderecoDto {
 	}
 	public String getCep() {
 		return cep;
-	}
-	
+	}	
+
 	public static List<EnderecoDto> converter(List<Endereco> enderecos) {
 		return enderecos.stream().map(EnderecoDto::new).collect(Collectors.toList());
 	} 

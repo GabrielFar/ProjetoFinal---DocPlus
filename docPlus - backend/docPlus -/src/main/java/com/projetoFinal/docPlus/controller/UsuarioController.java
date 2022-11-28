@@ -23,7 +23,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.projetoFinal.docPlus.controller.dto.UsuarioDto;
 import com.projetoFinal.docPlus.controller.form.AlterarUsuarioForm;
 import com.projetoFinal.docPlus.controller.form.UsuarioForm;
+import com.projetoFinal.docPlus.model.Agendamento;
 import com.projetoFinal.docPlus.model.Usuario;
+import com.projetoFinal.docPlus.repository.AgendamentoRepository;
 import com.projetoFinal.docPlus.repository.EnderecoRepository;
 import com.projetoFinal.docPlus.repository.PessoaRepository;
 import com.projetoFinal.docPlus.repository.UsuarioRepository;
@@ -41,6 +43,9 @@ public class UsuarioController {
 	@Autowired 
 	private PessoaRepository pessoaRepository;
 	
+	@Autowired 
+	private AgendamentoRepository agendamentoRepository;
+	
 	@CrossOrigin
 	@GetMapping
 	public List<UsuarioDto> listar(String tipo){
@@ -53,6 +58,15 @@ public class UsuarioController {
 			List<Usuario> usuarios = usuarioRepository.findByTipo(tipo); 
 			return UsuarioDto.converter(usuarios); 	
 		}
+	}
+	
+	@CrossOrigin
+	@GetMapping("/dados")
+	public List<Usuario> dadosUsuarios(){
+		
+		List<Usuario> usuarios = usuarioRepository.findAll(); 
+		
+		return usuarios;
 	}
 	
 	@CrossOrigin
@@ -83,9 +97,9 @@ public class UsuarioController {
 	@CrossOrigin
 	@PutMapping("/{userId}")
 	@Transactional
-	public ResponseEntity<UsuarioDto> alterar(@PathVariable int userId, @RequestBody AlterarUsuarioForm alterarSenhaForm){
+	public ResponseEntity<UsuarioDto> alterar(@PathVariable int userId, @RequestBody AlterarUsuarioForm alterarUsuarioForm){
 		
-		Usuario usuario = alterarSenhaForm.alterar(userId, usuarioRepository);
+		Usuario usuario = alterarUsuarioForm.alterar(userId, usuarioRepository, enderecoRepository, pessoaRepository);
 		
 		return ResponseEntity.ok(new UsuarioDto(usuario));
 	}
@@ -96,6 +110,7 @@ public class UsuarioController {
 	public ResponseEntity<?> deletarUsuario(@PathVariable int userId) {
 		
 		Usuario usuario = usuarioRepository.findById(userId);
+		
 		if (usuario != null) {
 			usuarioRepository.deleteById(userId);
 			return ResponseEntity.ok().build();			

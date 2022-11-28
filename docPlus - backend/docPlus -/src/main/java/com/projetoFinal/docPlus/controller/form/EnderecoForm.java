@@ -12,6 +12,8 @@ public class EnderecoForm {
 	@NotEmpty @NotBlank
 	private String numero;
 	@NotEmpty @NotBlank
+	private String rua;
+	@NotEmpty @NotBlank
 	private String bairro;
 	@NotEmpty @NotBlank
 	private String cidade;
@@ -68,8 +70,16 @@ public class EnderecoForm {
 		this.cep = cep;
 	}
 
+	public String getRua() {
+		return rua;
+	}
+
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+
 	public Endereco converter() {
-		return new Endereco(id, numero, bairro, cidade, uf, cep);
+		return new Endereco(id, numero, rua, bairro, cidade, uf, cep);
 	}
 
 }

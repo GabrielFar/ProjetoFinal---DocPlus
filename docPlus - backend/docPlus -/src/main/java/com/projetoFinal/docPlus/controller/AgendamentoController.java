@@ -106,16 +106,23 @@ public class AgendamentoController {
 	}
 	
 	@CrossOrigin
-	@DeleteMapping("/{agendamentoId}")
+	@DeleteMapping("/{usuarioId}")
 	@Transactional
-	public ResponseEntity<?> deletarAgendamento(@PathVariable int agendamentoId) {
+	public ResponseEntity<?> deletarAgendamento(@PathVariable int usuarioId) {
 		
-		Agendamento agendamento = agendamentoRepository.findById(agendamentoId);
-		if (agendamento != null) {
-			agendamentoRepository.deleteById(agendamentoId);
-			return ResponseEntity.ok().build();			
+		List<Agendamento> agendamentos = agendamentoRepository.findByMedico_Id(usuarioId);
+		if (agendamentos.isEmpty()) {
+			agendamentos = agendamentoRepository.findByPaciente_Id(usuarioId);
 		}
 		
-		return ResponseEntity.notFound().build();
+		if (agendamentos.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		
+		} else {
+			for (int i = 0; i < agendamentos.size(); i++) {
+				agendamentoRepository.deleteById(agendamentos.get(i).getId());
+			}
+			return ResponseEntity.ok(agendamentos);
+		}		
 	}
 }

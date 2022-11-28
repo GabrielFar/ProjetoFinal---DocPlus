@@ -17,6 +17,6 @@ export class PagDeLoadComponent implements OnInit {
   public loadScreen(){
     setTimeout(() => {
       this.router.navigate(['/tipoUsuario']);
-    }, 20000);
+    }, 2000);
   }
 }
