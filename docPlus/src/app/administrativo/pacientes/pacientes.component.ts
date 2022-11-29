@@ -1,9 +1,10 @@
 import { Component, OnInit} from '@angular/core';
 import * as $ from 'jquery'; 
 import { TiposUsuarios } from 'src/app/enums/tiposUsuarios';
+import { Agendamento } from 'src/app/interaface/agendamento';
 import { Endereco } from 'src/app/interaface/endereco';
 import { Usuario } from 'src/app/interaface/usuario';
-import { EnderecoService } from 'src/app/services/endereco/endereco.service';
+import { AgendamentoService } from 'src/app/services/agendamento/agendamento.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
@@ -12,31 +13,41 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
   styleUrls: ['./pacientes.component.css']
 })
 export class PacientesComponent implements OnInit {  
-  constructor(private usuarioService: UsuarioService, private enderecoService: EnderecoService) {}
+  constructor(private usuarioService: UsuarioService, private agendamentoService: AgendamentoService) {}
   usuarios!: Usuario[]
   listaUsuarios = document.getElementsByClassName("informacaoPaciente")as HTMLCollectionOf<HTMLDivElement>
 
   ngOnInit(): void {
     this.gerarLista()
 
-    let numBtnPressed: string[]
+    let BtnClicado: string[]
     let lista = document.getElementsByClassName("informacaoPaciente")
     
     setTimeout(() => {
       //-------------------------------Chamar Pop-Up Para Exclusão Paciente-----------------------------------------
       $(document.getElementsByClassName("btnExcluir") as HTMLCollection).click(function(e){           
-        numBtnPressed = e.target.attributes[0].value.split(" ");          
-        let popUp = document.getElementById("popUp") as HTMLElement
-        popUp.style.display = "block"
+        BtnClicado = e.target.attributes[0].value.split(" ");          
+        (document.getElementById("popUp") as HTMLElement).style.display = "block"
       });
       
-      //------------------------------Exclusão do Paciente------------------------------------------------------
-      $(document.getElementById("btnConfirmarExclusao") as HTMLButtonElement).click(function(){
-        (lista?.[Number(numBtnPressed[1]) - 1] as HTMLDivElement).setAttribute('hidden', 'true');      
-        ((lista?.[Number(numBtnPressed[1]) - 1] as HTMLDivElement).children[0] as HTMLInputElement).setAttribute('value', 'undefined')  
-      }, this.excluirUsuario(numBtnPressed));
+      //------------------------------Exclusão do Paciente-----------------------------------------------------
+      $(document.getElementById("btnConfirmarExclusao") as HTMLButtonElement).click(() => {
+        (lista?.[Number(BtnClicado[1]) - 1] as HTMLDivElement).setAttribute('hidden', 'true');      
+        ((lista?.[Number(BtnClicado[1]) - 1] as HTMLDivElement).children[0] as HTMLInputElement).setAttribute('value', 'undefined')
+        this.deleteUsuario(Number(BtnClicado[2]))
+      })
     }, 500);
-  }  
+  }
+
+  deleteUsuario(userId: number){
+    this.agendamentoService.deleteAgendamentos(userId).subscribe((agendamentos) => {
+      console.log(agendamentos);
+
+      this.usuarioService.deleteUsuario(userId).subscribe((teste) => {
+        console.log(teste);
+      })     
+    })    
+  }
 
   salvarDados() {  
     //------------------------------------------gravação de alterações de dados------------------------------------------
@@ -64,11 +75,6 @@ export class PacientesComponent implements OnInit {
     }
   }
 
-  excluirUsuario(numBtnPressed: string[]){
-    console.log(numBtnPressed); 
-    return "click"
-  }
-
   montarEndereco(endereco: Endereco): string{
     return endereco.numero + ", " + endereco.rua + ", " + endereco.bairro  + ", " + endereco.cidade
     + ", " + endereco.uf
@@ -80,6 +86,7 @@ export class PacientesComponent implements OnInit {
       let indexLista = 0
       let listaUsuarios: Usuario[] = []
       for (let index = 0; index < dadosUsuarios.length; index++) {
+        
         if (dadosUsuarios[index].tipo != TiposUsuarios.adm) {
           listaUsuarios[indexLista] = dadosUsuarios[index]
           indexLista++

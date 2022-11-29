@@ -24,6 +24,7 @@ import com.projetoFinal.docPlus.controller.dto.AgendamentoDto;
 import com.projetoFinal.docPlus.controller.form.AgendamentoForm;
 import com.projetoFinal.docPlus.controller.form.AlterarAgendamentoForm;
 import com.projetoFinal.docPlus.model.Agendamento;
+import com.projetoFinal.docPlus.model.Pessoa;
 import com.projetoFinal.docPlus.model.Usuario;
 import com.projetoFinal.docPlus.repository.AgendamentoRepository;
 import com.projetoFinal.docPlus.repository.PessoaRepository;
@@ -124,5 +125,19 @@ public class AgendamentoController {
 			}
 			return ResponseEntity.ok(agendamentos);
 		}		
+	}
+	
+	@CrossOrigin
+	@DeleteMapping("/agendamentoId/{agendamentoId}")
+	@Transactional
+	public ResponseEntity<?> deletarByAgendamentoId(@PathVariable int agendamentoId) {
+		
+		Agendamento agendamento = agendamentoRepository.findById(agendamentoId);
+		if (agendamento != null) {
+			agendamentoRepository.deleteById(agendamentoId);
+			return ResponseEntity.ok().build();			
+		}
+		
+		return ResponseEntity.notFound().build();	
 	}
 }
