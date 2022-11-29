@@ -40,7 +40,18 @@ public class UsuarioForm {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
+	public int getIdPessoa() {
+		return idPessoa;
+	}
+	public void setIdPessoa(int idPessoa) {
+		this.idPessoa = idPessoa;
+	}
+	public int getIdEndereco() {
+		return idEndereco;
+	}
+	public void setIdEndereco(int idEndereco) {
+		this.idEndereco = idEndereco;
+	}
 	public Usuario converter(EnderecoRepository enderecoRepository, PessoaRepository pessoaRepository) {
 		Endereco endereco = enderecoRepository.findById(idEndereco);
 		Pessoa pessoa = pessoaRepository.findById(idPessoa);

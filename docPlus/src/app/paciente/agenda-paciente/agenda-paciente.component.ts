@@ -48,7 +48,8 @@ export class AgendaPacienteComponent implements OnInit {
     bairro: '',
     cidade: '',
     uf: '',
-    cep: ''
+    cep: '',
+    rua: ''
   }
 
   usuario: Usuario = {

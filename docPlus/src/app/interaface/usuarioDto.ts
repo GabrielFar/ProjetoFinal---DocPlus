@@ -1,4 +1,4 @@
 export interface UsuarioDto{
-    id: number, 
+    userId: number, 
     tipo: string
 }

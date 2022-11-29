@@ -43,6 +43,15 @@ public class EnderecoController {
 	}
 	
 	@CrossOrigin
+	@GetMapping("/dados")
+	public List<Endereco> dados(){
+		
+		List<Endereco> enderecos = enderecoRepository.findAll(); 
+		
+		return enderecos; 	
+	}
+	
+	@CrossOrigin
 	@GetMapping("/{enderecoId}")
 	public ResponseEntity<EnderecoDto> selecionarEndereco(@PathVariable int enderecoId) {
 		

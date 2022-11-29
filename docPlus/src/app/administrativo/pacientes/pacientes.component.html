@@ -20,29 +20,29 @@
       <h1 class="d-flex justify-content-center align-items-center text-white mt-2">Lista de pacientes:</h1>
     </div>
     <div id="listaPacientes" class="d-flex mt-4 flex-wrap flex-column justify-content-center align-items-center">
-      <div id="teste" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-body">
-              <p>Deseja excluir este paciente do sistema?</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" (click)="closePopupMsn()">
-                Cancelar
-              </button>
-              <button type="button" class="btn btn-success" id="btnConfirmarExclusao" (click)="closePopupMsn()">
-                Confirmar
-              </button>
-            </div>
+    </div>
+    
+    <div id="popUp" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>Deseja excluir este paciente do sistema?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closePopupMsn()">
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-success" id="btnConfirmarExclusao" (click)="closePopupMsn()">
+              Confirmar
+            </button>
           </div>
         </div>
       </div>
     </div>
     
     <div id="cadastrarPacientes" class="divBotaoSalvar d-flex justify-content-center mt-2">
-      <button id="btnSalvarDados" class="botaoSalvar rounded-5 fs-5 me-2 text-white border-1 border-light">Salvar Dados</button>
-    </div>
-  
+      <button id="btnSalvarDados" class="botaoSalvar rounded-5 fs-5 me-2 text-white border-1 border-light" (click)="salvarDados()">Salvar Dados</button>
+    </div>  
   </section>
 
   <div id="btnDesligar" class="d-flex justify-content-end mt-5">

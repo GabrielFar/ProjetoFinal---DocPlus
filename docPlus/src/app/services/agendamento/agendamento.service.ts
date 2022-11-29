@@ -48,8 +48,13 @@ export class AgendamentoService {
     return this.httpClient.put<Agendamento>(this.url + "/" + agendamento.id, JSON.stringify(agendamento), this.httpOptions)
   }
 
-  //Delete um Agendamento
-  deleteAgendamento(agendamento: Agendamento){
-    return this.httpClient.delete<Agendamento>(this.url + "/" + agendamento.id, this.httpOptions)
+  //Deleta Todos os Agendamento de um Usuário
+  deleteAgendamentos(userId: number){
+    return this.httpClient.delete<Agendamento>(this.url + "/" + userId, this.httpOptions)
+  }
+
+  //Deleta um Agendamento
+  deleteByAgendamentoId(agendamento: Agendamento){
+    return this.httpClient.delete<Agendamento>(this.url + "/agendamentoId/" + agendamento.id, this.httpOptions)
   }
 }

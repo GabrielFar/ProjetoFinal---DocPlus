@@ -24,6 +24,7 @@ import com.projetoFinal.docPlus.controller.dto.AgendamentoDto;
 import com.projetoFinal.docPlus.controller.form.AgendamentoForm;
 import com.projetoFinal.docPlus.controller.form.AlterarAgendamentoForm;
 import com.projetoFinal.docPlus.model.Agendamento;
+import com.projetoFinal.docPlus.model.Pessoa;
 import com.projetoFinal.docPlus.model.Usuario;
 import com.projetoFinal.docPlus.repository.AgendamentoRepository;
 import com.projetoFinal.docPlus.repository.PessoaRepository;
@@ -106,9 +107,30 @@ public class AgendamentoController {
 	}
 	
 	@CrossOrigin
-	@DeleteMapping("/{agendamentoId}")
+	@DeleteMapping("/{usuarioId}")
 	@Transactional
-	public ResponseEntity<?> deletarAgendamento(@PathVariable int agendamentoId) {
+	public ResponseEntity<?> deletarAgendamento(@PathVariable int usuarioId) {
+		
+		List<Agendamento> agendamentos = agendamentoRepository.findByMedico_Id(usuarioId);
+		if (agendamentos.isEmpty()) {
+			agendamentos = agendamentoRepository.findByPaciente_Id(usuarioId);
+		}
+		
+		if (agendamentos.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		
+		} else {
+			for (int i = 0; i < agendamentos.size(); i++) {
+				agendamentoRepository.deleteById(agendamentos.get(i).getId());
+			}
+			return ResponseEntity.ok(agendamentos);
+		}		
+	}
+	
+	@CrossOrigin
+	@DeleteMapping("/agendamentoId/{agendamentoId}")
+	@Transactional
+	public ResponseEntity<?> deletarByAgendamentoId(@PathVariable int agendamentoId) {
 		
 		Agendamento agendamento = agendamentoRepository.findById(agendamentoId);
 		if (agendamento != null) {
@@ -116,6 +138,6 @@ public class AgendamentoController {
 			return ResponseEntity.ok().build();			
 		}
 		
-		return ResponseEntity.notFound().build();
+		return ResponseEntity.notFound().build();	
 	}
 }
