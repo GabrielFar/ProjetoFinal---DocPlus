@@ -4,9 +4,9 @@ insert into endereco values(3, 'Centro', '89790-000', 'Ipumirim', '333', 'Dom Pe
 insert into endereco values(4, 'Centro', '89790-000', 'Ipumirim', '222', 'Dom Pedro I', 'SC');
 insert into endereco values(5, 'Centro', '89790-000', 'Ipumirim', '111', 'Dom Pedro I', 'SC');
 
-insert into pessoa values(1, null, '000.000.000-00', '2022-06-11', 'gabriel.farina2358@gmail.com', 'Dr. Gustavo', 'São Camilo', 'M', '(49)984297233');
+insert into pessoa values(1, '123456/SC', '000.000.000-00', '2022-06-11', 'gabriel.farina2358@gmail.com', 'Dr. Gustavo', 'São Camilo', 'M', '(49)984297233');
 insert into pessoa values(2, null, '111.111.111-11', '2022-06-11', 'gabriel.farina2358@gmail.com', 'Gabriel', 'São Camilo', 'M', '(49)984297233');
-insert into pessoa values(3, null, '222.222.222-22', '2022-06-11', 'gabriel.farina2358@gmail.com', 'Dra. Carla', 'São Camilo', 'M', '(49)984297233');
+insert into pessoa values(3, '654321/SC', '222.222.222-22', '2022-06-11', 'gabriel.farina2358@gmail.com', 'Dra. Carla', 'São Camilo', 'M', '(49)984297233');
 insert into pessoa values(4, null, '333.333.333-33', '2022-06-11', 'gabriel.farina2358@gmail.com', 'Pedro', 'São Camilo', 'M', '(49)984297233');
 insert into pessoa values(5, null, '444.444.444-44', '2022-06-11', 'gabriel.farina2358@gmail.com', 'Lucas', 'São Camilo', 'M', '(49)984297233');
 

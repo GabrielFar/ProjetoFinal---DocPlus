@@ -7,5 +7,5 @@ export interface Pessoa{
 	email: string,
 	telefone: string,
 	planoSaude: string,
-	cRM: string
+	crm: string
 }

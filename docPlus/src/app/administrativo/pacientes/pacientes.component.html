@@ -13,13 +13,27 @@
         <a class="text-decoration-none" routerLink="/cadastro"><button id="btnCadastro" class="botaoMenu rounded-5 p-3 fs-4 ms-2 me-2 text-white border-1 border-light">Cadastro</button></a>
       </li>
     </ul>
+
   </nav>
 
+  <section class="fixed-bottom d-flex justify-content-end">
+    <div>
+      <li><a href="pacientes/#pacientes" id="idLinkPacientes" class="links">Pacientes</a></li>
+      <li><a href="pacientes/#medicos" id="idLinkMedicos" class="links">Medicos</a></li>
+    </div>
+  </section>
+  
   <section class="caixaCentral d-flex justify-content-center align-items-center" class="mt-5">
-    <div class="divTitulo">
-      <h1 class="d-flex justify-content-center align-items-center text-white mt-2">Lista de pacientes:</h1>
+    <div class="divTitulo" id="pacientes">
+      <h1 class="d-flex justify-content-center align-items-center text-white mt-2">Lista de Pacientes:</h1>
     </div>
     <div id="listaPacientes" class="d-flex mt-4 flex-wrap flex-column justify-content-center align-items-center">
+    </div>
+
+    <div class="divTitulo" id="medicos">
+      <h1 class="d-flex justify-content-center align-items-center text-white mt-2">Lista de Médicos:</h1>
+    </div>
+    <div id="listaMedicos" class="d-flex mt-4 flex-wrap flex-column justify-content-center align-items-center">
     </div>
     
     <div id="popUp" class="modal" tabindex="-1" role="dialog">
@@ -39,10 +53,6 @@
         </div>
       </div>
     </div>
-    
-    <div id="cadastrarPacientes" class="divBotaoSalvar d-flex justify-content-center mt-2">
-      <button id="btnSalvarDados" class="botaoSalvar rounded-5 fs-5 me-2 text-white border-1 border-light" (click)="salvarDados()">Salvar Dados</button>
-    </div>  
   </section>
 
   <div id="btnDesligar" class="d-flex justify-content-end mt-5">

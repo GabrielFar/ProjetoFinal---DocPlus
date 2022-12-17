@@ -39,7 +39,7 @@ export class AgendaPacienteComponent implements OnInit {
     email: '',
     telefone: '',
     planoSaude: '',
-    cRM: ''
+    crm: ''
   }
 
   endereco: Endereco = {

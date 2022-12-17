@@ -6,6 +6,10 @@
     width: 60vw !important;
 }
 
+#listaMedicos{
+    width: 60vw !important;
+}
+
 .logo{
     width: 180px;
     height: 180px;
@@ -21,7 +25,7 @@
     margin-right: 1.1%;
 }
 
-.botaoMenu, .botaoSalvar{    
+.botaoMenu{    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +34,7 @@
     background: #048436;
 }
 
-.botaoMenu:hover, .botaoSalvar:hover{    
+.botaoMenu:hover{    
     background: #015823;
 }
 
@@ -38,4 +42,31 @@
     width: 80px;
     height: 80px;
     margin-right: 18%;
+}
+
+.links{
+    color: white;
+    margin-bottom: 0.5rem;
+    margin-right: 1rem;
+    font-size: x-large;
+    display: flex;
+    list-style: none;
+    text-decoration: none;
+    border-color: white;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 0.25rem;
+}
+
+#idLinkMedicos{
+    margin-bottom: 3rem
+}
+
+li{
+    list-style: none;
+}
+
+.links:hover{
+    box-shadow: 0px 0px 5px 5px white;
 }

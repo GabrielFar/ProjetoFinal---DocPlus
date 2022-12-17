@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import * as $ from 'jquery'; 
 import { TiposUsuarios } from 'src/app/enums/tiposUsuarios';
-import { Agendamento } from 'src/app/interaface/agendamento';
 import { Endereco } from 'src/app/interaface/endereco';
 import { Usuario } from 'src/app/interaface/usuario';
 import { AgendamentoService } from 'src/app/services/agendamento/agendamento.service';
@@ -18,7 +17,7 @@ export class PacientesComponent implements OnInit {
   listaUsuarios = document.getElementsByClassName("informacaoPaciente")as HTMLCollectionOf<HTMLDivElement>
 
   ngOnInit(): void {
-    this.gerarLista()
+    this.gerarListas()
 
     let BtnClicado: string[]
     let lista = document.getElementsByClassName("informacaoPaciente")
@@ -36,43 +35,23 @@ export class PacientesComponent implements OnInit {
         ((lista?.[Number(BtnClicado[1]) - 1] as HTMLDivElement).children[0] as HTMLInputElement).setAttribute('value', 'undefined')
         this.deleteUsuario(Number(BtnClicado[2]))
       })
+
+      $(document.getElementsByClassName("btnSalvar") as HTMLCollection).click((e) => {        
+        this.salvarDados(Number(e.target.classList[2]))
+      })
     }, 500);
   }
 
   deleteUsuario(userId: number){
-    this.agendamentoService.deleteAgendamentos(userId).subscribe((agendamentos) => {
-      console.log(agendamentos);
-
-      this.usuarioService.deleteUsuario(userId).subscribe((teste) => {
-        console.log(teste);
-      })     
+    this.agendamentoService.deleteAgendamentos(userId).subscribe(() => {
+      this.usuarioService.deleteUsuario(userId).subscribe()     
     })    
   }
 
-  salvarDados() {  
+  salvarDados(userId: number) {  
     //------------------------------------------gravação de alterações de dados------------------------------------------
-    for (let index = 0; index < this.listaUsuarios.length; index++) {
-      let contaVirgulasEndereco = 0
-
-      let nomePaciente: string = (this.listaUsuarios[index].children[0] as HTMLInputElement).value
-      let dataNascPaciente: string = (this.listaUsuarios[index].children[1] as HTMLInputElement).value
-      let sexoPaciente: string =  (this.listaUsuarios[index].children[2] as HTMLInputElement).value
-      let cpfPaciente: string = (this.listaUsuarios[index].children[3] as HTMLInputElement).value
-      let telefonePaciente: string = (this.listaUsuarios[index].children[4] as HTMLInputElement).value
-      let emailPaciente = (this.listaUsuarios[index].children[5] as HTMLInputElement).value
-      let enderecoPaciente = (this.listaUsuarios[index].children[6] as HTMLInputElement).value
-      let planoPaciente = (this.listaUsuarios[index].children[7] as HTMLInputElement).value
-
-      for (let index = 0; index < enderecoPaciente.length; index++) {
-        if (enderecoPaciente[index] === ',') {
-          contaVirgulasEndereco++
-        }
-      }
-
-      if (contaVirgulasEndereco === 4) {
-        // salvar alterações
-      }      
-    }
+    console.log(userId);
+    
   }
 
   montarEndereco(endereco: Endereco): string{
@@ -80,7 +59,7 @@ export class PacientesComponent implements OnInit {
     + ", " + endereco.uf
   }
 
-  gerarLista(){
+  gerarListas(){
     this.usuarioService.getDadosUsuarios().subscribe((dadosUsuarios: Usuario[]) => {
 
       let indexLista = 0
@@ -94,7 +73,9 @@ export class PacientesComponent implements OnInit {
       }
 
       for (let index = 0; index < listaUsuarios.length; index++) {
-        let lista = document.getElementById("listaPacientes") as HTMLElement
+        
+        let listaPacientes = document.getElementById("listaPacientes") as HTMLElement
+        let listaMedicos = document.getElementById("listaMedicos") as HTMLElement
         
         let idPaciente: number = listaUsuarios[index].userId
         let nomePaciente: string = listaUsuarios[index].pessoa.nome
@@ -105,7 +86,8 @@ export class PacientesComponent implements OnInit {
         let emailPaciente: string = listaUsuarios[index].pessoa.email
         let enderecoPaciente: string = this.montarEndereco(listaUsuarios[index].endereco)
         let planoPaciente: string = listaUsuarios[index].pessoa.planoSaude
-    
+        let crmUsuario: string = listaUsuarios[index].pessoa.crm        
+        
         let div: HTMLDivElement = document.createElement("div")
         div.setAttribute("class", "informacaoPaciente")
         div.style.borderStyle = 'solid'
@@ -121,7 +103,7 @@ export class PacientesComponent implements OnInit {
         
         let inputNome: HTMLInputElement = document.createElement("input")
         inputNome.setAttribute("class", "nomePaciente")
-        inputNome.style.margin = '4px'
+        inputNome.style.margin = '0.25rem'
         inputNome.style.padding = '0.5rem'
         inputNome.style.width = '25%'
         inputNome.style.borderWidth = '1px'
@@ -135,7 +117,7 @@ export class PacientesComponent implements OnInit {
         let inputDataNasc: HTMLInputElement = document.createElement("input")
         inputDataNasc.setAttribute("class", "dataNascPaciente")
         inputDataNasc.style.textAlign = 'center'
-        inputDataNasc.style.margin = '4px'
+        inputDataNasc.style.margin = '0.25rem'
         inputDataNasc.style.padding = '0.5rem'
         inputDataNasc.style.width = '25%'
         inputDataNasc.style.borderWidth = '1px'
@@ -148,7 +130,7 @@ export class PacientesComponent implements OnInit {
         let selectSexo: HTMLSelectElement = document.createElement("select")
         selectSexo.setAttribute("class", "sexoPaciente")
         selectSexo.style.textAlign = 'center'
-        selectSexo.style.margin = '4px'
+        selectSexo.style.margin = '0.25rem'
         selectSexo.style.padding = '0.5rem'
         selectSexo.style.width = '25%'
         selectSexo.style.borderWidth = '1px'
@@ -176,8 +158,9 @@ export class PacientesComponent implements OnInit {
   
         let inputCpf: HTMLInputElement = document.createElement("input")
         inputCpf.setAttribute("class", "cpfPaciente")
-        inputCpf.style.margin = '4px'
+        inputCpf.style.margin = '0.25rem'
         inputCpf.style.padding = '0.5rem'
+        inputCpf.style.width = "25%"
         inputCpf.style.borderWidth = '1px'
         inputCpf.style.borderRadius = '2rem'
         inputCpf.style.borderColor = 'rgba(248,249,250,1)'
@@ -188,7 +171,7 @@ export class PacientesComponent implements OnInit {
   
         let inputTelefone: HTMLInputElement = document.createElement("input")
         inputTelefone.setAttribute("class", "telefonePaciente")
-        inputTelefone.style.margin = '4px'
+        inputTelefone.style.margin = '0.25rem'
         inputTelefone.style.padding = '0.5rem'
         inputTelefone.style.width = '25%'
         inputTelefone.style.borderWidth = '1px'
@@ -201,7 +184,7 @@ export class PacientesComponent implements OnInit {
   
         let inputEmail: HTMLInputElement = document.createElement("input")
         inputEmail.setAttribute("class", "emailPaciente")
-        inputEmail.style.margin = '4px'
+        inputEmail.style.margin = '0.25rem'
         inputEmail.style.padding = '0.5rem'
         inputEmail.style.width = '25%'
         inputEmail.style.borderWidth = '1px'
@@ -215,7 +198,7 @@ export class PacientesComponent implements OnInit {
         let inputEndereco: HTMLInputElement = document.createElement("input")
         inputEndereco.setAttribute("class", "enderecoPaciente")
         inputEndereco.setAttribute("placeholder" , "Nº, Rua, Bairro, Cidade, UF")
-        inputEndereco.style.margin = '4px'
+        inputEndereco.style.margin = '0.25rem'
         inputEndereco.style.padding = '0.5rem'
         inputEndereco.style.width = '25%'
         inputEndereco.style.borderWidth = '1px'
@@ -227,8 +210,9 @@ export class PacientesComponent implements OnInit {
   
         let inputPlano: HTMLInputElement = document.createElement("input")
         inputPlano.setAttribute("class", "planoPaciente")
-        inputPlano.style.margin = '4px'
+        inputPlano.style.margin = '0.25rem'
         inputPlano.style.padding = '0.5rem'
+        inputPlano.style.width = "25%"
         inputPlano.style.borderWidth = '1px'
         inputPlano.style.borderRadius = '2rem'
         inputPlano.style.borderColor = 'rgba(248,249,250,1)'
@@ -236,6 +220,21 @@ export class PacientesComponent implements OnInit {
         inputPlano.setAttribute("placeholder", "Plano...")
         inputPlano.setAttribute("value", ""+planoPaciente+"")
         div.appendChild(inputPlano)
+
+        if (crmUsuario != null) {
+          let inputCrm: HTMLInputElement = document.createElement("input")
+          inputCrm.setAttribute("class", "CrmPaciente")
+          inputCrm.style.margin = '0.25rem'
+          inputCrm.style.padding = '0.5rem'
+          inputCrm.style.width = "25%"
+          inputCrm.style.borderWidth = '1px'
+          inputCrm.style.borderRadius = '2rem'
+          inputCrm.style.borderColor = 'rgba(248,249,250,1)'
+          inputCrm.setAttribute("type", "text")
+          inputCrm.setAttribute("placeholder", "Crm...")
+          inputCrm.setAttribute("value", ""+crmUsuario+"")
+          div.appendChild(inputCrm)
+        }
   
         let btnExcluir: HTMLButtonElement = document.createElement("button")
         btnExcluir.setAttribute("class", "btnExcluir "+(index + 1)+" "+idPaciente+"")
@@ -243,10 +242,29 @@ export class PacientesComponent implements OnInit {
         btnExcluir.style.borderWidth = '1px'
         btnExcluir.style.borderRadius = '2rem'
         btnExcluir.style.borderColor = 'rgba(248,249,250,1)'
+        btnExcluir.style.padding = '0.5rem'
+        btnExcluir.style.margin = '0.25rem'
         btnExcluir.innerHTML = "Excluir"
         div.appendChild(btnExcluir)
 
-        lista.appendChild(div)
+        let btnSalvar: HTMLButtonElement = document.createElement("button")
+        btnSalvar.setAttribute("class", "btnSalvar "+(index + 1)+" "+idPaciente+"")
+        btnSalvar.style.width = '25%'
+        btnSalvar.style.borderWidth = '1px'
+        btnSalvar.style.borderRadius = '2rem'
+        btnSalvar.style.borderColor = 'rgba(248,249,250,1)'
+        btnSalvar.style.background = '#048436'
+        btnSalvar.style.color = 'white'
+        btnSalvar.style.padding = '0.5rem'
+        btnSalvar.style.margin = '0.25rem'
+        btnSalvar.innerHTML = "Salvar Alterações"
+        div.appendChild(btnSalvar)
+
+        if (crmUsuario != null) {
+          listaMedicos.appendChild(div)
+        } else {
+          listaPacientes.appendChild(div)
+        }
       }             
     })    
   }
